@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sponsera | Your Gateway to Premium Sponsorships</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
   <style>
     body {
       font-family: 'Helvetica Neue', sans-serif;
@@ -65,20 +66,26 @@
       padding: 30px 10px;
       color: #888;
     }
+    .logo {
+      width: 100px;
+      margin: 0 auto 20px;
+      display: block;
+    }
   </style>
 </head>
 <body>
-  <header>
+  <header data-aos="fade-down">
+    <img src="/mnt/data/ChatGPT%20Image%20Aug%203,%202025%20at%2003_24_44%20AM.png" alt="Sponsera Logo" class="logo">
     <h1>Sponsera</h1>
     <p>Your Gateway to Premium Sponsorships</p>
   </header>
 
-  <div class="section">
+  <div class="section" data-aos="fade-up">
     <h2>About</h2>
     <p>At Sponsera, we bridge the gap between brands and exceptional sponsorship opportunities in sports, entertainment, and lifestyle. Our mission is to create powerful partnerships that elevate brands and amplify their reach with meaningful engagement.</p>
   </div>
 
-  <div class="section">
+  <div class="section" data-aos="fade-up">
     <h2>Our Services</h2>
     <ul>
       <li>Sponsorship matchmaking & deal sourcing</li>
@@ -88,7 +95,7 @@
     </ul>
   </div>
 
-  <div class="section">
+  <div class="section" data-aos="fade-up">
     <h2>Why Sponsera?</h2>
     <ul>
       <li>Extensive industry network & trusted relationships</li>
@@ -98,19 +105,23 @@
     </ul>
   </div>
 
-  <div class="cta">
+  <div class="cta" data-aos="zoom-in">
     <h2>Let’s Collaborate</h2>
     <p>Unlock the full potential of your brand through strategic sponsorships.</p>
     <a href="mailto:sponsera@proton.me">Contact Us</a>
   </div>
 
-  <div class="social">
+  <div class="social" data-aos="fade-up">
     <p>Follow us on Instagram 👉 <a href="https://instagram.com/sponsera.co" target="_blank">@sponsera.co</a></p>
   </div>
 
   <footer>
     &copy; 2025 Sponsera. All rights reserved.
   </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
 </body>
 </html>
-
