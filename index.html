@@ -4,15 +4,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sponsera | Where Brands & Creators Connect</title>
-  <meta name="description" content="Sponsera connects creators and brands for meaningful sponsorships. Transparent, fast, and built for the future.">
-  <meta name="keywords" content="sponsorship, influencer marketing, brand partnerships, creator economy, brand deals, sponsera">
+  <title>Sponsera | Your Gateway to Premium Sponsorships</title>
+  <meta name="description" content="Sponsera bridges the gap between brands and top-tier sponsorship opportunities in sports, entertainment, and lifestyle.">
+  <meta name="keywords" content="sponsorship, brand deals, sports partnerships, entertainment marketing, lifestyle branding, sponsera">
   <meta name="author" content="Sponsera">
   <meta name="robots" content="index, follow">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Sponsera | Where Brands & Creators Connect">
-  <meta property="og:description" content="Sponsorships made simple, meaningful, and modern.">
+  <meta property="og:title" content="Sponsera | Your Gateway to Premium Sponsorships">
+  <meta property="og:description" content="Creating powerful partnerships across sports, entertainment, and lifestyle.">
   <meta property="og:image" content="https://sponsera.github.io/sponsera/preview.jpg">
   <meta property="og:url" content="https://sponsera.github.io/sponsera/">
   <meta property="og:type" content="website">
@@ -20,7 +20,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Sponsera">
-  <meta name="twitter:description" content="Sponsorships made simple, meaningful, and modern.">
+  <meta name="twitter:description" content="Creating powerful partnerships across sports, entertainment, and lifestyle.">
   <meta name="twitter:image" content="https://sponsera.github.io/sponsera/preview.jpg">
 
   <!-- Favicon -->
@@ -30,16 +30,22 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 
   <style>
+    :root {
+      --primary: #000428;
+      --secondary: #ffffff;
+      --accent: #f5f5f5;
+    }
+
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      background-color: #ffffff;
+      background-color: var(--secondary);
       color: #111;
     }
 
     header {
-      background-color: #000428;
-      color: white;
+      background-color: var(--primary);
+      color: var(--secondary);
       padding: 2rem;
       text-align: center;
     }
@@ -56,17 +62,40 @@
     section {
       padding: 2rem;
       text-align: center;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    h2 {
+      color: var(--primary);
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul li::before {
+      content: "✔ ";
+      color: var(--primary);
+    }
+
+    .block {
+      background-color: var(--accent);
+      margin: 2rem 0;
+      padding: 1.5rem;
+      border-radius: 12px;
     }
 
     .cta {
-      background-color: #000428;
+      background-color: var(--primary);
       color: white;
       padding: 2rem;
     }
 
     .cta a {
       background: white;
-      color: #000428;
+      color: var(--primary);
       padding: 1rem 2rem;
       text-decoration: none;
       border-radius: 8px;
@@ -76,7 +105,7 @@
     footer {
       text-align: center;
       padding: 1rem;
-      background: #f2f2f2;
+      background: var(--accent);
       font-size: 0.9rem;
     }
   </style>
@@ -86,17 +115,47 @@
   <header>
     <img src="logo.png" alt="Sponsera logo">
     <h1>Sponsera</h1>
-    <p>Where Brands & Creators Connect</p>
+    <p>Your Gateway to Premium Sponsorships</p>
   </header>
 
   <section>
-    <h2>🚀 Sponsorships Made Simple</h2>
-    <p>We help creators and brands build real partnerships with real impact.</p>
+    <h2>About</h2>
+    <p>At Sponsera, we bridge the gap between brands and exceptional sponsorship opportunities in sports, entertainment, and lifestyle. Our mission is to create powerful partnerships that elevate brands and amplify their reach with meaningful engagement.</p>
+  </section>
+
+  <section class="block">
+    <h2>Our Services</h2>
+    <ul>
+      <li>Sponsorship matchmaking & deal sourcing</li>
+      <li>Brand partnership strategy & consulting</li>
+      <li>Event & campaign activation management</li>
+      <li>Detailed performance tracking & reporting</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2>Why Sponsera?</h2>
+    <ul>
+      <li>Extensive industry network & trusted relationships</li>
+      <li>Creative and data-driven sponsorship strategies</li>
+      <li>Commitment to delivering measurable results</li>
+      <li>Passionate, client-focused approach</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2>What We’re Made Of</h2>
+    <p>🎯 <strong>Sports Partnerships</strong><br>Curated sponsorships in athletics and eSports</p>
+    <p>🎬 <strong>Entertainment Projects</strong><br>Collaborations with rising talents & productions</p>
+    <p>💼 <strong>Lifestyle Brands</strong><br>Strategic alignment with modern labels & trends</p>
+    <p>✨ <strong>Coming Soon</strong><br>More greatness is on the way — stay tuned</p>
   </section>
 
   <section class="cta">
-    <h2>Ready to Collaborate?</h2>
-    <p><a href="#">Join the Waitlist</a></p>
+    <h2>Let’s Collaborate</h2>
+    <p>Unlock the full potential of your brand through strategic sponsorships.</p>
+    <p><a href="#">Send Message</a></p>
+    <p>Follow us on Instagram 👉 <strong>@sponsera.co</strong></p>
   </section>
 
   <footer>
