@@ -6,6 +6,9 @@
   <title>Sponsera | Your Gateway to Premium Sponsorships</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
       font-family: 'Helvetica Neue', sans-serif;
       margin: 0;
@@ -33,6 +36,7 @@
     }
     h2 {
       color: #333;
+      font-size: 2rem;
     }
     ul {
       padding-left: 20px;
@@ -71,12 +75,54 @@
       margin: 0 auto 20px;
       display: block;
     }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    input, textarea {
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+    button {
+      background-color: #1a1a1a;
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+      header p {
+        font-size: 1rem;
+      }
+      h2 {
+        font-size: 1.5rem;
+      }
+      .section, .cta {
+        padding: 40px 16px;
+      }
+      .cta a {
+        padding: 10px 20px;
+        font-size: 1rem;
+      }
+      .logo {
+        width: 80px;
+      }
+    }
   </style>
 </head>
 <body>
   <header data-aos="fade-down">
-<img src="logo.png" alt="Sponsera Logo" class="logo">
-
+    <img src="logo.png" alt="Sponsera Logo" class="logo">
     <h1>Sponsera</h1>
     <p>Your Gateway to Premium Sponsorships</p>
   </header>
@@ -104,6 +150,16 @@
       <li>Commitment to delivering measurable results</li>
       <li>Passionate, client-focused approach</li>
     </ul>
+  </div>
+
+  <div class="section" data-aos="fade-up">
+    <h2>Work With Us</h2>
+    <form action="https://formsubmit.co/sponsera@proton.me" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
   </div>
 
   <div class="cta" data-aos="zoom-in">
