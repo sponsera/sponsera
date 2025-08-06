@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sponsera | Where Brands & Creators Connect</title>
   <meta name="description" content="Sponsera connects creators and brands for meaningful sponsorships. Transparent, fast, and built for the future.">
   <meta name="keywords" content="sponsorship, influencer marketing, brand partnerships, creator economy, brand deals, sponsera">
   <meta name="author" content="Sponsera">
   <meta name="robots" content="index, follow">
 
-  <!-- Open Graph (for link previews) -->
+  <!-- Open Graph -->
   <meta property="og:title" content="Sponsera | Where Brands & Creators Connect">
   <meta property="og:description" content="Sponsorships made simple, meaningful, and modern.">
   <meta property="og:image" content="https://sponsera.github.io/sponsera/preview.jpg">
@@ -23,243 +23,81 @@
   <meta name="twitter:description" content="Sponsorships made simple, meaningful, and modern.">
   <meta name="twitter:image" content="https://sponsera.github.io/sponsera/preview.jpg">
 
-  <!-- Favicon (optional but nice) -->
-  <link rel="icon" type="image/png" href="logo.png" />
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="logo.png">
 
   <!-- AOS Animations -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 
-  <!-- Your Custom CSS -->
   <style>
-    /* your entire CSS here (leave it as-is, no changes needed) */
-  </style>
-</head>
-
     body {
-      font-family: 'Helvetica Neue', sans-serif;
       margin: 0;
-      background-color: #fffaf7;
-      color: #1a1a1a;
-      line-height: 1.6;
-      transition: background-color 0.3s, color 0.3s;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background-color: #ffffff;
+      color: #111;
     }
-    body.dark {
-      background-color: #1a1a1a;
-      color: #fffaf7;
-    }
-    header {
-      background: #f5f0eb;
-      padding: 80px 20px;
-      text-align: center;
-      transition: background 0.3s;
-    }
-    body.dark header { background: #2c2c2c; }
-    header h1 { font-size: 3rem; margin-bottom: 10px; }
-    header p { font-size: 1.2rem; color: #555; }
-    body.dark header p { color: #ccc; }
 
-    .section {
-      padding: 60px 20px;
-      max-width: 800px;
-      margin: auto;
+    header {
+      background-color: #000428;
+      color: white;
+      padding: 2rem;
+      text-align: center;
     }
-    h2 {
-      color: #333;
+
+    header img {
+      width: 100px;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
       font-size: 2rem;
     }
-    body.dark h2 { color: #fff; }
 
-    ul {
-      padding-left: 20px;
-    }
-    .centered-list {
-      list-style: none;
-      padding: 0;
-      margin: 0 auto;
-      max-width: 600px;
+    section {
+      padding: 2rem;
       text-align: center;
     }
-    .centered-list li { margin-bottom: 10px; }
 
     .cta {
-      background: #e8e1da;
-      text-align: center;
-      padding: 40px 20px;
-      transition: background 0.3s;
+      background-color: #000428;
+      color: white;
+      padding: 2rem;
     }
-    body.dark .cta { background: #333; }
+
     .cta a {
-      display: inline-block;
-      margin-top: 20px;
-      background: #1a1a1a;
-      color: #fff;
-      padding: 12px 24px;
+      background: white;
+      color: #000428;
+      padding: 1rem 2rem;
       text-decoration: none;
-      border-radius: 4px;
-    }
-    .social {
-      text-align: center;
-      margin: 40px auto;
-    }
-    .social a {
-      color: #1a1a1a;
-      text-decoration: none;
+      border-radius: 8px;
       font-weight: bold;
     }
-    body.dark .social a { color: #fff; }
+
     footer {
       text-align: center;
+      padding: 1rem;
+      background: #f2f2f2;
       font-size: 0.9rem;
-      padding: 30px 10px;
-      color: #888;
-    }
-    body.dark footer { color: #aaa; }
-
-    .logo {
-      width: 100px;
-      margin: 0 auto 20px;
-      display: block;
-    }
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    input, textarea {
-      padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 1rem;
-    }
-    button {
-      background-color: #1a1a1a;
-      color: white;
-      border: none;
-      padding: 12px;
-      font-size: 1rem;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    .dark-toggle {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      background: #1a1a1a;
-      color: #fff;
-      padding: 10px 16px;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 0.9rem;
-      z-index: 1000;
-    }
-    body.dark .gallery-card { background: #333; }
-    body.dark h3, body.dark p { color: #eee; }
-
-    .gallery-grid {
-      max-width: 800px;
-      margin: 30px auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-    }
-    .gallery-card {
-      background: #f5f0eb;
-      padding: 20px;
-      border-radius: 8px;
-      text-align: center;
-    }
-
-    @media (max-width: 768px) {
-      header h1 { font-size: 2.2rem; }
-      header p { font-size: 1rem; }
-      h2 { font-size: 1.5rem; }
-      .section, .cta { padding: 40px 16px; }
-      .cta a { padding: 10px 20px; font-size: 1rem; }
-      .logo { width: 80px; }
     }
   </style>
 </head>
-<body>
-  <button class="dark-toggle" onclick="toggleDarkMode()">🌓 Toggle Dark Mode</button>
 
-  <header data-aos="fade-down">
-    <img src="logo.png" alt="Sponsera Logo" class="logo">
+<body>
+  <header>
+    <img src="logo.png" alt="Sponsera logo">
     <h1>Sponsera</h1>
-    <p>Your Gateway to Premium Sponsorships</p>
+    <p>Where Brands & Creators Connect</p>
   </header>
 
-  <div class="section" data-aos="fade-up">
-    <h2>About</h2>
-    <p>At Sponsera, we bridge the gap between brands and exceptional sponsorship opportunities in sports, entertainment, and lifestyle. Our mission is to create powerful partnerships that elevate brands and amplify their reach with meaningful engagement.</p>
-  </div>
+  <section>
+    <h2>🚀 Sponsorships Made Simple</h2>
+    <p>We help creators and brands build real partnerships with real impact.</p>
+  </section>
 
-  <div class="section" data-aos="fade-up">
-    <h2>Our Services</h2>
-    <ul>
-      <li>Sponsorship matchmaking & deal sourcing</li>
-      <li>Brand partnership strategy & consulting</li>
-      <li>Event & campaign activation management</li>
-      <li>Detailed performance tracking & reporting</li>
-    </ul>
-  </div>
-
-  <div class="section" data-aos="fade-up">
-    <h2>Why Sponsera?</h2>
-    <ul>
-      <li>Extensive industry network & trusted relationships</li>
-      <li>Creative and data-driven sponsorship strategies</li>
-      <li>Commitment to delivering measurable results</li>
-      <li>Passionate, client-focused approach</li>
-    </ul>
-  </div>
-
-  <div class="section" data-aos="fade-up">
-    <h2>What We’re Made Of</h2>
-    <div class="gallery-grid">
-      <div class="gallery-card">
-        <h3>🎯 Sports Partnerships</h3>
-        <p>Curated sponsorships in athletics and eSports</p>
-      </div>
-      <div class="gallery-card">
-        <h3>🎬 Entertainment Projects</h3>
-        <p>Collaborations with rising talents & productions</p>
-      </div>
-      <div class="gallery-card">
-        <h3>💼 Lifestyle Brands</h3>
-        <p>Strategic alignment with modern labels & trends</p>
-      </div>
-      <div class="gallery-card">
-        <h3>✨ Coming Soon</h3>
-        <p>More greatness is on the way — stay tuned</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="section" data-aos="fade-up">
-    <div style="text-align: center;"><h2>Work With Us</h2></div>
-    <form action="https://formsubmit.co/sponsera@proton.me" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-      <input type="hidden" name="_next" value="https://sponsera.github.io/sponsera/thank-you.html">
-      <input type="hidden" name="_captcha" value="false">
-    </form>
-  </div>
-
-  <div class="cta" data-aos="zoom-in">
-    <h2>Let’s Collaborate</h2>
-    <p>Unlock the full potential of your brand through strategic sponsorships.</p>
-    <a href="mailto:sponsera@proton.me">Contact Us</a>
-  </div>
-
-  <div class="social" data-aos="fade-up">
-    <p>Follow us on Instagram 👉 <a href="https://instagram.com/sponsera.co" target="_blank">@sponsera.co</a></p>
-  </div>
+  <section class="cta">
+    <h2>Ready to Collaborate?</h2>
+    <p><a href="#">Join the Waitlist</a></p>
+  </section>
 
   <footer>
     &copy; 2025 Sponsera. All rights reserved.
@@ -268,15 +106,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script>
     AOS.init();
-    function toggleDarkMode() {
-      document.body.classList.toggle('dark');
-      localStorage.setItem('darkMode', document.body.classList.contains('dark'));
-    }
-    window.onload = () => {
-      if (localStorage.getItem('darkMode') === 'true') {
-        document.body.classList.add('dark');
-      }
-    };
   </script>
 </body>
+
 </html>
