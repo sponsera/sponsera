@@ -51,8 +51,6 @@
       color: var(--secondary);
       padding: 2rem;
       text-align: center;
-      opacity: 0;
-      animation: fadeIn 1.2s ease-in-out forwards;
     }
 
     header img {
@@ -75,18 +73,12 @@
       text-align: center;
       max-width: 800px;
       margin: auto;
-      opacity: 0;
-      animation: fadeIn 1.5s ease-in-out forwards;
-      animation-delay: 0.6s;
     }
 
     .cta {
       background-color: var(--primary);
       color: white;
       padding: 2rem;
-      opacity: 0;
-      animation: fadeIn 1.5s ease-in-out forwards;
-      animation-delay: 1s;
     }
 
     .cta a {
@@ -108,27 +100,6 @@
       padding: 1rem;
       background: var(--accent);
       font-size: 0.9rem;
-      opacity: 0;
-      animation: fadeIn 1.5s ease-in-out forwards;
-      animation-delay: 1.2s;
-    }
-
-    .instagram {
-      margin-top: 2rem;
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeIn 1.5s ease-in-out forwards;
-      animation-delay: 1.5s;
-    }
-
-    .instagram img {
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      border-radius: 8px;
     }
 
     .dark-toggle {
@@ -140,17 +111,7 @@
       border-radius: 6px;
       cursor: pointer;
       font-size: 0.9rem;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      z-index: 999;
     }
   </style>
 </head>
@@ -211,20 +172,11 @@
   <section class="cta">
     <h2>Let’s Collaborate</h2>
     <p>Unlock the full potential of your brand through strategic sponsorships.</p>
-    <p><a href="mailto:sponsera@proton.me">Join the Waitlist</a></p>
+    <form action="mailto:sponsera@proton.me" method="post" enctype="text/plain">
+      <input type="text" name="Name" placeholder="Your Name" required style="padding:0.5rem; border-radius:4px; margin-right:0.5rem;">
+      <input type="submit" value="Join the Waitlist" style="padding:0.5rem 1rem; background:white; color:#000428; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">
+    </form>
   </section>
-
-  <div class="instagram">
-    <a href="https://instagram.com/sponsera.co" target="_blank">
-      <img src="https://sponsera.github.io/sponsera/insta1.jpg" alt="Instagram preview 1">
-    </a>
-    <a href="https://instagram.com/sponsera.co" target="_blank">
-      <img src="https://sponsera.github.io/sponsera/insta2.jpg" alt="Instagram preview 2">
-    </a>
-    <a href="https://instagram.com/sponsera.co" target="_blank">
-      <img src="https://sponsera.github.io/sponsera/insta3.jpg" alt="Instagram preview 3">
-    </a>
-  </div>
 
   <footer>
     <p>Follow us on Instagram 👉 <a href="https://instagram.com/sponsera.co" target="_blank">@sponsera.co</a></p>
