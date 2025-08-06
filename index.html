@@ -5,17 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sponsera | Your Gateway to Premium Sponsorships</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
-  <style>.centered-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 auto;
-  max-width: 600px;
-  text-align: center;
-}
-.centered-list li {
-  margin-bottom: 10px;
-}
-
+  <style>
     * {
       box-sizing: border-box;
     }
@@ -63,8 +53,15 @@
     body.dark h2 {
       color: #fff;
     }
-    ul {
-      padding-left: 20px;
+    .centered-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 auto;
+      max-width: 600px;
+      text-align: center;
+    }
+    .centered-list li {
+      margin-bottom: 10px;
     }
     .cta {
       background: #e8e1da;
@@ -145,6 +142,25 @@
       font-size: 0.9rem;
       z-index: 1000;
     }
+    body.dark .gallery-card {
+      background: #333;
+    }
+    body.dark h3, body.dark p {
+      color: #eee;
+    }
+    .gallery-grid {
+      max-width: 800px;
+      margin: 30px auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .gallery-card {
+      background: #f5f0eb;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+    }
     @media (max-width: 768px) {
       header h1 {
         font-size: 2.2rem;
@@ -194,34 +210,35 @@
 
   <div class="section" data-aos="fade-up">
     <h2>Why Sponsera?</h2>
-    <ul> 
-        </ul>
-</div>
+    <ul class="centered-list">
+      <li>Extensive industry network & trusted relationships</li>
+      <li>Creative and data-driven sponsorship strategies</li>
+      <li>Commitment to delivering measurable results</li>
+      <li>Passionate, client-focused approach</li>
+    </ul>
+  </div>
 
-<div class="section" data-aos="fade-up">
-  <h2>What We’re Made Of</h2>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 30px;">
-    <div style="background:#f5f0eb; padding: 20px; border-radius: 8px; text-align: center;">
-      <h3>🎯 Sports Partnerships</h3>
-      <p>Curated sponsorships in athletics and eSports</p>
+  <div class="section" data-aos="fade-up">
+    <h2>What We’re Made Of</h2>
+    <div class="gallery-grid">
+      <div class="gallery-card">
+        <h3>🎯 Sports Partnerships</h3>
+        <p>Curated sponsorships in athletics and eSports</p>
+      </div>
+      <div class="gallery-card">
+        <h3>🎬 Entertainment Projects</h3>
+        <p>Collaborations with rising talents & productions</p>
+      </div>
+      <div class="gallery-card">
+        <h3>💼 Lifestyle Brands</h3>
+        <p>Strategic alignment with modern labels & trends</p>
+      </div>
+      <div class="gallery-card">
+        <h3>✨ Coming Soon</h3>
+        <p>More greatness is on the way — stay tuned</p>
+      </div>
     </div>
-    <div style="background:#f5f0eb; padding: 20px; border-radius: 8px; text-align: center;">
-      <h3>🎬 Entertainment Projects</h3>
-      <p>Collaborations with rising talents & productions</p>
-    </div>
-    <div style="background:#f5f0eb; padding: 20px; border-radius: 8px; text-align: center;">
-      <h3>💼 Lifestyle Brands</h3>
-      <p>Strategic alignment with modern labels & trends</p>
-    </div>
-    <div style="background:#f5f0eb; padding: 20px; border-radius: 8px; text-align: center;">
-      <h3>✨ Coming Soon</h3>
-      <p>More greatness is on the way — stay tuned</p>
-    </div><ul class="centered-list">
-  <li>Extensive industry network & trusted relationships</li>
-  <li>Creative and data-driven sponsorship strategies</li>
-  <li>Commitment to delivering measurable results</li>
-  <li>Passionate, client-focused approach</li>
-</ul>
+  </div>
 
   <div class="section" data-aos="fade-up">
     <h2>Work With Us</h2>
@@ -252,12 +269,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script>
     AOS.init();
-
     function toggleDarkMode() {
       document.body.classList.toggle('dark');
       localStorage.setItem('darkMode', document.body.classList.contains('dark'));
     }
-
     window.onload = () => {
       if (localStorage.getItem('darkMode') === 'true') {
         document.body.classList.add('dark');
