@@ -15,11 +15,20 @@
       background-color: #fffaf7;
       color: #1a1a1a;
       line-height: 1.6;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    body.dark {
+      background-color: #1a1a1a;
+      color: #fffaf7;
     }
     header {
       background: #f5f0eb;
       padding: 80px 20px;
       text-align: center;
+      transition: background 0.3s;
+    }
+    body.dark header {
+      background: #2c2c2c;
     }
     header h1 {
       font-size: 3rem;
@@ -28,6 +37,9 @@
     header p {
       font-size: 1.2rem;
       color: #555;
+    }
+    body.dark header p {
+      color: #ccc;
     }
     .section {
       padding: 60px 20px;
@@ -38,6 +50,9 @@
       color: #333;
       font-size: 2rem;
     }
+    body.dark h2 {
+      color: #fff;
+    }
     ul {
       padding-left: 20px;
     }
@@ -45,6 +60,10 @@
       background: #e8e1da;
       text-align: center;
       padding: 40px 20px;
+      transition: background 0.3s;
+    }
+    body.dark .cta {
+      background: #333;
     }
     .cta a {
       display: inline-block;
@@ -64,11 +83,17 @@
       text-decoration: none;
       font-weight: bold;
     }
+    body.dark .social a {
+      color: #fff;
+    }
     footer {
       text-align: center;
       font-size: 0.9rem;
       padding: 30px 10px;
       color: #888;
+    }
+    body.dark footer {
+      color: #aaa;
     }
     .logo {
       width: 100px;
@@ -97,6 +122,19 @@
       border-radius: 4px;
       cursor: pointer;
     }
+    .dark-toggle {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background: #1a1a1a;
+      color: #fff;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      z-index: 1000;
+    }
     @media (max-width: 768px) {
       header h1 {
         font-size: 2.2rem;
@@ -121,6 +159,8 @@
   </style>
 </head>
 <body>
+  <button class="dark-toggle" onclick="toggleDarkMode()">🌓 Toggle Dark Mode</button>
+
   <header data-aos="fade-down">
     <img src="logo.png" alt="Sponsera Logo" class="logo">
     <h1>Sponsera</h1>
@@ -159,6 +199,8 @@
       <input type="email" name="email" placeholder="Your Email" required>
       <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
       <button type="submit">Send Message</button>
+      <input type="hidden" name="_next" value="https://sponsera.github.io/sponsera/thank-you.html">
+      <input type="hidden" name="_captcha" value="false">
     </form>
   </div>
 
@@ -179,6 +221,17 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script>
     AOS.init();
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+      localStorage.setItem('darkMode', document.body.classList.contains('dark'));
+    }
+
+    window.onload = () => {
+      if (localStorage.getItem('darkMode') === 'true') {
+        document.body.classList.add('dark');
+      }
+    };
   </script>
 </body>
 </html>
