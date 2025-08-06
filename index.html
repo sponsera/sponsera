@@ -52,6 +52,15 @@
       color: white;
     }
 
+    .dark-mode footer {
+      background: #222;
+      color: #ccc;
+    }
+
+    .dark-mode footer a {
+      color: #90ee90;
+    }
+
     header {
       background-color: var(--primary);
       color: var(--secondary);
@@ -116,6 +125,10 @@
       padding: 1rem;
       background: var(--accent);
       font-size: 0.9rem;
+    }
+
+    footer a {
+      color: #000;
     }
 
     .dark-toggle {
@@ -213,8 +226,11 @@
     function handleSubmit(e) {
       e.preventDefault();
       const name = document.getElementById('nameInput').value;
-      window.location.href = `mailto:sponsera@proton.me?subject=Waitlist%20Signup&body=Name:%20${encodeURIComponent(name)}`;
       document.getElementById('thankYou').style.display = 'block';
+      setTimeout(() => {
+        document.getElementById('thankYou').style.display = 'none';
+        document.getElementById('nameInput').value = '';
+      }, 5000);
     }
   </script>
 </body>
