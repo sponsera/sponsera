@@ -6,9 +6,7 @@
   <title>Sponsera | Your Gateway to Premium Sponsorships</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
       font-family: 'Helvetica Neue', sans-serif;
       margin: 0;
@@ -27,20 +25,11 @@
       text-align: center;
       transition: background 0.3s;
     }
-    body.dark header {
-      background: #2c2c2c;
-    }
-    header h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-    }
-    header p {
-      font-size: 1.2rem;
-      color: #555;
-    }
-    body.dark header p {
-      color: #ccc;
-    }
+    body.dark header { background: #2c2c2c; }
+    header h1 { font-size: 3rem; margin-bottom: 10px; }
+    header p { font-size: 1.2rem; color: #555; }
+    body.dark header p { color: #ccc; }
+
     .section {
       padding: 60px 20px;
       max-width: 800px;
@@ -50,8 +39,10 @@
       color: #333;
       font-size: 2rem;
     }
-    body.dark h2 {
-      color: #fff;
+    body.dark h2 { color: #fff; }
+
+    ul {
+      padding-left: 20px;
     }
     .centered-list {
       list-style: none;
@@ -60,18 +51,15 @@
       max-width: 600px;
       text-align: center;
     }
-    .centered-list li {
-      margin-bottom: 10px;
-    }
+    .centered-list li { margin-bottom: 10px; }
+
     .cta {
       background: #e8e1da;
       text-align: center;
       padding: 40px 20px;
       transition: background 0.3s;
     }
-    body.dark .cta {
-      background: #333;
-    }
+    body.dark .cta { background: #333; }
     .cta a {
       display: inline-block;
       margin-top: 20px;
@@ -90,18 +78,15 @@
       text-decoration: none;
       font-weight: bold;
     }
-    body.dark .social a {
-      color: #fff;
-    }
+    body.dark .social a { color: #fff; }
     footer {
       text-align: center;
       font-size: 0.9rem;
       padding: 30px 10px;
       color: #888;
     }
-    body.dark footer {
-      color: #aaa;
-    }
+    body.dark footer { color: #aaa; }
+
     .logo {
       width: 100px;
       margin: 0 auto 20px;
@@ -129,6 +114,7 @@
       border-radius: 4px;
       cursor: pointer;
     }
+
     .dark-toggle {
       position: fixed;
       top: 15px;
@@ -142,12 +128,9 @@
       font-size: 0.9rem;
       z-index: 1000;
     }
-    body.dark .gallery-card {
-      background: #333;
-    }
-    body.dark h3, body.dark p {
-      color: #eee;
-    }
+    body.dark .gallery-card { background: #333; }
+    body.dark h3, body.dark p { color: #eee; }
+
     .gallery-grid {
       max-width: 800px;
       margin: 30px auto;
@@ -161,26 +144,14 @@
       border-radius: 8px;
       text-align: center;
     }
+
     @media (max-width: 768px) {
-      header h1 {
-        font-size: 2.2rem;
-      }
-      header p {
-        font-size: 1rem;
-      }
-      h2 {
-        font-size: 1.5rem;
-      }
-      .section, .cta {
-        padding: 40px 16px;
-      }
-      .cta a {
-        padding: 10px 20px;
-        font-size: 1rem;
-      }
-      .logo {
-        width: 80px;
-      }
+      header h1 { font-size: 2.2rem; }
+      header p { font-size: 1rem; }
+      h2 { font-size: 1.5rem; }
+      .section, .cta { padding: 40px 16px; }
+      .cta a { padding: 10px 20px; font-size: 1rem; }
+      .logo { width: 80px; }
     }
   </style>
 </head>
@@ -241,8 +212,7 @@
   </div>
 
   <div class="section" data-aos="fade-up">
-    <h2>Work With Us</h2>
-    <ul>
+    <h2 style="text-align: center;">Work With Us</h2>
     <form action="https://formsubmit.co/sponsera@proton.me" method="POST">
       <input type="text" name="name" placeholder="Your Name" required>
       <input type="email" name="email" placeholder="Your Email" required>
