@@ -203,6 +203,8 @@
     <p>Unlock the full potential of your brand through strategic sponsorships.</p>
     <form onsubmit="handleSubmit(event)">
       <input type="text" id="nameInput" name="Name" placeholder="Your Name" required style="padding:0.5rem; border-radius:4px; margin-right:0.5rem;">
+      <input type="text" id="messageInput" name="Message" placeholder="Your Message" required style="padding:0.5rem; border-radius:4px; margin:0.5rem 0;">
+      <br>
       <input type="submit" value="Join the Waitlist">
     </form>
     <p class="thank-you" id="thankYou">Thank you for joining! We'll be in touch soon. 💌</p>
@@ -226,10 +228,12 @@
     function handleSubmit(e) {
       e.preventDefault();
       const name = document.getElementById('nameInput').value;
+      const message = document.getElementById('messageInput').value;
       document.getElementById('thankYou').style.display = 'block';
       setTimeout(() => {
         document.getElementById('thankYou').style.display = 'none';
         document.getElementById('nameInput').value = '';
+        document.getElementById('messageInput').value = '';
       }, 5000);
     }
   </script>
