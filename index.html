@@ -74,11 +74,22 @@
       color: var(--secondary);
       padding: 3rem 2rem;
       text-align: center;
+      position: relative;
     }
 
     header img {
       width: 100px;
       margin-bottom: 1rem;
+    }
+
+    .language-switch {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: #eee;
+      padding: 0.4rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
     }
 
     h1 {
@@ -186,6 +197,18 @@
       list-style: none;
       padding: 0;
     }
+
+    @media screen and (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+      section {
+        padding: 2rem 1rem;
+      }
+      .cta form {
+        padding: 0 1rem;
+      }
+    }
   </style>
 </head>
 
@@ -193,6 +216,12 @@
   <div class="dark-toggle" onclick="toggleDarkMode()">🌙 Toggle Dark Mode</div>
 
   <header>
+    <div class="language-switch">
+      <select onchange="changeLang(this)">
+        <option value="en">English</option>
+        <option value="ar">العربية</option>
+      </select>
+    </div>
     <img src="logo.png" alt="Sponsera logo">
     <h1>Sponsera</h1>
     <p class="tagline">Your Gateway to Premium Sponsorships</p>
@@ -255,6 +284,10 @@
   <script>
     function toggleDarkMode() {
       document.body.classList.toggle('dark-mode');
+    }
+
+    function changeLang(select) {
+      alert('Language switcher placeholder — full multilingual support coming soon!');
     }
 
     const form = document.querySelector('[data-form]');
