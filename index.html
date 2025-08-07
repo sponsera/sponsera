@@ -43,9 +43,8 @@
       transition: background-color 0.3s, color 0.3s;
     }
 
-    body[dir="rtl"] {
+    html[lang="ar"] {
       direction: rtl;
-      text-align: right;
     }
 
     header,
@@ -168,7 +167,72 @@
 <body>
   <div class="dark-toggle" onclick="toggleDarkMode()">🌙 Toggle Dark Mode</div>
 
-  <!-- existing body unchanged -->
+  <header>
+    <div class="language-switch">
+      <select onchange="changeLang(this)">
+        <option value="en">EN</option>
+        <option value="ar">AR</option>
+      </select>
+    </div>
+    <h1 data-translate="title">Sponsera</h1>
+    <p data-translate="tagline">Your Gateway to Premium Sponsorships</p>
+  </header>
+
+  <section class="section">
+    <h2 data-translate="why">Why Sponsera?</h2>
+    <p data-translate="why_text">We bring brands and creators together for partnerships that matter. No noise. Just real results.</p>
+  </section>
+
+  <section class="section">
+    <h2 data-translate="how_title">How It Works</h2>
+    <p data-translate="how1">1. Brands sign up & post opportunities</p>
+    <p data-translate="how2">2. Creators apply with their pitch</p>
+    <p data-translate="how3">3. Collaborations begin. Simple, fast, transparent.</p>
+  </section>
+
+  <section class="section">
+    <h2 data-translate="for_brands_title">For Brands</h2>
+    <p data-translate="for_brands_text">Reach authentic creators who resonate with your mission. Get measurable results.</p>
+  </section>
+
+  <section class="section">
+    <h2 data-translate="for_creators_title">For Creators</h2>
+    <p data-translate="for_creators_text">Skip the middleman. Land real deals. Keep your creative freedom.</p>
+  </section>
+
+  <section class="section">
+    <h2 data-translate="features_title">Features</h2>
+    <div class="features">
+      <div class="feature-box">
+        <h3 data-translate="feature1_title">🧠 Smart Matchmaking</h3>
+        <p data-translate="feature1_text">Our algorithm pairs you with ideal brand partners.</p>
+      </div>
+      <div class="feature-box">
+        <h3 data-translate="feature2_title">📊 Performance Tracking</h3>
+        <p data-translate="feature2_text">Monitor real-time performance of your collabs.</p>
+      </div>
+      <div class="feature-box">
+        <h3 data-translate="feature3_title">🛡️ Secure Payments</h3>
+        <p data-translate="feature3_text">We protect both sides with milestone-based payments.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2 data-translate="contact">Let's collaborate</h2>
+    <form>
+      <input type="text" placeholder="Name">
+      <input type="email" placeholder="Email">
+      <input type="text" placeholder="Instagram handle">
+      <textarea rows="5" placeholder="Tell us more about your project"></textarea>
+      <input type="submit" value="Submit">
+    </form>
+    <div class="thank-you">Thank you! We'll be in touch soon.</div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Sponsera</p>
+  </footer>
 
   <script>
     function toggleDarkMode() {
@@ -177,9 +241,57 @@
 
     function changeLang(select) {
       const lang = select.value;
+      document.documentElement.lang = lang;
+
       const translations = {
-        en: { ... },
-        ar: { ... }
+        en: {
+          title: "Sponsera",
+          tagline: "Your Gateway to Premium Sponsorships",
+          why: "Why Sponsera?",
+          why_text: "We bring brands and creators together for partnerships that matter. No noise. Just real results.",
+          how_title: "How It Works",
+          how1: "1. Brands sign up & post opportunities",
+          how2: "2. Creators apply with their pitch",
+          how3: "3. Collaborations begin. Simple, fast, transparent.",
+          for_brands_title: "For Brands",
+          for_brands_text: "Reach authentic creators who resonate with your mission. Get measurable results.",
+          for_creators_title: "For Creators",
+          for_creators_text: "Skip the middleman. Land real deals. Keep your creative freedom.",
+          features_title: "Features",
+          feature1_title: "🧠 Smart Matchmaking",
+          feature1_text: "Our algorithm pairs you with ideal brand partners.",
+          feature2_title: "📊 Performance Tracking",
+          feature2_text: "Monitor real-time performance of your collabs.",
+          feature3_title: "🛡️ Secure Payments",
+          feature3_text: "We protect both sides with milestone-based payments.",
+          testimonials_title: "Testimonials",
+          testimonials_text: "🌟 Coming soon! Be one of the first success stories on Sponsera.",
+          contact: "Let's collaborate"
+        },
+        ar: {
+          title: "سبونسيرا",
+          tagline: "بوابتك إلى الرعايات المتميزة",
+          why: "لماذا سبونسيرا؟",
+          why_text: "نحن نربط العلامات التجارية بالمبدعين لشراكات حقيقية مؤثرة. لا ضوضاء، فقط نتائج حقيقية.",
+          how_title: "كيف تعمل",
+          how1: "1. تسجّل العلامات التجارية وتنشر الفرص",
+          how2: "2. يتقدّم المبدعون بعروضهم",
+          how3: "3. تبدأ التعاونات. ببساطة، بسرعة، وبشفافية.",
+          for_brands_title: "للشركات",
+          for_brands_text: "تواصل مع مبدعين حقيقيين يتماشون مع رسالتك. واحصل على نتائج قابلة للقياس.",
+          for_creators_title: "للمبدعين",
+          for_creators_text: "تخطَ الوسطاء. احصل على صفقات حقيقية. واحتفظ بحريتك الإبداعية.",
+          features_title: "الميزات",
+          feature1_title: "🧠 مطابقة ذكية",
+          feature1_text: "يقرّبك خوارزميتنا من الشركاء المثاليين من العلامات التجارية.",
+          feature2_title: "📊 تتبع الأداء",
+          feature2_text: "تابع أداء تعاوناتك في الوقت الفعلي.",
+          feature3_title: "🛡️ دفعات آمنة",
+          feature3_text: "نحمي الطرفين عبر دفعات مبنية على الإنجاز.",
+          testimonials_title: "آراء العملاء",
+          testimonials_text: "🌟 قريبًا! كن من أوائل قصص النجاح على سبونسيرا.",
+          contact: "دعنا نتعاون"
+        }
       };
 
       document.querySelectorAll('[data-translate]').forEach(el => {
@@ -189,14 +301,7 @@
         }
       });
 
-      // Apply RTL layout if Arabic selected
-      if (lang === 'ar') {
-        document.documentElement.setAttribute('lang', 'ar');
-        document.documentElement.setAttribute('dir', 'rtl');
-      } else {
-        document.documentElement.setAttribute('lang', 'en');
-        document.documentElement.setAttribute('dir', 'ltr');
-      }
+      document.documentElement.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
     }
   </script>
 </body>
