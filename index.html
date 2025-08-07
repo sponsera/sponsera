@@ -40,7 +40,11 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       background-color: var(--secondary);
       color: #111;
-      transition: background-color 0.3s, color 0.3s;
+    }
+
+    header, section, footer {
+      padding: 4rem 2rem;
+      text-align: center;
     }
 
     .dark-mode {
@@ -48,136 +52,48 @@
       color: #e6edf3;
     }
 
-    .dark-mode header,
-    .dark-mode .cta {
-      background-color: #01203a;
-      color: white;
-    }
-
-    .dark-mode footer {
-      background: #00172d;
-      color: #8b949e;
-    }
-
-    .dark-mode footer a {
-      color: var(--link-darkmode);
-    }
-
-    .dark-mode .cta a,
-    .dark-mode .cta input[type="submit"] {
-      background: #144e8c;
-      color: white;
-    }
-
     header {
       background-color: var(--primary);
-      color: var(--secondary);
-      padding: 3rem 2rem;
-      text-align: center;
+      color: white;
+      padding-top: 6rem;
       position: relative;
-    }
-
-    header img {
-      width: 100px;
-      margin-bottom: 1rem;
     }
 
     .language-switch {
       position: absolute;
       top: 1rem;
       left: 1rem;
-      background: #eee;
-      padding: 0.4rem 0.6rem;
-      border-radius: 6px;
-      font-size: 0.9rem;
     }
 
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
+    h1, h2 {
       font-family: var(--serif);
     }
 
-    h2 {
-      font-family: var(--serif);
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 0.5rem;
-      margin-bottom: 2rem;
-      display: inline-block;
-    }
-
-    p.tagline {
-      font-size: 1.3rem;
-      margin-top: 0;
-    }
-
-    section {
-      padding: 4rem 2rem;
-      text-align: center;
+    .section {
       max-width: 800px;
-      margin: auto;
-    }
-
-    .cta {
-      background-color: var(--primary);
-      color: white;
-      padding: 3rem 2rem;
-    }
-
-    .cta form {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-      align-items: stretch;
-      max-width: 600px;
       margin: 0 auto;
     }
 
-    .cta input[type="text"],
-    .cta input[type="email"],
-    .cta textarea,
-    .cta input[type="submit"] {
-      width: 100%;
-      padding: 0.9rem;
-      border-radius: 8px;
-      font-size: 1rem;
-      border: none;
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
     }
 
-    .cta a,
-    .cta input[type="submit"] {
+    .feature-box {
       background: white;
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: bold;
-      transition: all 0.3s ease;
-      cursor: pointer;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
 
-    .cta a:hover,
-    .cta input[type="submit"]:hover {
+    .cta, footer {
       background-color: var(--accent);
-      transform: scale(1.03);
-      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
-    }
-
-    .thank-you {
-      margin-top: 1rem;
-      color: #8cc5ff;
-      display: none;
     }
 
     footer {
-      text-align: center;
-      padding: 2rem;
-      background: var(--accent);
-      font-size: 0.85rem;
-      letter-spacing: 0.5px;
+      font-size: 0.8rem;
       text-transform: uppercase;
-    }
-
-    footer a {
-      color: #000;
     }
 
     .dark-toggle {
@@ -188,26 +104,7 @@
       padding: 0.5rem 1rem;
       border-radius: 6px;
       cursor: pointer;
-      font-size: 0.9rem;
       z-index: 999;
-    }
-
-    ul {
-      text-align: center;
-      list-style: none;
-      padding: 0;
-    }
-
-    @media screen and (max-width: 600px) {
-      h1 {
-        font-size: 2rem;
-      }
-      section {
-        padding: 2rem 1rem;
-      }
-      .cta form {
-        padding: 0 1rem;
-      }
     }
   </style>
 </head>
@@ -225,7 +122,7 @@
         <option value="tr">Türkçe</option>
       </select>
     </div>
-    <img src="logo.png" alt="Sponsera logo">
+    <img src="logo.png" alt="Sponsera logo" width="100">
     <h1 data-translate="title">Sponsera</h1>
     <p class="tagline" data-translate="tagline">Your Gateway to Premium Sponsorships</p>
   </header>
@@ -233,6 +130,54 @@
   <section>
     <h2 data-translate="why">Why Sponsera?</h2>
     <p data-translate="why_text">We bring brands and creators together for partnerships that matter. No noise. Just real results.</p>
+  </section>
+
+  <section>
+    <h2>How It Works</h2>
+    <div class="section">
+      <p><strong>1.</strong> Brands sign up & post opportunities</p>
+      <p><strong>2.</strong> Creators apply with their pitch</p>
+      <p><strong>3.</strong> Collaborations begin. Simple, fast, transparent.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>For Brands</h2>
+    <div class="section">
+      <p>Reach authentic creators who resonate with your mission. Get measurable results.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>For Creators</h2>
+    <div class="section">
+      <p>Skip the middleman. Land real deals. Keep your creative freedom.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Features</h2>
+    <div class="features">
+      <div class="feature-box">
+        <h3>🧠 Smart Matchmaking</h3>
+        <p>Our algorithm pairs you with ideal brand partners.</p>
+      </div>
+      <div class="feature-box">
+        <h3>📊 Performance Tracking</h3>
+        <p>Monitor real-time performance of your collabs.</p>
+      </div>
+      <div class="feature-box">
+        <h3>🛡️ Secure Payments</h3>
+        <p>We protect both sides with milestone-based payments.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Testimonials</h2>
+    <div class="section">
+      <p>🌟 Coming soon! Be one of the first success stories on Sponsera.</p>
+    </div>
   </section>
 
   <section class="cta">
@@ -248,7 +193,7 @@
 
   <footer>
     <p>Email: <a href="mailto:sponsera@proton.me">sponsera@proton.me</a></p>
-    <p>Instagram: <a href="https://www.instagram.com/sponsera.co" target="_blank">sponsera.co</a></p>
+    <p>Instagram: <a href="https://www.instagram.com/sponsera.co" target="_blank">@sponsera.co</a></p>
   </footer>
 
   <script>
