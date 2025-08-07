@@ -1,112 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sponsera</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sponsera | Where Brands & Creators Connect</title>
+  <meta name="description" content="Sponsera helps creators and brands build real partnerships with real impact.">
+  <meta name="keywords" content="sponsorship, brand deals, creators, influencer marketing, sponsera">
+  <meta name="author" content="Sponsera">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Sponsera | Where Brands & Creators Connect">
+  <meta property="og:description" content="Helping creators and brands build real partnerships with real impact.">
+  <meta property="og:image" content="https://sponsera.github.io/sponsera/preview.jpg">
+  <meta property="og:url" content="https://sponsera.github.io/sponsera/">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sponsera">
+  <meta name="twitter:description" content="Helping creators and brands build real partnerships with real impact.">
+  <meta name="twitter:image" content="https://sponsera.github.io/sponsera/preview.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="logo.png">
+
   <style>
+    :root {
+      --primary: #000428;
+      --secondary: #ffffff;
+      --accent: #f5f5f5;
+      --link-darkmode: #1e90ff;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background-color: var(--secondary);
+      color: #111;
       transition: background-color 0.3s, color 0.3s;
-      text-align: center;
-      padding: 2rem;
-      background-color: white;
-      color: black;
     }
 
     .dark-mode {
-      background-color: #121212;
+      background-color: #111;
+      color: #eee;
+    }
+
+    .dark-mode header,
+    .dark-mode .cta {
+      background-color: #000;
       color: white;
     }
 
-    .dark-mode .highlight {
-      color: #64b5f6;
+    .dark-mode footer {
+      background: #222;
+      color: #ccc;
     }
 
-    h1, h2 {
+    .dark-mode footer a {
+      color: var(--link-darkmode);
+    }
+
+    .dark-mode .cta a,
+    .dark-mode .cta input[type="submit"] {
+      color: #1e90ff;
+    }
+
+    header {
+      background-color: var(--primary);
+      color: var(--secondary);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    header img {
+      width: 100px;
       margin-bottom: 1rem;
     }
 
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    ul li {
+    h1 {
+      font-size: 2rem;
       margin-bottom: 0.5rem;
     }
 
-    .section {
-      margin: 3rem 0;
+    p.tagline {
+      font-size: 1.2rem;
+      margin-top: 0;
     }
 
-    .form {
-      margin-top: 2rem;
+    section {
+      padding: 2rem;
+      text-align: center;
+      max-width: 800px;
+      margin: auto;
     }
 
-    input[type="text"] {
-      padding: 0.5rem;
-      width: 250px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-
-    button {
-      padding: 0.5rem 1rem;
-      border: none;
-      background-color: #007BFF;
+    .cta {
+      background-color: var(--primary);
       color: white;
-      border-radius: 5px;
+      padding: 2rem;
+    }
+
+    .cta a,
+    .cta input[type="submit"] {
+      background: white;
+      color: var(--primary);
+      padding: 1rem 2rem;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      border: none;
       cursor: pointer;
-      margin-left: 0.5rem;
+    }
+
+    .cta a:hover,
+    .cta input[type="submit"]:hover {
+      background-color: var(--accent);
     }
 
     .thank-you {
-      display: none;
       margin-top: 1rem;
-      font-weight: bold;
-      color: #28a745;
+      color: #1e90ff;
+      display: none;
     }
 
-    .contact {
-      margin-top: 2rem;
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: var(--accent);
       font-size: 0.9rem;
     }
 
-    .toggle {
+    footer a {
+      color: #000;
+    }
+
+    .dark-toggle {
       position: fixed;
       top: 1rem;
       right: 1rem;
+      background: #eee;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
       cursor: pointer;
-      background: none;
-      border: 2px solid #007BFF;
-      color: #007BFF;
-      padding: 0.5rem;
-      border-radius: 8px;
-      font-size: 0.8rem;
+      font-size: 0.9rem;
+      z-index: 999;
     }
 
-    a {
-      color: #007BFF;
+    ul {
+      text-align: center;
+      list-style-position: inside;
+      padding: 0;
     }
-
-    .dark-mode a {
-      color: #64b5f6;
-    }
-
   </style>
 </head>
-<body>
 
-  <button class="toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+<body class="dark-mode">
+  <div class="dark-toggle" onclick="toggleDarkMode()">🌙 Toggle Dark Mode</div>
 
-  <h1 class="highlight">Sponsera</h1>
-  <h2>Where Brands & Creators Connect</h2>
-  <p>🚀 Sponsorships Made Simple</p>
-  <p>We help creators and brands build real partnerships with real impact.</p>
+  <header>
+    <img src="logo.png" alt="Sponsera logo">
+    <h1>Sponsera</h1>
+    <p class="tagline">Where Brands & Creators Connect</p>
+  </header>
 
-  <div class="section">
+  <section>
+    <h2>🚀 Sponsorships Made Simple</h2>
+    <p>We help creators and brands build real partnerships with real impact.</p>
+  </section>
+
+  <section>
+    <h2>About</h2>
+    <p>At Sponsera, we bridge the gap between brands and exceptional sponsorship opportunities in sports, entertainment, and lifestyle. Our mission is to create powerful partnerships that elevate brands and amplify their reach with meaningful engagement.</p>
+  </section>
+
+  <section>
     <h2>Our Services</h2>
     <ul>
       <li>Sponsorship matchmaking & deal sourcing</li>
@@ -114,9 +184,9 @@
       <li>Event & campaign activation management</li>
       <li>Detailed performance tracking & reporting</li>
     </ul>
-  </div>
+  </section>
 
-  <div class="section">
+  <section>
     <h2>Why Sponsera?</h2>
     <ul>
       <li>Extensive industry network & trusted relationships</li>
@@ -124,45 +194,56 @@
       <li>Commitment to delivering measurable results</li>
       <li>Passionate, client-focused approach</li>
     </ul>
-  </div>
+  </section>
 
-  <div class="section">
+  <section>
     <h2>What We’re Made Of</h2>
     <ul>
-      <li>🎯 Sports Partnerships – Curated sponsorships in athletics and eSports</li>
-      <li>🎬 Entertainment Projects – Collaborations with rising talents & productions</li>
-      <li>💼 Lifestyle Brands – Strategic alignment with modern labels & trends</li>
+      <li>🎯 Sports Partnerships - Curated sponsorships in athletics and eSports</li>
+      <li>🎬 Entertainment Projects - Collaborations with rising talents & productions</li>
+      <li>💼 Lifestyle Brands - Strategic alignment with modern labels & trends</li>
     </ul>
-  </div>
+  </section>
 
-  <div class="section">
-    <h2>Ready to Collaborate?</h2>
-    <p>Join the waitlist:</p>
-    <div class="form">
-      <input type="text" id="nameInput" placeholder="Your name here..." />
-      <button onclick="submitForm()">Join</button>
-    </div>
-    <div class="thank-you" id="thankYouMessage">Thank you! We'll be in touch soon 💌</div>
-  </div>
+  <section>
+    <h2>✨ Coming Soon</h2>
+    <p>More greatness is on the way — stay tuned.</p>
+  </section>
 
-  <div class="contact">
-    <p>📸 Follow us on <a href="https://instagram.com/sponsera.co" target="_blank">@sponsera.co</a></p>
-    <p>📬 Email us at <a href="mailto:sponsera@proton.me">sponsera@proton.me</a></p>
-  </div>
+  <section class="cta">
+    <h2>Let’s Collaborate</h2>
+    <p>Unlock the full potential of your brand through strategic sponsorships.</p>
+    <form action="https://formsubmit.co/sponsera@proton.me" method="POST" target="_blank" onsubmit="showThankYou()">
+      <input type="text" name="name" placeholder="Your Name" required style="padding:0.5rem; border-radius:4px; margin-right:0.5rem;">
+      <input type="text" name="message" placeholder="Your Message" required style="padding:0.5rem; border-radius:4px; margin:0.5rem 0;">
+      <br>
+      <input type="submit" value="Contact Us">
+    </form>
+    <p class="thank-you" id="thankYou">Thank you! We'll be in touch soon. 💌</p>
+  </section>
+
+  <footer>
+    <p>Follow us on Instagram 👉 <a href="https://instagram.com/sponsera.co" target="_blank">@sponsera.co</a></p>
+    <p>Email us at: <a href="mailto:sponsera@proton.me">sponsera@proton.me</a></p>
+    <p>&copy; 2025 Sponsera. All rights reserved.</p>
+  </footer>
 
   <script>
     function toggleDarkMode() {
       document.body.classList.toggle('dark-mode');
     }
 
-    function submitForm() {
-      const input = document.getElementById("nameInput").value.trim();
-      const thankYou = document.getElementById("thankYouMessage");
-      if (input) {
-        thankYou.style.display = "block";
-        document.getElementById("nameInput").value = "";
-      }
+    window.addEventListener('DOMContentLoaded', () => {
+      document.body.classList.add('dark-mode');
+    });
+
+    function showThankYou() {
+      document.getElementById('thankYou').style.display = 'block';
+      setTimeout(() => {
+        document.getElementById('thankYou').style.display = 'none';
+      }, 5000);
     }
   </script>
 </body>
+
 </html>
