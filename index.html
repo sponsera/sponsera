@@ -108,6 +108,8 @@
     }
 
     .cta input[type="text"],
+    .cta input[type="email"],
+    .cta textarea,
     .cta input[type="submit"] {
       width: 90%;
       max-width: 400px;
@@ -195,7 +197,7 @@
   </section>
 
   <section>
-    <h2>Why Choose Us?</h2>
+    <h2>Why Sponsera?</h2>
     <ul>
       <li>Extensive industry network & trusted relationships</li>
       <li>Creative and data-driven sponsorship strategies</li>
@@ -216,11 +218,12 @@
   <section>
     <h2>Work With Us</h2>
     <p>We’re excited to learn about your goals and explore how we can work together.</p>
-    <form action="https://formsubmit.co/sponsera@proton.me" method="POST" onsubmit="showThankYou()">
+    <form action="https://formsubmit.co/ajax/sponsera@proton.me" method="POST" data-form>
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_template" value="box">
       <input type="text" name="name" placeholder="Your Name" required>
-      <input type="text" name="message" placeholder="Tell us about your project" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Tell us about your project" rows="5" required></textarea>
       <input type="submit" value="Send">
     </form>
     <p class="thank-you" id="thankYou">Thank you! We'll be in touch soon. 💌</p>
@@ -241,12 +244,25 @@
       document.body.classList.add('dark-mode');
     });
 
-    function showThankYou() {
-      document.getElementById('thankYou').style.display = 'block';
-      setTimeout(() => {
-        document.getElementById('thankYou').style.display = 'none';
-      }, 5000);
-    }
+    const form = document.querySelector('[data-form]');
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      if (response.ok) {
+        document.getElementById('thankYou').style.display = 'block';
+        form.reset();
+        setTimeout(() => {
+          document.getElementById('thankYou').style.display = 'none';
+        }, 5000);
+      }
+    });
   </script>
 </body>
 
