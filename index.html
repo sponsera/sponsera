@@ -173,50 +173,50 @@
   </section>
 
   <section>
-    <h2>How It Works</h2>
+    <h2 data-translate="how_title">How It Works</h2>
     <div class="section">
-      <p><strong>1.</strong> Brands sign up & post opportunities</p>
-      <p><strong>2.</strong> Creators apply with their pitch</p>
-      <p><strong>3.</strong> Collaborations begin. Simple, fast, transparent.</p>
+      <p data-translate="how1"><strong>1.</strong> Brands sign up & post opportunities</p>
+      <p data-translate="how2"><strong>2.</strong> Creators apply with their pitch</p>
+      <p data-translate="how3"><strong>3.</strong> Collaborations begin. Simple, fast, transparent.</p>
     </div>
   </section>
 
   <section>
-    <h2>For Brands</h2>
+    <h2 data-translate="for_brands_title">For Brands</h2>
     <div class="section">
-      <p>Reach authentic creators who resonate with your mission. Get measurable results.</p>
+      <p data-translate="for_brands_text">Reach authentic creators who resonate with your mission. Get measurable results.</p>
     </div>
   </section>
 
   <section>
-    <h2>For Creators</h2>
+    <h2 data-translate="for_creators_title">For Creators</h2>
     <div class="section">
-      <p>Skip the middleman. Land real deals. Keep your creative freedom.</p>
+      <p data-translate="for_creators_text">Skip the middleman. Land real deals. Keep your creative freedom.</p>
     </div>
   </section>
 
   <section>
-    <h2>Features</h2>
+    <h2 data-translate="features_title">Features</h2>
     <div class="features">
       <div class="feature-box">
-        <h3>🧠 Smart Matchmaking</h3>
-        <p>Our algorithm pairs you with ideal brand partners.</p>
+        <h3 data-translate="feature1_title">🧠 Smart Matchmaking</h3>
+        <p data-translate="feature1_text">Our algorithm pairs you with ideal brand partners.</p>
       </div>
       <div class="feature-box">
-        <h3>📊 Performance Tracking</h3>
-        <p>Monitor real-time performance of your collabs.</p>
+        <h3 data-translate="feature2_title">📊 Performance Tracking</h3>
+        <p data-translate="feature2_text">Monitor real-time performance of your collabs.</p>
       </div>
       <div class="feature-box">
-        <h3>🛡️ Secure Payments</h3>
-        <p>We protect both sides with milestone-based payments.</p>
+        <h3 data-translate="feature3_title">🛡️ Secure Payments</h3>
+        <p data-translate="feature3_text">We protect both sides with milestone-based payments.</p>
       </div>
     </div>
   </section>
 
   <section>
-    <h2>Testimonials</h2>
+    <h2 data-translate="testimonials_title">Testimonials</h2>
     <div class="section">
-      <p>🌟 Coming soon! Be one of the first success stories on Sponsera.</p>
+      <p data-translate="testimonials_text">🌟 Coming soon! Be one of the first success stories on Sponsera.</p>
     </div>
   </section>
 
@@ -247,57 +247,26 @@
         tagline: "Your Gateway to Premium Sponsorships",
         why: "Why Sponsera?",
         why_text: "We bring brands and creators together for partnerships that matter. No noise. Just real results.",
-        contact: "Let's collaborate"
-      },
-      ar: {
-        title: "سبونسرًا",
-        tagline: "بوابتك إلى الرعايات المتميزة",
-        why: "لماذا سبونسرًا؟",
-        why_text: "نحن نجمع بين العلامات التجارية والمبدعين لشراكات حقيقية وفعالة.",
-        contact: "فلنتعاون سويًا"
-      },
-      it: {
-        title: "Sponsera",
-        tagline: "La tua porta verso sponsorizzazioni premium",
-        why: "Perché Sponsera?",
-        why_text: "Uniamo brand e creatori per collaborazioni autentiche e di impatto.",
-        contact: "Collaboriamo insieme"
-      },
-      es: {
-        title: "Sponsera",
-        tagline: "Tu puerta a patrocinios premium",
-        why: "¿Por qué Sponsera?",
-        why_text: "Conectamos marcas y creadores para asociaciones auténticas y efectivas.",
-        contact: "Colaboremos"
-      },
-      tr: {
-        title: "Sponsera",
-        tagline: "Premium sponsorluklara açılan kapınız",
-        why: "Neden Sponsera?",
-        why_text: "Markaları ve içerik üreticilerini anlamlı iş birlikleriyle bir araya getiriyoruz.",
-        contact: "Birlikte çalışalım"
+        contact: "Let's collaborate",
+        how_title: "How It Works",
+        how1: "1. Brands sign up & post opportunities",
+        how2: "2. Creators apply with their pitch",
+        how3: "3. Collaborations begin. Simple, fast, transparent.",
+        for_brands_title: "For Brands",
+        for_brands_text: "Reach authentic creators who resonate with your mission. Get measurable results.",
+        for_creators_title: "For Creators",
+        for_creators_text: "Skip the middleman. Land real deals. Keep your creative freedom.",
+        features_title: "Features",
+        feature1_title: "🧠 Smart Matchmaking",
+        feature1_text: "Our algorithm pairs you with ideal brand partners.",
+        feature2_title: "📊 Performance Tracking",
+        feature2_text: "Monitor real-time performance of your collabs.",
+        feature3_title: "🛡️ Secure Payments",
+        feature3_text: "We protect both sides with milestone-based payments.",
+        testimonials_title: "Testimonials",
+        testimonials_text: "🌟 Coming soon! Be one of the first success stories on Sponsera."
       }
     };
-
-    function changeLang(select) {
-      const lang = select.value;
-      localStorage.setItem('lang', lang);
-      applyLang(lang);
-    }
-
-    function applyLang(lang) {
-      document.querySelectorAll('[data-translate]').forEach(el => {
-        const key = el.getAttribute('data-translate');
-        el.textContent = translations[lang][key];
-      });
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const savedLang = localStorage.getItem('lang') || 'en';
-      document.getElementById('languageSelect').value = savedLang;
-      applyLang(savedLang);
-    });
   </script>
 </body>
-
 </html>
