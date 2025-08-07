@@ -62,6 +62,11 @@
       color: var(--link-darkmode);
     }
 
+    .dark-mode .cta a,
+    .dark-mode .cta input[type="submit"] {
+      color: #1e90ff;
+    }
+
     header {
       background-color: var(--primary);
       color: var(--secondary);
@@ -174,29 +179,29 @@
   <section>
     <h2>Our Services</h2>
     <ul>
-      <li>• Sponsorship matchmaking & deal sourcing</li>
-      <li>• Brand partnership strategy & consulting</li>
-      <li>• Event & campaign activation management</li>
-      <li>• Detailed performance tracking & reporting</li>
+      <li>Sponsorship matchmaking & deal sourcing</li>
+      <li>Brand partnership strategy & consulting</li>
+      <li>Event & campaign activation management</li>
+      <li>Detailed performance tracking & reporting</li>
     </ul>
   </section>
 
   <section>
     <h2>Why Sponsera?</h2>
     <ul>
-      <li>• Extensive industry network & trusted relationships</li>
-      <li>• Creative and data-driven sponsorship strategies</li>
-      <li>• Commitment to delivering measurable results</li>
-      <li>• Passionate, client-focused approach</li>
+      <li>Extensive industry network & trusted relationships</li>
+      <li>Creative and data-driven sponsorship strategies</li>
+      <li>Commitment to delivering measurable results</li>
+      <li>Passionate, client-focused approach</li>
     </ul>
   </section>
 
   <section>
     <h2>What We’re Made Of</h2>
     <ul>
-      <li>• 🎯 Sports Partnerships - Curated sponsorships in athletics and eSports</li>
-      <li>• 🎬 Entertainment Projects - Collaborations with rising talents & productions</li>
-      <li>• 💼 Lifestyle Brands - Strategic alignment with modern labels & trends</li>
+      <li>🎯 Sports Partnerships - Curated sponsorships in athletics and eSports</li>
+      <li>🎬 Entertainment Projects - Collaborations with rising talents & productions</li>
+      <li>💼 Lifestyle Brands - Strategic alignment with modern labels & trends</li>
     </ul>
   </section>
 
@@ -208,9 +213,9 @@
   <section class="cta">
     <h2>Let’s Collaborate</h2>
     <p>Unlock the full potential of your brand through strategic sponsorships.</p>
-    <form onsubmit="handleSubmit(event)">
-      <input type="text" id="nameInput" name="Name" placeholder="Your Name" required style="padding:0.5rem; border-radius:4px; margin-right:0.5rem;">
-      <input type="text" id="messageInput" name="Message" placeholder="Your Message" required style="padding:0.5rem; border-radius:4px; margin:0.5rem 0;">
+    <form action="https://formsubmit.co/sponsera@proton.me" method="POST" target="_blank" onsubmit="showThankYou()">
+      <input type="text" name="name" placeholder="Your Name" required style="padding:0.5rem; border-radius:4px; margin-right:0.5rem;">
+      <input type="text" name="message" placeholder="Your Message" required style="padding:0.5rem; border-radius:4px; margin:0.5rem 0;">
       <br>
       <input type="submit" value="Join the Waitlist">
     </form>
@@ -232,15 +237,10 @@
       document.body.classList.add('dark-mode');
     });
 
-    function handleSubmit(e) {
-      e.preventDefault();
-      const name = document.getElementById('nameInput').value;
-      const message = document.getElementById('messageInput').value;
+    function showThankYou() {
       document.getElementById('thankYou').style.display = 'block';
       setTimeout(() => {
         document.getElementById('thankYou').style.display = 'none';
-        document.getElementById('nameInput').value = '';
-        document.getElementById('messageInput').value = '';
       }, 5000);
     }
   </script>
