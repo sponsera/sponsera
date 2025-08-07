@@ -40,6 +40,7 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       background-color: var(--secondary);
       color: #111;
+      transition: background-color 0.3s, color 0.3s;
     }
 
     header, section, footer {
@@ -49,6 +50,11 @@
 
     .dark-mode {
       background-color: #00172d;
+      color: #e6edf3;
+    }
+
+    .dark-mode .feature-box {
+      background: #011f3d;
       color: #e6edf3;
     }
 
@@ -85,6 +91,7 @@
       padding: 2rem;
       border-radius: 8px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      transition: background-color 0.3s, color 0.3s;
     }
 
     .cta, footer {
@@ -181,7 +188,7 @@
   </section>
 
   <section class="cta">
-    <h2 data-translate="contact">Let's Collaborate</h2>
+    <h2 data-translate="contact">We'd love to hear from you</h2>
     <form>
       <input type="text" placeholder="Your Name">
       <input type="email" placeholder="Your Email">
@@ -193,7 +200,7 @@
 
   <footer>
     <p>Email: <a href="mailto:sponsera@proton.me">sponsera@proton.me</a></p>
-    <p>Instagram: <a href="https://www.instagram.com/sponsera.co" target="_blank">@sponsera.co</a></p>
+    <p>Instagram: <a href="https://www.instagram.com/sponsera.co" target="_blank">sponsera.co</a></p>
   </footer>
 
   <script>
@@ -207,35 +214,35 @@
         tagline: "Your Gateway to Premium Sponsorships",
         why: "Why Sponsera?",
         why_text: "We bring brands and creators together for partnerships that matter. No noise. Just real results.",
-        contact: "Let's Collaborate"
+        contact: "We'd love to hear from you"
       },
       ar: {
         title: "سبونسرًا",
         tagline: "بوابتك إلى الرعايات المتميزة",
         why: "لماذا سبونسرًا؟",
         why_text: "نحن نجمع بين العلامات التجارية والمبدعين لشراكات حقيقية وفعالة.",
-        contact: "دعنا نتعاون"
+        contact: "يسعدنا سماعك"
       },
       it: {
         title: "Sponsera",
         tagline: "La tua porta verso sponsorizzazioni premium",
         why: "Perché Sponsera?",
         why_text: "Uniamo brand e creatori per collaborazioni autentiche e di impatto.",
-        contact: "Collaboriamo"
+        contact: "Ci piacerebbe sentirti"
       },
       es: {
         title: "Sponsera",
         tagline: "Tu puerta a patrocinios premium",
         why: "¿Por qué Sponsera?",
         why_text: "Conectamos marcas y creadores para asociaciones auténticas y efectivas.",
-        contact: "Colaboremos"
+        contact: "Nos encantaría saber de ti"
       },
       tr: {
         title: "Sponsera",
         tagline: "Premium sponsorluklara açılan kapınız",
         why: "Neden Sponsera?",
         why_text: "Markaları ve içerik üreticilerini anlamlı iş birlikleriyle bir araya getiriyoruz.",
-        contact: "Birlikte çalışalım"
+        contact: "Senden haber almak isteriz"
       }
     };
 
