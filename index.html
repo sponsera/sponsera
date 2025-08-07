@@ -105,6 +105,9 @@
 
     .cta form {
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .cta input[type="text"],
@@ -113,10 +116,10 @@
     .cta input[type="submit"] {
       width: 90%;
       max-width: 400px;
-      margin: 0.5rem auto;
-      display: block;
+      margin: 0.5rem 0;
       padding: 0.5rem;
       border-radius: 4px;
+      display: block;
     }
 
     .cta a,
@@ -207,7 +210,7 @@
   </section>
 
   <section>
-    <h2>Our DNA</h2>
+    <h2>What We’re Made Of</h2>
     <ul>
       <li>Sports Partnerships - Curated sponsorships in athletics and eSports</li>
       <li>Entertainment Projects - Collaborations with rising talents & productions</li>
@@ -223,7 +226,7 @@
       <input type="hidden" name="_template" value="box">
       <input type="text" name="name" placeholder="Your Name" required>
       <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" placeholder="Tell us about your project" rows="5" required></textarea>
+      <textarea name="message" placeholder="Tell us about your project" rows="6" required></textarea>
       <input type="submit" value="Send">
     </form>
     <p class="thank-you" id="thankYou">Thank you! We'll be in touch soon. 💌</p>
