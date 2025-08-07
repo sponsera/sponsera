@@ -28,9 +28,9 @@
 
   <style>
     :root {
-      --primary: #081c2f;
-      --secondary: #fefefe;
-      --accent: #e6f0fa;
+      --primary: #001f3f;
+      --secondary: #f4f8fb;
+      --accent: #dbe9f7;
       --link-darkmode: #8cc5ff;
       --serif: 'Georgia', serif;
     }
@@ -44,18 +44,18 @@
     }
 
     .dark-mode {
-      background-color: #081c2f;
+      background-color: #00172d;
       color: #e6edf3;
     }
 
     .dark-mode header,
     .dark-mode .cta {
-      background-color: #0c253a;
+      background-color: #01203a;
       color: white;
     }
 
     .dark-mode footer {
-      background: #081c2f;
+      background: #00172d;
       color: #8b949e;
     }
 
@@ -65,7 +65,7 @@
 
     .dark-mode .cta a,
     .dark-mode .cta input[type="submit"] {
-      background: #1363df;
+      background: #144e8c;
       color: white;
     }
 
@@ -114,19 +114,19 @@
     }
 
     .cta form {
-      text-align: center;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      gap: 1.2rem;
+      align-items: stretch;
+      max-width: 600px;
+      margin: 0 auto;
     }
 
     .cta input[type="text"],
     .cta input[type="email"],
     .cta textarea,
     .cta input[type="submit"] {
-      width: 90%;
-      max-width: 500px;
-      margin: 1rem 0;
+      width: 100%;
       padding: 0.9rem;
       border-radius: 8px;
       font-size: 1rem;
