@@ -28,10 +28,11 @@
 
   <style>
     :root {
-      --primary: #000428;
-      --secondary: #ffffff;
+      --primary: #0d1117;
+      --secondary: #fefefe;
       --accent: #f5f5f5;
-      --link-darkmode: #1e90ff;
+      --link-darkmode: #58a6ff;
+      --serif: 'Georgia', serif;
     }
 
     body {
@@ -43,19 +44,19 @@
     }
 
     .dark-mode {
-      background-color: #001f4d;
-      color: #eee;
+      background-color: #0d1117;
+      color: #e6edf3;
     }
 
     .dark-mode header,
     .dark-mode .cta {
-      background-color: #002366;
+      background-color: #161b22;
       color: white;
     }
 
     .dark-mode footer {
-      background: #001c3d;
-      color: #ccc;
+      background: #0d1117;
+      color: #8b949e;
     }
 
     .dark-mode footer a {
@@ -64,14 +65,14 @@
 
     .dark-mode .cta a,
     .dark-mode .cta input[type="submit"] {
-      background: #1e90ff;
+      background: #238636;
       color: white;
     }
 
     header {
       background-color: var(--primary);
       color: var(--secondary);
-      padding: 2rem;
+      padding: 3rem 2rem;
       text-align: center;
     }
 
@@ -81,17 +82,26 @@
     }
 
     h1 {
-      font-size: 2rem;
+      font-size: 2.5rem;
       margin-bottom: 0.5rem;
+      font-family: var(--serif);
+    }
+
+    h2 {
+      font-family: var(--serif);
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 0.5rem;
+      margin-bottom: 2rem;
+      display: inline-block;
     }
 
     p.tagline {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       margin-top: 0;
     }
 
     section {
-      padding: 2rem;
+      padding: 4rem 2rem;
       text-align: center;
       max-width: 800px;
       margin: auto;
@@ -100,7 +110,7 @@
     .cta {
       background-color: var(--primary);
       color: white;
-      padding: 2rem;
+      padding: 3rem 2rem;
     }
 
     .cta form {
@@ -117,9 +127,10 @@
       width: 90%;
       max-width: 400px;
       margin: 0.5rem 0;
-      padding: 0.5rem;
-      border-radius: 4px;
-      display: block;
+      padding: 0.75rem;
+      border-radius: 6px;
+      font-size: 1rem;
+      border: none;
     }
 
     .cta a,
@@ -129,26 +140,29 @@
       text-decoration: none;
       font-weight: bold;
       transition: all 0.3s ease;
-      border: none;
       cursor: pointer;
     }
 
     .cta a:hover,
     .cta input[type="submit"]:hover {
       background-color: var(--accent);
+      transform: scale(1.03);
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
     }
 
     .thank-you {
       margin-top: 1rem;
-      color: #1e90ff;
+      color: #58a6ff;
       display: none;
     }
 
     footer {
       text-align: center;
-      padding: 1rem;
+      padding: 2rem;
       background: var(--accent);
-      font-size: 0.9rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
     }
 
     footer a {
@@ -210,7 +224,7 @@
   </section>
 
   <section>
-    <h2>What We’re Made Of</h2>
+    <h2>Our Signature Focus</h2>
     <ul>
       <li>Sports Partnerships - Curated sponsorships in athletics and eSports</li>
       <li>Entertainment Projects - Collaborations with rising talents & productions</li>
