@@ -7,63 +7,72 @@
     <link rel="icon" href="logo.png" type="image/png" />
     <style>
       :root {
-        --bg-light: #f8f9fa;
-        --text-light: #212529;
-        --bg-dark: #08121c;
-        --text-dark: #f0f0f0;
+        --bg-light: #f9f9f9;
+        --text-light: #1a1a1a;
+        --bg-dark: #0d1117;
+        --text-dark: #e6edf3;
         --accent-blue: #1f6feb;
+        --footer-light: #1a1a1a;
+        --footer-dark: #e6edf3;
       }
 
-      [data-theme="light"] {
+      body[data-theme="light"] {
         background-color: var(--bg-light);
         color: var(--text-light);
       }
 
-      [data-theme="dark"] {
+      body[data-theme="dark"] {
         background-color: var(--bg-dark);
         color: var(--text-dark);
       }
 
       body {
-        font-family: Arial, sans-serif;
+        font-family: 'Segoe UI', sans-serif;
         margin: 0;
         padding: 0;
-        transition: background 0.3s, color 0.3s;
+        transition: all 0.3s ease;
       }
 
       header {
-        padding: 20px;
         text-align: center;
+        padding: 30px 0;
       }
 
       header img {
         max-width: 150px;
+        height: auto;
       }
 
       .container {
-        padding: 20px;
         max-width: 800px;
         margin: auto;
+        padding: 20px;
       }
 
       h2 {
         text-align: center;
-        margin-top: 40px;
+        color: var(--accent-blue);
       }
 
       section {
         margin-bottom: 40px;
       }
 
+      p, li {
+        line-height: 1.7;
+      }
+
+      ul {
+        padding-left: 20px;
+      }
+
       .form-group {
-        display: flex;
-        flex-direction: column;
         margin-bottom: 15px;
       }
 
-      input,
-      textarea {
-        padding: 10px;
+      input, textarea {
+        width: 100%;
+        padding: 12px;
         border-radius: 8px;
         border: 1px solid #ccc;
         font-size: 1rem;
@@ -72,41 +81,53 @@
       button {
         background-color: var(--accent-blue);
         color: white;
-        border: none;
-        padding: 10px 20px;
+        padding: 12px 20px;
         font-size: 1rem;
+        border: none;
         border-radius: 10px;
         cursor: pointer;
+      }
+
+      .contact-info {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .contact-info p {
+        margin: 5px 0;
+        color: var(--accent-blue);
       }
 
       footer {
         text-align: center;
         padding: 20px;
         font-size: 0.9rem;
+        background: transparent;
+        color: var(--footer-light);
       }
 
-      .collab-title {
-        color: var(--accent-blue);
+      body[data-theme="dark"] footer {
+        color: var(--footer-dark);
       }
 
-      .contact-info {
-        margin-top: 10px;
-      }
-
-      .contact-info p {
-        margin: 5px 0;
+      .darkmode-toggle, .lang-switch {
+        position: fixed;
+        top: 10px;
       }
 
       .darkmode-toggle {
-        position: fixed;
-        top: 10px;
         right: 10px;
       }
 
       .lang-switch {
-        position: fixed;
-        top: 10px;
         left: 10px;
+      }
+
+      select, .darkmode-toggle button {
+        padding: 8px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 1rem;
       }
     </style>
   </head>
@@ -190,12 +211,12 @@
       </section>
 
       <section class="contact-info">
-        <p><strong>Email:</strong> <span style="color:var(--accent-blue)">sponsera@proton.me</span></p>
-        <p><strong>Instagram:</strong> <span style="color:var(--accent-blue)">sponsera.co</span></p>
+        <p><strong>Email:</strong> sponsera@proton.me</p>
+        <p><strong>Instagram:</strong> @sponsera.co</p>
       </section>
     </div>
 
-    <footer style="color:var(--text-dark);">
+    <footer>
       © 2025 Sponsera. All rights reserved.
     </footer>
 
@@ -223,9 +244,8 @@
       };
 
       function toggleTheme() {
-        const currentTheme = document.body.getAttribute("data-theme");
-        const newTheme = currentTheme === "dark" ? "light" : "dark";
-        document.body.setAttribute("data-theme", newTheme);
+        const current = document.body.getAttribute("data-theme");
+        document.body.setAttribute("data-theme", current === "dark" ? "light" : "dark");
       }
 
       function setLanguage(lang) {
@@ -234,16 +254,10 @@
           const key = el.getAttribute("data-i18n");
           if (translations[lang] && translations[lang][key]) {
             el.innerText = translations[lang][key];
-          } else {
-            el.innerText = translations["en"][key] || el.innerText;
           }
         });
 
-        if (lang === "ar") {
-          document.documentElement.setAttribute("dir", "rtl");
-        } else {
-          document.documentElement.setAttribute("dir", "ltr");
-        }
+        document.documentElement.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
       }
     </script>
   </body>
