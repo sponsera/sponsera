@@ -244,6 +244,44 @@
     function toggleDarkMode() {
       document.body.classList.toggle('dark-mode');
     }
+
+    function changeLang(select) {
+      const lang = select.value;
+      const translations = {
+        en: {
+          title: "Sponsera",
+          tagline: "Your Gateway to Premium Sponsorships",
+          why: "Why Sponsera?",
+          why_text: "We bring brands and creators together for partnerships that matter. No noise. Just real results.",
+          how_title: "How It Works",
+          how1: "1. Brands sign up & post opportunities",
+          how2: "2. Creators apply with their pitch",
+          how3: "3. Collaborations begin. Simple, fast, transparent.",
+          for_brands_title: "For Brands",
+          for_brands_text: "Reach authentic creators who resonate with your mission. Get measurable results.",
+          for_creators_title: "For Creators",
+          for_creators_text: "Skip the middleman. Land real deals. Keep your creative freedom.",
+          features_title: "Features",
+          feature1_title: "🧠 Smart Matchmaking",
+          feature1_text: "Our algorithm pairs you with ideal brand partners.",
+          feature2_title: "📊 Performance Tracking",
+          feature2_text: "Monitor real-time performance of your collabs.",
+          feature3_title: "🛡️ Secure Payments",
+          feature3_text: "We protect both sides with milestone-based payments.",
+          testimonials_title: "Testimonials",
+          testimonials_text: "🌟 Coming soon! Be one of the first success stories on Sponsera.",
+          contact: "Let's collaborate"
+        },
+        // More translations will be added here
+      };
+
+      document.querySelectorAll('[data-translate]').forEach(el => {
+        const key = el.getAttribute('data-translate');
+        if (translations[lang] && translations[lang][key]) {
+          el.innerHTML = translations[lang][key];
+        }
+      });
+    }
   </script>
 </body>
 </html>
