@@ -1,309 +1,250 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sponsera</title>
+    <link rel="icon" href="logo.png" type="image/png" />
+    <style>
+      :root {
+        --bg-light: #f8f9fa;
+        --text-light: #212529;
+        --bg-dark: #08121c;
+        --text-dark: #f0f0f0;
+        --accent-blue: #1f6feb;
+      }
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sponsera | Where Brands & Creators Connect</title>
-  <meta name="description" content="Sponsera helps creators and brands build real partnerships with real impact.">
-  <meta name="keywords" content="sponsorship, brand deals, creators, influencer marketing, sponsera">
-  <meta name="author" content="Sponsera">
-  <meta name="robots" content="index, follow">
+      [data-theme="light"] {
+        background-color: var(--bg-light);
+        color: var(--text-light);
+      }
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Sponsera | Where Brands & Creators Connect">
-  <meta property="og:description" content="Helping creators and brands build real partnerships with real impact.">
-  <meta property="og:image" content="https://sponsera.github.io/sponsera/preview.jpg">
-  <meta property="og:url" content="https://sponsera.github.io/sponsera/">
-  <meta property="og:type" content="website">
+      [data-theme="dark"] {
+        background-color: var(--bg-dark);
+        color: var(--text-dark);
+      }
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Sponsera">
-  <meta name="twitter:description" content="Helping creators and brands build real partnerships with real impact.">
-  <meta name="twitter:image" content="https://sponsera.github.io/sponsera/preview.jpg">
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        transition: background 0.3s, color 0.3s;
+      }
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="logo.png">
+      header {
+        padding: 20px;
+        text-align: center;
+      }
 
-  <style>
-    :root {
-      --primary: #0a2540;
-      --secondary: #f7fafd;
-      --accent: #deeaf6;
-      --link-darkmode: #8cc5ff;
-      --serif: 'Georgia', serif;
-    }
+      header img {
+        max-width: 150px;
+      }
 
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      background-color: var(--secondary);
-      color: #111;
-      transition: background-color 0.3s, color 0.3s;
-    }
+      .container {
+        padding: 20px;
+        max-width: 800px;
+        margin: auto;
+      }
 
-    html[lang="ar"] {
-      direction: rtl;
-    }
+      h2 {
+        text-align: center;
+        margin-top: 40px;
+      }
 
-    header,
-    section,
-    footer {
-      padding: 4rem 2rem;
-      text-align: center;
-    }
+      section {
+        margin-bottom: 40px;
+      }
 
-    .dark-mode {
-      background-color: #00172d;
-      color: #e6edf3;
-    }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+      }
 
-    .dark-mode .feature-box {
-      background: #011f3d;
-      color: #e6edf3;
-    }
+      input,
+      textarea {
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 1rem;
+      }
 
-    .dark-mode h2,
-    .dark-mode h3,
-    .dark-mode .cta h2 {
-      color: #ffffff;
-    }
+      button {
+        background-color: var(--accent-blue);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1rem;
+        border-radius: 10px;
+        cursor: pointer;
+      }
 
-    .dark-mode a {
-      color: var(--link-darkmode);
-    }
+      footer {
+        text-align: center;
+        padding: 20px;
+        font-size: 0.9rem;
+      }
 
-    header {
-      background-color: var(--primary);
-      color: white;
-      padding-top: 6rem;
-      position: relative;
-    }
+      .collab-title {
+        color: var(--accent-blue);
+      }
 
-    .language-switch {
-      position: absolute;
-      top: 1rem;
-      left: 1rem;
-    }
+      .contact-info {
+        margin-top: 10px;
+      }
 
-    h1,
-    h2 {
-      font-family: var(--serif);
-    }
+      .contact-info p {
+        margin: 5px 0;
+      }
 
-    .section {
-      max-width: 800px;
-      margin: 0 auto;
-    }
+      .darkmode-toggle {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+      }
 
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 2rem;
-    }
-
-    .feature-box {
-      background: white;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-      transition: background-color 0.3s, color 0.3s;
-    }
-
-    .cta,
-    footer {
-      background-color: var(--accent);
-    }
-
-    footer {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-    }
-
-    .dark-toggle {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      background: #eee;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      cursor: pointer;
-      z-index: 999;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      align-items: center;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    input,
-    textarea {
-      width: 100%;
-      padding: 0.8rem;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 1rem;
-    }
-
-    input[type="submit"] {
-      background-color: var(--primary);
-      color: white;
-      cursor: pointer;
-    }
-
-    .thank-you {
-      margin-top: 1rem;
-      display: none;
-      font-size: 0.9rem;
-    }
-  </style>
-</head>
-
-<body>
-  <div class="dark-toggle" onclick="toggleDarkMode()">🌙 Toggle Dark Mode</div>
-
-  <header>
-    <div class="language-switch">
-      <select onchange="changeLang(this)">
-        <option value="en">EN</option>
-        <option value="ar">AR</option>
+      .lang-switch {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+      }
+    </style>
+  </head>
+  <body data-theme="light">
+    <div class="lang-switch">
+      <select id="language" onchange="setLanguage(this.value)">
+        <option value="en">English</option>
+        <option value="ar">العربية</option>
+        <option value="it">Italiano</option>
+        <option value="es">Español</option>
+        <option value="tr">Türkçe</option>
       </select>
     </div>
-    <h1 data-translate="title">Sponsera</h1>
-    <p data-translate="tagline">Your Gateway to Premium Sponsorships</p>
-  </header>
 
-  <section class="section">
-    <h2 data-translate="why">Why Sponsera?</h2>
-    <p data-translate="why_text">We bring brands and creators together for partnerships that matter. No noise. Just real results.</p>
-  </section>
-
-  <section class="section">
-    <h2 data-translate="how_title">How It Works</h2>
-    <p data-translate="how1">1. Brands sign up & post opportunities</p>
-    <p data-translate="how2">2. Creators apply with their pitch</p>
-    <p data-translate="how3">3. Collaborations begin. Simple, fast, transparent.</p>
-  </section>
-
-  <section class="section">
-    <h2 data-translate="for_brands_title">For Brands</h2>
-    <p data-translate="for_brands_text">Reach authentic creators who resonate with your mission. Get measurable results.</p>
-  </section>
-
-  <section class="section">
-    <h2 data-translate="for_creators_title">For Creators</h2>
-    <p data-translate="for_creators_text">Skip the middleman. Land real deals. Keep your creative freedom.</p>
-  </section>
-
-  <section class="section">
-    <h2 data-translate="features_title">Features</h2>
-    <div class="features">
-      <div class="feature-box">
-        <h3 data-translate="feature1_title">🧠 Smart Matchmaking</h3>
-        <p data-translate="feature1_text">Our algorithm pairs you with ideal brand partners.</p>
-      </div>
-      <div class="feature-box">
-        <h3 data-translate="feature2_title">📊 Performance Tracking</h3>
-        <p data-translate="feature2_text">Monitor real-time performance of your collabs.</p>
-      </div>
-      <div class="feature-box">
-        <h3 data-translate="feature3_title">🛡️ Secure Payments</h3>
-        <p data-translate="feature3_text">We protect both sides with milestone-based payments.</p>
-      </div>
+    <div class="darkmode-toggle">
+      <button onclick="toggleTheme()">🌗</button>
     </div>
-  </section>
 
-  <section class="cta">
-    <h2 data-translate="contact">Let's collaborate</h2>
-    <form>
-      <input type="text" placeholder="Name">
-      <input type="email" placeholder="Email">
-      <input type="text" placeholder="Instagram handle">
-      <textarea rows="5" placeholder="Tell us more about your project"></textarea>
-      <input type="submit" value="Submit">
-    </form>
-    <div class="thank-you">Thank you! We'll be in touch soon.</div>
-  </section>
+    <header>
+      <img src="logo.png" alt="Sponsera Logo" />
+    </header>
 
-  <footer>
-    <p>&copy; 2025 Sponsera</p>
-  </footer>
+    <div class="container">
+      <section id="why">
+        <h2 data-i18n="why">Why Sponsera</h2>
+        <p data-i18n="why-text">
+          We help brands and creators find each other, work together and succeed.
+        </p>
+      </section>
 
-  <script>
-    function toggleDarkMode() {
-      document.body.classList.toggle('dark-mode');
-    }
+      <section id="how">
+        <h2 data-i18n="how">How It Works</h2>
+        <ol>
+          <li data-i18n="how-1">Brands sign up & post opportunities</li>
+          <li data-i18n="how-2">Creators apply with their pitch</li>
+          <li data-i18n="how-3">Collaborations begin. Simple, fast, transparent.</li>
+        </ol>
+      </section>
 
-    function changeLang(select) {
-      const lang = select.value;
-      document.documentElement.lang = lang;
+      <section id="for">
+        <h2 data-i18n="for">For Brands & Creators</h2>
+        <p data-i18n="for-brands">
+          Reach authentic creators who resonate with your mission. Get measurable results.
+        </p>
+        <p data-i18n="for-creators">
+          Skip the middleman. Land real deals. Keep your creative freedom.
+        </p>
+      </section>
 
+      <section id="features">
+        <h2 data-i18n="features">Features</h2>
+        <ul>
+          <li data-i18n="feature-1">🧠 Smart Matchmaking – Our algorithm pairs you with ideal brand partners.</li>
+          <li data-i18n="feature-2">📊 Performance Tracking – Monitor real-time performance of your collabs.</li>
+          <li data-i18n="feature-3">🛡️ Secure Payments – We protect both sides with milestone-based payments.</li>
+        </ul>
+      </section>
+
+      <section id="testimonials">
+        <h2 data-i18n="testimonials">Testimonials</h2>
+        <p data-i18n="coming-soon">🌟 Coming soon! Be one of the first success stories on Sponsera.</p>
+      </section>
+
+      <section id="collab">
+        <h2 class="collab-title" data-i18n="collab-title">Let's Collaborate</h2>
+        <form>
+          <div class="form-group">
+            <input type="text" placeholder="Name" required />
+          </div>
+          <div class="form-group">
+            <input type="text" placeholder="Title" required />
+          </div>
+          <div class="form-group">
+            <input type="email" placeholder="Email" required />
+          </div>
+          <div class="form-group">
+            <textarea rows="6" placeholder="Tell us about your project..." required></textarea>
+          </div>
+          <button type="submit">Send</button>
+        </form>
+      </section>
+
+      <section class="contact-info">
+        <p><strong>Email:</strong> <span style="color:var(--accent-blue)">sponsera@proton.me</span></p>
+        <p><strong>Instagram:</strong> <span style="color:var(--accent-blue)">sponsera.co</span></p>
+      </section>
+    </div>
+
+    <footer style="color:var(--text-dark);">
+      © 2025 Sponsera. All rights reserved.
+    </footer>
+
+    <script>
       const translations = {
-        en: {
-          title: "Sponsera",
-          tagline: "Your Gateway to Premium Sponsorships",
-          why: "Why Sponsera?",
-          why_text: "We bring brands and creators together for partnerships that matter. No noise. Just real results.",
-          how_title: "How It Works",
-          how1: "1. Brands sign up & post opportunities",
-          how2: "2. Creators apply with their pitch",
-          how3: "3. Collaborations begin. Simple, fast, transparent.",
-          for_brands_title: "For Brands",
-          for_brands_text: "Reach authentic creators who resonate with your mission. Get measurable results.",
-          for_creators_title: "For Creators",
-          for_creators_text: "Skip the middleman. Land real deals. Keep your creative freedom.",
-          features_title: "Features",
-          feature1_title: "🧠 Smart Matchmaking",
-          feature1_text: "Our algorithm pairs you with ideal brand partners.",
-          feature2_title: "📊 Performance Tracking",
-          feature2_text: "Monitor real-time performance of your collabs.",
-          feature3_title: "🛡️ Secure Payments",
-          feature3_text: "We protect both sides with milestone-based payments.",
-          testimonials_title: "Testimonials",
-          testimonials_text: "🌟 Coming soon! Be one of the first success stories on Sponsera.",
-          contact: "Let's collaborate"
-        },
         ar: {
-          title: "سبونسيرا",
-          tagline: "بوابتك إلى الرعايات المتميزة",
-          why: "لماذا سبونسيرا؟",
-          why_text: "نحن نربط العلامات التجارية بالمبدعين لشراكات حقيقية مؤثرة. لا ضوضاء، فقط نتائج حقيقية.",
-          how_title: "كيف تعمل",
-          how1: "1. تسجّل العلامات التجارية وتنشر الفرص",
-          how2: "2. يتقدّم المبدعون بعروضهم",
-          how3: "3. تبدأ التعاونات. ببساطة، بسرعة، وبشفافية.",
-          for_brands_title: "للشركات",
-          for_brands_text: "تواصل مع مبدعين حقيقيين يتماشون مع رسالتك. واحصل على نتائج قابلة للقياس.",
-          for_creators_title: "للمبدعين",
-          for_creators_text: "تخطَ الوسطاء. احصل على صفقات حقيقية. واحتفظ بحريتك الإبداعية.",
-          features_title: "الميزات",
-          feature1_title: "🧠 مطابقة ذكية",
-          feature1_text: "يقرّبك خوارزميتنا من الشركاء المثاليين من العلامات التجارية.",
-          feature2_title: "📊 تتبع الأداء",
-          feature2_text: "تابع أداء تعاوناتك في الوقت الفعلي.",
-          feature3_title: "🛡️ دفعات آمنة",
-          feature3_text: "نحمي الطرفين عبر دفعات مبنية على الإنجاز.",
-          testimonials_title: "آراء العملاء",
-          testimonials_text: "🌟 قريبًا! كن من أوائل قصص النجاح على سبونسيرا.",
-          contact: "دعنا نتعاون"
-        }
+          "why": "لماذا سبونسيرا",
+          "why-text": "نحن نساعد العلامات التجارية والمبدعين على إيجاد بعضهم والعمل معًا والنجاح.",
+          "how": "كيف تعمل",
+          "how-1": "تسجل العلامات التجارية وتنشر الفرص",
+          "how-2": "يقدم المبدعون عروضهم",
+          "how-3": "تبدأ التعاونات. بسيط، سريع، وشفاف.",
+          "for": "للعلامات التجارية والمبدعين",
+          "for-brands": "تواصل مع مبدعين حقيقيين يشاركونك رسالتك. احصل على نتائج قابلة للقياس.",
+          "for-creators": "تجاوز الوسطاء. احصل على عروض حقيقية. واحتفظ بحريتك الإبداعية.",
+          "features": "الميزات",
+          "feature-1": "🧠 التوفيق الذكي – خوارزميتنا تربطك بالشركاء المثاليين.",
+          "feature-2": "📊 تتبع الأداء – راقب الأداء في الوقت الحقيقي.",
+          "feature-3": "🛡️ مدفوعات آمنة – نحمي الجانبين بمدفوعات قائمة على الإنجازات.",
+          "testimonials": "آراء العملاء",
+          "coming-soon": "🌟 قريبًا! كن من أوائل قصص النجاح على Sponsera.",
+          "collab-title": "دعنا نتعاون"
+        },
+        en: {}
       };
 
-      document.querySelectorAll('[data-translate]').forEach(el => {
-        const key = el.getAttribute('data-translate');
-        if (translations[lang] && translations[lang][key]) {
-          el.innerHTML = translations[lang][key];
+      function toggleTheme() {
+        const currentTheme = document.body.getAttribute("data-theme");
+        const newTheme = currentTheme === "dark" ? "light" : "dark";
+        document.body.setAttribute("data-theme", newTheme);
+      }
+
+      function setLanguage(lang) {
+        const elements = document.querySelectorAll("[data-i18n]");
+        elements.forEach(el => {
+          const key = el.getAttribute("data-i18n");
+          if (translations[lang] && translations[lang][key]) {
+            el.innerText = translations[lang][key];
+          } else {
+            el.innerText = translations["en"][key] || el.innerText;
+          }
+        });
+
+        if (lang === "ar") {
+          document.documentElement.setAttribute("dir", "rtl");
+        } else {
+          document.documentElement.setAttribute("dir", "ltr");
         }
-      });
-
-      document.documentElement.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
-    }
-  </script>
-</body>
-
+      }
+    </script>
+  </body>
 </html>
