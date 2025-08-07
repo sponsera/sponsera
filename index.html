@@ -64,7 +64,8 @@
 
     .dark-mode .cta a,
     .dark-mode .cta input[type="submit"] {
-      color: #1e90ff;
+      background: #1e90ff;
+      color: white;
     }
 
     header {
@@ -102,13 +103,25 @@
       padding: 2rem;
     }
 
+    .cta form {
+      text-align: center;
+    }
+
+    .cta input[type="text"],
+    .cta input[type="submit"] {
+      width: 90%;
+      max-width: 400px;
+      margin: 0.5rem auto;
+      display: block;
+      padding: 0.5rem;
+      border-radius: 4px;
+    }
+
     .cta a,
     .cta input[type="submit"] {
       background: white;
       color: var(--primary);
-      padding: 1rem 2rem;
       text-decoration: none;
-      border-radius: 8px;
       font-weight: bold;
       transition: all 0.3s ease;
       border: none;
@@ -209,9 +222,10 @@
     <h2>Let’s Collaborate</h2>
     <p>Unlock the full potential of your brand through strategic sponsorships.</p>
     <form action="https://formsubmit.co/sponsera@proton.me" method="POST" target="_blank" onsubmit="showThankYou()">
-      <input type="text" name="name" placeholder="Your Name" required style="padding:0.5rem; border-radius:4px; margin-right:0.5rem;">
-      <input type="text" name="message" placeholder="Your Message" required style="padding:0.5rem; border-radius:4px; margin:0.5rem 0;">
-      <br>
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="box">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="text" name="message" placeholder="Your Message" required>
       <input type="submit" value="Contact Us">
     </form>
     <p class="thank-you" id="thankYou">Thank you! We'll be in touch soon. 💌</p>
