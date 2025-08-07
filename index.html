@@ -6,134 +6,163 @@
   <title>Sponsera</title>
   <style>
     body {
-      font-family: 'Helvetica Neue', sans-serif;
-      background-color: #111;
-      color: #fff;
       margin: 0;
-      padding: 0;
-      transition: background 0.3s, color 0.3s;
+      font-family: Arial, sans-serif;
+      transition: background-color 0.3s, color 0.3s;
+      text-align: center;
+      padding: 2rem;
+      background-color: white;
+      color: black;
     }
 
-    h2 {
-      text-align: center;
-      margin-top: 60px;
-      font-size: 28px;
+    .dark-mode {
+      background-color: #121212;
+      color: white;
+    }
+
+    .dark-mode .highlight {
+      color: #64b5f6;
+    }
+
+    h1, h2 {
+      margin-bottom: 1rem;
     }
 
     ul {
-      list-style-type: none;
-      padding-left: 0;
-      text-align: center;
+      list-style: none;
+      padding: 0;
     }
 
     ul li {
-      margin: 10px 0;
+      margin-bottom: 0.5rem;
     }
 
     .section {
-      margin: 60px 20px;
+      margin: 3rem 0;
     }
 
-    .blue {
-      color: #4dabf7;
+    .form {
+      margin-top: 2rem;
     }
 
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 40px;
-    }
-
-    input, textarea {
-      padding: 10px;
-      margin: 8px 0;
-      border: none;
-      border-radius: 6px;
-      width: 90%;
-      max-width: 400px;
+    input[type="text"] {
+      padding: 0.5rem;
+      width: 250px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
     }
 
     button {
-      padding: 10px 20px;
-      background-color: #4dabf7;
-      color: white;
+      padding: 0.5rem 1rem;
       border: none;
-      border-radius: 6px;
+      background-color: #007BFF;
+      color: white;
+      border-radius: 5px;
       cursor: pointer;
-      font-weight: bold;
+      margin-left: 0.5rem;
     }
 
     .thank-you {
-      text-align: center;
-      color: #4dabf7;
+      display: none;
+      margin-top: 1rem;
       font-weight: bold;
-      margin-top: 20px;
+      color: #28a745;
     }
 
-    .footer {
-      text-align: center;
-      margin-top: 60px;
-      font-size: 14px;
-      color: #ccc;
+    .contact {
+      margin-top: 2rem;
+      font-size: 0.9rem;
     }
 
-    .footer a {
-      color: #4dabf7;
-      text-decoration: none;
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      cursor: pointer;
+      background: none;
+      border: 2px solid #007BFF;
+      color: #007BFF;
+      padding: 0.5rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
     }
+
+    a {
+      color: #007BFF;
+    }
+
+    .dark-mode a {
+      color: #64b5f6;
+    }
+
   </style>
 </head>
 <body>
 
-  <h2>Our Services</h2>
-  <ul>
-    <li>Sponsorship matchmaking & deal sourcing</li>
-    <li>Brand partnership strategy & consulting</li>
-    <li>Event & campaign activation management</li>
-    <li>Detailed performance tracking & reporting</li>
-  </ul>
+  <button class="toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
 
-  <h2>Why Sponsera?</h2>
-  <ul>
-    <li>Extensive industry network & trusted relationships</li>
-    <li>Creative and data-driven sponsorship strategies</li>
-    <li>Commitment to delivering measurable results</li>
-    <li>Passionate, client-focused approach</li>
-  </ul>
-
-  <h2>What We're Made Of</h2>
-  <ul>
-    <li>🎯 Sports Partnerships - Curated sponsorships in athletics and eSports</li>
-    <li>🎬 Entertainment Projects - Collaborations with rising talents & productions</li>
-    <li>👜 Lifestyle Brands - Strategic alignment with modern labels & trends</li>
-  </ul>
+  <h1 class="highlight">Sponsera</h1>
+  <h2>Where Brands & Creators Connect</h2>
+  <p>🚀 Sponsorships Made Simple</p>
+  <p>We help creators and brands build real partnerships with real impact.</p>
 
   <div class="section">
-    <h2>Join the Waitlist</h2>
-    <form id="waitlistForm">
-      <input type="text" id="name" placeholder="Your Name" required />
-      <textarea id="message" placeholder="Your Message" required></textarea>
-      <button type="submit">Send</button>
-    </form>
-    <div class="thank-you" id="thankYouMessage" style="display: none;">Thank you for joining the waitlist 💌</div>
+    <h2>Our Services</h2>
+    <ul>
+      <li>Sponsorship matchmaking & deal sourcing</li>
+      <li>Brand partnership strategy & consulting</li>
+      <li>Event & campaign activation management</li>
+      <li>Detailed performance tracking & reporting</li>
+    </ul>
   </div>
 
-  <div class="footer">
-    Follow us on <a href="https://instagram.com/sponsera.co" target="_blank">Instagram</a> |
-    Email us at <a href="mailto:sponsera@proton.me">sponsera@proton.me</a>
+  <div class="section">
+    <h2>Why Sponsera?</h2>
+    <ul>
+      <li>Extensive industry network & trusted relationships</li>
+      <li>Creative and data-driven sponsorship strategies</li>
+      <li>Commitment to delivering measurable results</li>
+      <li>Passionate, client-focused approach</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>What We’re Made Of</h2>
+    <ul>
+      <li>🎯 Sports Partnerships – Curated sponsorships in athletics and eSports</li>
+      <li>🎬 Entertainment Projects – Collaborations with rising talents & productions</li>
+      <li>💼 Lifestyle Brands – Strategic alignment with modern labels & trends</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Ready to Collaborate?</h2>
+    <p>Join the waitlist:</p>
+    <div class="form">
+      <input type="text" id="nameInput" placeholder="Your name here..." />
+      <button onclick="submitForm()">Join</button>
+    </div>
+    <div class="thank-you" id="thankYouMessage">Thank you! We'll be in touch soon 💌</div>
+  </div>
+
+  <div class="contact">
+    <p>📸 Follow us on <a href="https://instagram.com/sponsera.co" target="_blank">@sponsera.co</a></p>
+    <p>📬 Email us at <a href="mailto:sponsera@proton.me">sponsera@proton.me</a></p>
   </div>
 
   <script>
-    document.getElementById('waitlistForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const name = document.getElementById('name').value;
-      const message = document.getElementById('message').value;
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
 
-      window.location.href = `mailto:sponsera@proton.me?subject=Waitlist Signup from ${encodeURIComponent(name)}&body=${encodeURIComponent(message)}`;
-      document.getElementById('thankYouMessage').style.display = 'block';
-      document.getElementById('waitlistForm').reset();
-    });
+    function submitForm() {
+      const input = document.getElementById("nameInput").value.trim();
+      const thankYou = document.getElementById("thankYouMessage");
+      if (input) {
+        thankYou.style.display = "block";
+        document.getElementById("nameInput").value = "";
+      }
+    }
   </script>
 </body>
 </html>
