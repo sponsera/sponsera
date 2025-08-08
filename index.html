@@ -21,6 +21,7 @@
       --maxw:1100px;
       --btn-glow: 0 0 12px rgba(19,88,184,0.45);
       --btn-glow-hover: 0 0 18px rgba(19,88,184,0.7);
+      --logo-glow: 0 0 14px 3px rgba(19,88,184,0.7);
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -103,11 +104,12 @@
       height:auto;
       display:block;
       border-radius:8px;
-      transition: transform .25s ease, filter .4s ease;
+      transition: transform .25s ease, filter .4s ease, box-shadow .35s ease;
       filter: drop-shadow(0 12px 30px rgba(10,30,60,0.06));
     }
     body.dark .logo{
-      filter: brightness(1.15) drop-shadow(0 0 8px rgba(255,255,255,0.12));
+      filter: brightness(1.15);
+      box-shadow: var(--logo-glow);
     }
     .logo-wrap:hover .logo{
       transform: translateY(-3px);
@@ -232,26 +234,21 @@
       color: rgba(230,237,243,0.82);
     }
 
-    /* smaller collaborate box */
+    /* let's collaborate box with glowing gradient */
     .collab-wrap{
       max-width:600px;
       margin:0 auto;
       border-radius:16px;
-      background: linear-gradient(135deg, var(--navy), var(--baby-blue));
+      background: linear-gradient(135deg, #1358b8, #89cff0, #1358b8);
+      background-size: 300% 300%;
       padding: 26px 24px 28px;
       box-shadow:
-        0 8px 28px rgba(137,207,240,0.18),
-        0 16px 48px rgba(137,207,240,0.28);
+        0 8px 28px rgba(137,207,240,0.4),
+        0 16px 48px rgba(137,207,240,0.6);
       transition: background-position 3s ease;
-      background-size: 300% 300%;
       cursor: default;
       user-select:none;
-    }
-    .collab-wrap:hover{
       animation: gradientShift 4s linear infinite;
-      box-shadow:
-        0 12px 40px rgba(137,207,240,0.28),
-        0 20px 60px rgba(137,207,240,0.40);
     }
     @keyframes gradientShift {
       0%{background-position:0% 50%}
@@ -501,21 +498,12 @@
       </div>
     </section>
 
-    <!-- TESTIMONIALS -->
-    <section class="card reveal" id="testimonials">
-      <h2 class="section-title" data-key="testi-title">What Our Users Say</h2>
-      <ul class="simple-list">
-        <li>"Sponsera changed how we collaborate. So easy and transparent!" – @brandlead</li>
-        <li>"Finally a platform that gets creators. Love it!" – @creatorqueen</li>
-      </ul>
-    </section>
-
     <!-- LET'S COLLABORATE -->
     <section class="card collab-wrap reveal" aria-labelledby="contact-title" id="contact">
       <h2 id="contact-title" class="section-title" data-key="contact-title">Let's Collaborate</h2>
       <form id="contactForm" aria-describedby="contact-desc" novalidate>
         <div id="contact-desc" style="font-size: 13px; color: #d3d3d3; margin-bottom: 18px;">
-          Send us a message and we’ll get back to you ASAP.
+          Send us a message and we’ll get back to you.
         </div>
         <div class="row">
           <div class="col">
@@ -531,7 +519,6 @@
         <button class="btn" type="submit" aria-live="polite" aria-busy="false" aria-label="Send message">Send</button>
       </form>
     </section>
-
   </main>
 
   <!-- THANK YOU POPUP -->
@@ -557,7 +544,7 @@
       const themeBtn = document.getElementById('themeBtn');
       const body = document.body;
 
-      function setTheme(dark) {
+      function setTheme(dark, save = true) {
         if(dark) {
           body.classList.add('dark');
           themeBtn.textContent = '☀️';
@@ -565,20 +552,23 @@
           body.classList.remove('dark');
           themeBtn.textContent = '🌗';
         }
-        localStorage.setItem('theme', dark ? 'dark' : 'light');
+        if(save) localStorage.setItem('theme', dark ? 'dark' : 'light');
       }
-      // Load saved theme or system preference
+
+      // On first load, default to light mode regardless of system preference
       const savedTheme = localStorage.getItem('theme');
       if(savedTheme) {
-        setTheme(savedTheme === 'dark');
+        setTheme(savedTheme === 'dark', false);
       } else {
-        setTheme(window.matchMedia('(prefers-color-scheme: dark)').matches);
+        // No saved theme - default light mode
+        setTheme(false, false);
       }
+
       themeBtn.addEventListener('click', () => {
         setTheme(!body.classList.contains('dark'));
       });
 
-      // Language selector (English / Arabic) - For demo only, minimal translations below
+      // Language selector (English / Arabic) - minimal translations below
       const translations = {
         en: {
           "hero-title": "We help brands and creators find each other, work together and succeed.",
@@ -599,7 +589,6 @@
           "f2-text": "Monitor real-time performance of your collabs.",
           "f3-title": "🛡️ Secure Payments",
           "f3-text": "We protect both sides with milestone-based payments.",
-          "testi-title": "What Our Users Say",
           "contact-title": "Let's Collaborate"
         },
         ar: {
@@ -621,7 +610,6 @@
           "f2-text": "مراقبة أداء التعاونات في الوقت الحقيقي.",
           "f3-title": "🛡️ دفعات آمنة",
           "f3-text": "نحمي الطرفين عبر دفعات حسب مراحل المشروع.",
-          "testi-title": "ماذا يقول مستخدمونا",
           "contact-title": "هيا نتعاون"
         }
       };
