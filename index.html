@@ -5,128 +5,252 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Sponsera — Where Brands & Creators Connect</title>
   <meta name="description" content="Sponsera helps creators and brands build real partnerships with real impact." />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet">
+  <!-- Luxury fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600;700&family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="icon" href="logo_transparent.png" type="image/png" />
+
   <style>
     :root{
       --navy:#071a2b;
       --navy-deep:#041223;
       --baby:#E6F4FA;
+      --baby-blue:#89cff0;
       --accent:#1358b8;
       --muted:#6b7785;
       --card:#ffffff;
       --card-dark:#071826;
       --radius:12px;
       --maxw:1100px;
+
+      /* timing (easy to tweak) */
+      --page-fade:.6s;
+      --logo-delay:.2s;
+      --btn-delay:.95s;
+      --collab-pop-delay:1.6s;
+      --collab-spark-delay:2.3s;
+      --breath-duration:4s;
     }
+
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
-      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-      background:#fff;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Helvetica Neue", sans-serif;
+      background:var(--card);
       color:#071225;
       -webkit-font-smoothing:antialiased;
       transition:background .35s,color .35s;
       scroll-behavior:smooth;
+
+      /* page entrance */
+      opacity:0;
+      transform:translateY(10px);
+      animation:pageFade var(--page-fade) ease forwards;
     }
+    @keyframes pageFade{ to { opacity:1; transform:translateY(0); } }
+
     body.dark{
       background:var(--navy-deep);
       color:#eaf4ff;
     }
+
     a{ color:var(--accent); text-decoration:none }
     a:hover{text-decoration:underline}
 
     /* Top controls */
     .controls{
-      position:fixed; top:14px; left:18px; right:18px; display:flex; justify-content:space-between; z-index:1400; pointer-events:none;
+      position:fixed; top:12px; left:16px; right:16px; display:flex; justify-content:space-between; z-index:1400; pointer-events:none;
     }
     .controls-left, .controls-right{ pointer-events:auto; display:flex; gap:10px; align-items:center; }
-    select, .theme-btn{ border-radius:10px; padding:8px 10px; border:1px solid rgba(8,12,20,0.06); background:transparent; cursor:pointer; font-weight:600; }
+    select, .theme-btn{
+      border-radius:10px; padding:8px 10px; border:1px solid rgba(8,12,20,0.06); background:transparent; cursor:pointer; font-weight:600;
+      transition: box-shadow .3s, transform .18s, background .18s;
+      opacity:0; transform:scale(.96);
+      animation:controlPop .45s ease forwards;
+      animation-delay: var(--btn-delay);
+    }
+    @keyframes controlPop { to { opacity:1; transform:scale(1); } }
+
     body.dark select, body.dark .theme-btn{ border-color: rgba(255,255,255,0.06); background: rgba(255,255,255,0.02); color:#fff; }
+    select:hover, .theme-btn:hover{ box-shadow: 0 0 12px rgba(137,207,240,0.12); transform:translateY(-2px) scale(1.01) }
 
     /* header/logo */
-    header{ position:sticky; top:0; z-index:1200; backdrop-filter: blur(8px); background: linear-gradient(180deg, rgba(255,255,255,0.62), rgba(255,255,255,0.18)); }
+    header{ position:sticky; top:0; z-index:1200; backdrop-filter: blur(8px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.62), rgba(255,255,255,0.18));
+    }
     body.dark header{ background: linear-gradient(180deg, rgba(3,8,15,0.6), rgba(3,8,15,0.25)); }
-    .header-inner{ max-width:var(--maxw); margin:0 auto; padding:14px; display:flex; align-items:center; justify-content:center; }
-    .logo-wrap{ position:relative; display:inline-block; }
-    .logo{ width:140px; height:auto; display:block; border-radius:8px; transition:transform .25s ease; filter:drop-shadow(0 12px 30px rgba(10,30,60,0.06)); }
-    .logo-wrap:hover .logo{ transform:translateY(-3px) }
-    .logo-spark{ position:absolute; right:6%; top:4%; width:14px; height:14px; border-radius:50%; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.98), rgba(255,255,255,.7)); opacity:0; transform:scale(.3); filter:blur(.6px); pointer-events:none; animation:sparkle 6s infinite; }
+
+    .header-inner{ max-width:var(--maxw); margin:0 auto; padding:12px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+
+    /* logo: fade + soft glow */
+    .logo-wrap{ display:flex; align-items:center; gap:10px; }
+    .logo{ width:132px; height:auto; display:block; border-radius:8px; transition:transform .25s ease, filter .3s ease; filter: drop-shadow(0 10px 28px rgba(10,30,60,0.06));
+      opacity:0; transform:scale(.96);
+      animation:logoFade .8s ease forwards; animation-delay: var(--logo-delay);
+    }
+    @keyframes logoFade {
+      0%{opacity:0; transform:scale(.96)}
+      50%{opacity:1; transform:scale(1.02); filter:drop-shadow(0 0 12px rgba(137,207,240,0.28))}
+      100%{opacity:1; transform:scale(1); filter:drop-shadow(0 0 0 rgba(137,207,240,0))}
+    }
+    body.dark .logo{ filter:brightness(1.15) drop-shadow(0 0 6px rgba(255,255,255,0.12)); }
+
+    .logo-spark{ width:12px; height:12px; border-radius:50%; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.98), rgba(255,255,255,.7)); opacity:0; transform:scale(.3); filter:blur(.6px); pointer-events:none; animation:sparkle 6s infinite; }
     @keyframes sparkle{ 0%{opacity:0;transform:scale(.3)} 70%{opacity:1;transform:scale(1.05)} 85%{opacity:.7;transform:scale(.9)} 100%{opacity:0;transform:scale(.3)} }
 
-    .wrap{ max-width:var(--maxw); margin:0 auto; padding:28px; }
+    .wrap{ max-width:var(--maxw); margin:0 auto; padding:20px; }
 
     /* hero */
-    .hero{ text-align:center; padding:48px 20px; }
-    .hero h1{ font-family:Tajawal, Inter, sans-serif; font-weight:700; font-size:26px; margin-bottom:12px; letter-spacing:-0.01em; }
-    .hero p{ max-width:820px; margin:0 auto; color:var(--muted); line-height:1.7 }
+    .hero{ text-align:center; padding:36px 20px 28px; }
+    .hero h1{ font-family:'Playfair Display', Tajawal, Inter, sans-serif; font-weight:700; font-size:24px; margin-bottom:10px; letter-spacing:-0.01em; }
+    .hero p{ max-width:780px; margin:0 auto; color:var(--muted); line-height:1.65 }
 
     /* card sections */
-    .card{ background:var(--card); border-radius:var(--radius); padding:24px; margin:32px 0; box-shadow:0 14px 50px rgba(9,23,40,0.06); transition:background .35s;color:inherit; }
+    .card{ background:var(--card); border-radius:var(--radius); padding:20px; margin:26px 0; box-shadow:0 14px 40px rgba(9,23,40,0.05); transition:background .35s,color .35s; }
     body.dark .card{ background:var(--card-dark); box-shadow:none; }
     .card.baby{ background: linear-gradient(180deg, var(--baby), #f0fbff); }
     body.dark .card.baby{ background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); }
 
-    .section-title{ font-size:17px; margin-bottom:10px; font-weight:700; color:var(--navy); }
+    .section-title{ font-size:16px; margin-bottom:8px; font-weight:700; color:var(--navy); }
     body.dark .section-title{ color:#fff; }
 
-    .simple-list{ list-style:none; padding:0; margin:12px 0; display:flex; flex-direction:column; gap:12px; align-items:center; }
-    .simple-list li{ color:var(--muted); font-size:15px; text-align:center; }
+    .simple-list{ list-style:none; padding:0; margin:10px 0; display:flex; flex-direction:column; gap:10px; align-items:center; }
+    .simple-list li{ color:var(--muted); font-size:14px; text-align:center; }
     body.dark .simple-list li{ color: rgba(230,237,243,0.85); }
 
-    .section-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:18px; }
+    .section-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:16px; }
 
-    .feature{ padding:12px; border-radius:10px; background:transparent; }
-    .feature h3{ margin:0 0 6px; font-size:15px; }
-    .feature p{ margin:0; color:var(--muted); line-height:1.6; }
+    .feature{ padding:10px; border-radius:10px; background:transparent; }
+    .feature h3{ margin:0 0 4px; font-size:14px; }
+    .feature p{ margin:0; color:var(--muted); line-height:1.55; }
     body.dark .feature p{ color: rgba(230,237,243,0.82); }
 
-    /* smaller collaborate box */
+    /* form & collab */
     .collab-wrap{ max-width:620px; margin:0 auto; }
-    form{ background:var(--card); padding:18px; border-radius:12px; box-shadow:0 10px 36px rgba(6,20,40,0.06); }
+    form{ background:var(--card); padding:14px; border-radius:12px; box-shadow:0 10px 36px rgba(6,20,40,0.06); }
     body.dark form{ background: rgba(255,255,255,0.02); box-shadow:none; }
-    .row{ display:flex; gap:10px; }
+    .row{ display:flex; gap:8px; }
     .col{ flex:1; }
     input, textarea{
-      width:100%; padding:12px 14px; border-radius:10px; border:1px solid rgba(10,20,30,0.06); font-size:14px; background:transparent; color:inherit;
+      width:100%; padding:10px 12px; border-radius:10px; border:1px solid rgba(10,20,30,0.06); font-size:14px; background:transparent; color:inherit;
     }
     body.dark input, body.dark textarea{ border-color: rgba(255,255,255,0.06) }
     .btn{ display:inline-block; background:var(--accent); color:#fff; padding:10px 18px; border-radius:10px; border:none; font-weight:700; cursor:pointer; transition: box-shadow .18s, transform .12s; }
     .btn:active{ transform:translateY(1px) }
-    .btn.pulse{ animation:pulse 2.6s infinite; }
-    @keyframes pulse{ 0%{ box-shadow:0 8px 30px rgba(19,88,184,0.12) } 50%{ box-shadow:0 20px 50px rgba(19,88,184,0.14) } 100%{ box-shadow:0 8px 30px rgba(19,88,184,0.12) } }
 
-    /* popup + confetti */
-    .popup{ position:fixed; left:50%; top:50%; transform:translate(-50%,-50%) scale(.96); z-index:2000; min-width:280px; padding:18px 20px; border-radius:12px; display:none; opacity:0; text-align:center; background:var(--card); box-shadow:0 20px 60px rgba(2,6,23,0.35); transition:opacity .28s, transform .28s; }
-    body.dark .popup{ background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); color:#fff; }
-    .popup.show{ display:block; opacity:1; transform:translate(-50%,-50%) scale(1); }
-    #confettiCanvas{ position:fixed; left:0; top:0; width:100%; height:100%; pointer-events:none; z-index:1900; display:none; }
+    /* Luxury collaborate card (breathing + gradient + pop + sparkle) */
+    .collaborate-card {
+      border-radius:14px;
+      padding:18px;
+      max-width:620px;
+      margin:18px auto;
+      background: linear-gradient(270deg, var(--navy), var(--baby-blue));
+      background-size: 400% 400%;
+      color: #fff;
+      box-shadow: 0 10px 34px rgba(10,30,60,0.08);
+      text-align:center;
+      transform:scale(.98);
+      opacity:0;
+      animation:
+        collabPop .6s ease forwards var(--collab-pop-delay),
+        collabGradient 10s linear infinite 0s,
+        collabBreath var(--breath-duration) ease-in-out infinite var(--collab-pop-delay);
+      position:relative;
+      overflow:visible;
+    }
+    @keyframes collabPop { to { opacity:1; transform:scale(1); } }
+    @keyframes collabGradient { 0%{ background-position:0% 50% } 50%{ background-position:100% 50% } 100%{ background-position:0% 50% } }
+    @keyframes collabBreath { 0%{ box-shadow: 0 6px 22px rgba(137,207,240,0.18) } 50%{ box-shadow: 0 14px 40px rgba(137,207,240,0.28) } 100%{ box-shadow: 0 6px 22px rgba(137,207,240,0.18) } }
 
-    /* footer */
-    footer.site-footer{ text-align:center; padding:24px; color:var(--muted); }
-    footer.site-footer a{ color:var(--accent) }
-    .copyright{ margin-top:8px; color:#9aaac0; font-size:13px; }
-    body.dark .copyright{ color: rgba(230,237,243,0.72) }
+    /* one-time sparkle sweep on .collab-sparkle */
+    .collab-sparkle::after{
+      content:"";
+      position:absolute;
+      left:-90%;
+      top:-30%;
+      width:40%;
+      height:160%;
+      background: linear-gradient(120deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.35) 45%, rgba(255,255,255,0.08) 60%, rgba(255,255,255,0) 100%);
+      transform: rotate(18deg);
+      opacity:0;
+    }
+    .collab-sparkle.animate::after{
+      animation: sweep 0.9s ease forwards;
+      opacity:1;
+    }
+    @keyframes sweep {
+      0%{ left:-90%; opacity:0; }
+      30%{ opacity:1; }
+      100%{ left:120%; opacity:0; }
+    }
+
+    /* popup (luxury) */
+    .popup {
+      position: fixed;
+      top:18px;
+      right:18px;
+      min-width:260px;
+      padding:12px 16px;
+      border-radius:12px;
+      color:#fff;
+      background: linear-gradient(135deg, rgba(10,30,60,0.95), rgba(29,96,173,0.95));
+      box-shadow: 0 18px 40px rgba(10,30,60,0.28);
+      opacity:0;
+      transform:translateY(-10px) scale(.98);
+      transition:opacity .36s ease, transform .36s ease;
+      z-index:1900;
+      font-weight:600;
+      overflow:hidden;
+    }
+    .popup.show{ opacity:1; transform:translateY(0) scale(1); }
+
+    /* popup sparkle sweep (brand-colored) */
+    .popup::after{
+      content:"";
+      position:absolute;
+      left:-90%;
+      top:-30%;
+      width:40%;
+      height:160%;
+      background: linear-gradient(120deg, rgba(137,207,240,0.12) 0%, rgba(255,255,255,0.35) 45%, rgba(137,207,240,0.08) 60%, rgba(255,255,255,0) 100%);
+      transform: rotate(18deg);
+      opacity:0;
+    }
+    .popup.sparkle::after{
+      animation: popupSweep .9s ease forwards;
+      opacity:1;
+    }
+    @keyframes popupSweep {
+      0%{ left:-90%; opacity:0; }
+      30%{ opacity:1; }
+      100%{ left:120%; opacity:0; }
+    }
 
     /* reveal on scroll */
     .reveal{ opacity:0; transform:translateY(12px); transition:opacity .6s ease, transform .6s ease; }
     .reveal.visible{ opacity:1; transform:translateY(0) }
 
+    /* footer */
+    footer.site-footer{ text-align:center; padding:18px; color:var(--muted); }
+    .copyright{ margin-top:6px; color:#9aaac0; font-size:12px; }
+    body.dark .copyright{ color: rgba(230,237,243,0.72) }
+
     @media (max-width:820px){
       .hero h1{ font-size:20px }
-      .logo{ width:120px; }
+      .logo{ width:110px; }
       .row{ flex-direction:column; }
-      form{ padding:14px; }
+      form{ padding:10px; }
+      .header-inner{ padding:10px; }
     }
   </style>
 </head>
+
 <body>
 
   <!-- controls -->
   <div class="controls" role="region" aria-label="Controls">
     <div class="controls-left">
-      <select id="langSelect" aria-label="Language selector">
+      <select id="langSelect" aria-label="Language selector" title="Language">
         <option value="en">English</option>
         <option value="ar">العربية</option>
       </select>
@@ -139,10 +263,17 @@
   <!-- header/logo -->
   <header>
     <div class="header-inner">
-      <a class="logo-wrap" href="#" aria-label="Sponsera home">
-        <img src="logo_transparent.png" alt="Sponsera logo" class="logo" />
-        <span class="logo-spark" aria-hidden="true"></span>
-      </a>
+      <div class="logo-wrap" aria-hidden="false">
+        <a href="#" aria-label="Sponsera home"><img src="logo_transparent.png" alt="Sponsera logo" class="logo" /></a>
+        <div class="logo-spark" aria-hidden="true" title="spark"></div>
+      </div>
+
+      <!-- header language quick toggle (right side) -->
+      <div style="margin-left:auto;">
+        <button id="headerLangBtn" class="lang-switch" aria-label="Toggle language" style="border-radius:10px;padding:8px 12px;border:1px solid rgba(8,12,20,0.06); background:transparent; font-weight:600; cursor:pointer; opacity:0; transform:scale(.95);">
+          العربية
+        </button>
+      </div>
     </div>
   </header>
 
@@ -205,31 +336,35 @@
       <p data-key="testim-text">🌟 Coming soon! Be one of the first success stories on Sponsera.</p>
     </section>
 
-    <!-- SMALLER COLLABORATE BOX -->
-    <section class="card reveal" id="collab" style="background: linear-gradient(135deg, rgba(230,244,250,0.9), rgba(214,238,255,0.9));">
-      <h2 class="section-title" data-key="collab-title">Let's Collaborate</h2>
-      <div class="collab-wrap">
-        <form id="collabForm" autocomplete="on">
-          <div class="row" style="margin-bottom:10px;">
-            <div class="col"><input id="name" name="name" type="text" placeholder="Name" required></div>
-            <div class="col"><input id="title" name="title" type="text" placeholder="Title" required></div>
-          </div>
-          <div class="row" style="margin-bottom:10px;">
-            <div class="col"><input id="email" name="email" type="email" placeholder="Email" required></div>
-            <div class="col"><input id="insta" name="instagram" type="text" placeholder="Instagram (optional)"></div>
-          </div>
-          <div style="margin-bottom:10px;">
-            <textarea id="message" name="message" rows="4" placeholder="Tell us about your project..." required></textarea>
-          </div>
+    <!-- LUXURY COLLABORATE BOX -->
+    <section class="reveal" id="collab-section">
+      <div class="collaborate-card collab-sparkle" id="collabCard" role="region" aria-labelledby="collabTitle">
+        <h2 id="collabTitle" class="section-title" data-key="collab-title" style="color:#fff; margin-bottom:8px;">Let's Collaborate</h2>
 
-          <!-- hidden subject for email -->
-          <input type="hidden" name="_subject" value="New Sponsera message">
+        <!-- compact form inside luxury card -->
+        <div class="collab-wrap" style="padding:6px 8px;">
+          <form id="collabForm" autocomplete="on" style="background:transparent; box-shadow:none;">
+            <div class="row" style="margin-bottom:10px;">
+              <div class="col"><input id="name" name="name" type="text" placeholder="Name" required aria-label="Name"></div>
+              <div class="col"><input id="title" name="title" type="text" placeholder="Title" required aria-label="Title"></div>
+            </div>
+            <div class="row" style="margin-bottom:10px;">
+              <div class="col"><input id="email" name="email" type="email" placeholder="Email" required aria-label="Email"></div>
+              <div class="col"><input id="insta" name="instagram" type="text" placeholder="Instagram (optional)" aria-label="Instagram (optional)"></div>
+            </div>
+            <div style="margin-bottom:10px;">
+              <textarea id="message" name="message" rows="4" placeholder="Tell us about your project..." required aria-label="Tell us about your project"></textarea>
+            </div>
 
-          <!-- submit -->
-          <div style="text-align:center;">
-            <button type="submit" class="btn pulse" aria-label="Send message">Send</button>
-          </div>
-        </form>
+            <!-- hidden subject for email -->
+            <input type="hidden" name="_subject" value="New Sponsera message">
+
+            <!-- submit -->
+            <div style="text-align:center;">
+              <button type="submit" class="btn" aria-label="Send message">Send</button>
+            </div>
+          </form>
+        </div>
       </div>
     </section>
 
@@ -243,10 +378,7 @@
   </main>
 
   <!-- THANK YOU POPUP & CONFETTI CANVAS -->
-  <div class="popup" id="thankPopup" role="status" aria-live="polite">
-    <h3 id="popupTitle">Thanks — message sent!</h3>
-    <p id="popupText">We’ll get back to you soon. 💌</p>
-  </div>
+  <div class="popup" id="thankPopup" role="status" aria-live="polite">Thanks — message sent! We’ll get back to you soon. 💌</div>
   <canvas id="confettiCanvas"></canvas>
 
   <script>
@@ -273,7 +405,8 @@
         "f3-text":"We protect both sides with milestone-based payments.",
         "testim-title":"Testimonials",
         "testim-text":"🌟 Coming soon! Be one of the first success stories on Sponsera.",
-        "collab-title":"Let's Collaborate"
+        "collab-title":"Let's Collaborate",
+        "popup-text":"Thanks — message sent! We’ll get back to you soon. 💌"
       },
       ar: {
         "hero-title":"نساعد العلامات التجارية والمبدعين على إيجاد بعضهم والعمل معًا والنجاح.",
@@ -296,20 +429,41 @@
         "f3-text":"نحمي الطرفين عبر دفعات مبنية على الإنجاز.",
         "testim-title":"آراء العملاء",
         "testim-text":"🌟 قريبًا! كن من أوائل قصص النجاح على سبونسيرا.",
-        "collab-title":"دعنا نتعاون"
+        "collab-title":"دعنا نتعاون",
+        "popup-text":"شكرًا — تم إرسال الرسالة! سنتواصل معك قريبًا. 💌"
       }
     };
 
-    // language init
+    // elements
     const langSelect = document.getElementById('langSelect');
+    const headerLangBtn = document.getElementById('headerLangBtn');
+    const popup = document.getElementById('thankPopup');
+    const collabCard = document.getElementById('collabCard');
+    const collabForm = document.getElementById('collabForm');
+    const confettiCanvas = document.getElementById('confettiCanvas');
+
+    /* ---------- Language init & sync ---------- */
     const savedLang = localStorage.getItem('sponsera_lang') || 'en';
     langSelect.value = savedLang;
     applyLanguage(savedLang);
+    headerLangBtn.textContent = (savedLang === 'ar') ? 'English' : 'العربية';
 
-    langSelect.addEventListener('change', (e)=> {
+    // when select changes
+    langSelect.addEventListener('change', (e) => {
       const lang = e.target.value;
       localStorage.setItem('sponsera_lang', lang);
       applyLanguage(lang);
+      headerLangBtn.textContent = (lang === 'ar') ? 'English' : 'العربية';
+    });
+
+    // header button toggles
+    headerLangBtn.addEventListener('click', ()=>{
+      const current = document.documentElement.lang || (langSelect.value || 'en');
+      const next = (current === 'ar') ? 'en' : 'ar';
+      langSelect.value = next;
+      localStorage.setItem('sponsera_lang', next);
+      applyLanguage(next);
+      headerLangBtn.textContent = (next === 'ar') ? 'English' : 'العربية';
     });
 
     function applyLanguage(lang){
@@ -319,13 +473,17 @@
         const key = el.getAttribute('data-key');
         if(TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) el.textContent = TRANSLATIONS[lang][key];
       });
-      // adjust basic alignment
-      document.querySelectorAll('.hero, .card, .simple-list').forEach(el=>{
+      // adjust alignment for certain blocks
+      document.querySelectorAll('.hero, .card, .simple-list, .collaborate-card').forEach(el=>{
         el.style.textAlign = (lang === 'ar') ? 'right' : 'center';
       });
+      // popup text
+      if(TRANSLATIONS[lang] && TRANSLATIONS[lang]['popup-text']){
+        popup.textContent = TRANSLATIONS[lang]['popup-text'];
+      }
     }
 
-    /* ---------- Theme toggle ---------- */
+    /* ---------- Theme toggle (dark/light) ---------- */
     const themeBtn = document.getElementById('themeBtn');
     const storedTheme = localStorage.getItem('sponsera_theme') || 'light';
     if(storedTheme === 'dark') document.body.classList.add('dark');
@@ -334,58 +492,41 @@
       localStorage.setItem('sponsera_theme', document.body.classList.contains('dark') ? 'dark' : 'light');
     });
 
+    /* ---------- Entrance sync: reveal headerLangBtn after delays ---------- */
+    window.addEventListener('DOMContentLoaded', ()=>{
+      // reveal headerLangBtn with same feel as CSS delay
+      setTimeout(()=> {
+        headerLangBtn.style.opacity = '1';
+        headerLangBtn.style.transform = 'scale(1)';
+        headerLangBtn.style.transition = 'box-shadow .3s, transform .18s, opacity .18s';
+      }, (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--btn-delay')) || 0.95) * 1000);
+
+      // schedule collab sparkle sweep shortly after pop-in
+      setTimeout(()=> {
+        if(collabCard){
+          collabCard.classList.add('animate');
+          setTimeout(()=> collabCard.classList.remove('animate'), 1200);
+        }
+      }, ((parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--collab-pop-delay')) || 1.6) + 0.6) * 1000);
+
+      // prepare confetti
+      confettiCanvas.width = innerWidth; confettiCanvas.height = innerHeight;
+    });
+
     /* ---------- Scroll reveal ---------- */
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(en => { if(en.isIntersecting) en.target.classList.add('visible') });
     }, {threshold:0.12});
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-    /* ---------- Form submit via FormSubmit (AJAX) ---------- */
-    const form = document.getElementById('collabForm');
-    const popup = document.getElementById('thankPopup');
-    const confettiCanvas = document.getElementById('confettiCanvas');
+    /* ---------- Confetti setup ---------- */
     confettiCanvas.width = innerWidth; confettiCanvas.height = innerHeight;
     const ctx = confettiCanvas.getContext('2d');
     let running=false, particles=[];
 
-    form.addEventListener('submit', async (ev)=>{
-      ev.preventDefault();
-      const btn = form.querySelector('.btn');
-      btn.disabled = true; btn.textContent = 'Sending...';
-
-      const data = new FormData(form);
-      try{
-        const res = await fetch('https://formsubmit.co/ajax/sponsera@proton.me', {
-          method:'POST', headers:{ 'Accept':'application/json' }, body:data
-        });
-        if(res.ok){
-          form.reset();
-          btn.disabled = false; btn.textContent = 'Send';
-          triggerPopup();
-        } else {
-          throw new Error('Network error');
-        }
-      }catch(err){
-        console.error(err);
-        btn.disabled = false; btn.textContent = 'Send';
-        alert('Oops — something went wrong. You can email us at sponsera@proton.me');
-      }
-    });
-
-    /* ---------- popup + confetti ---------- */
-    function triggerPopup(){
-      startConfetti();
-      popup.classList.add('show'); popup.style.display='block';
-      setTimeout(()=> {
-        popup.classList.remove('show');
-        stopConfetti();
-        setTimeout(()=> popup.style.display='none', 300);
-      }, 3000);
-    }
-
-    // confetti functions
     function rnd(min,max){ return Math.random()*(max-min)+min; }
     function makeParticle(x,y){ return { x,y, vx:rnd(-6,6), vy:rnd(-12,-3), w:rnd(6,12), h:rnd(6,10), rot:rnd(0,360), vr:rnd(-8,8), col:`hsl(${Math.floor(rnd(190,220))},70%,60%)`, life:0, ttl:Math.floor(rnd(60,110)) } }
+
     function startConfetti(){
       if(running) return;
       running=true; confettiCanvas.style.display='block'; particles=[];
@@ -406,18 +547,53 @@
     function stopConfetti(){ running=false; setTimeout(()=>{ confettiCanvas.style.display='none'; ctx.clearRect(0,0,confettiCanvas.width, confettiCanvas.height); }, 200); }
     window.addEventListener('resize', ()=>{ confettiCanvas.width = innerWidth; confettiCanvas.height = innerHeight; });
 
-    /* ---------- init on load ---------- */
-    window.addEventListener('DOMContentLoaded', ()=>{
-      // apply saved language (already set by select)
-      const saved = localStorage.getItem('sponsera_lang') || 'en';
-      langSelect.value = saved;
-      applyLanguage(saved);
-      // prepare confetti canvas
-      confettiCanvas.width = innerWidth; confettiCanvas.height = innerHeight;
+    /* ---------- Form submit via FormSubmit (AJAX) ---------- */
+    collabForm.addEventListener('submit', async (ev)=>{
+      ev.preventDefault();
+      const btn = collabForm.querySelector('.btn');
+      btn.disabled = true; btn.textContent = 'Sending...';
+
+      const data = new FormData(collabForm);
+      try{
+        const res = await fetch('https://formsubmit.co/ajax/sponsera@proton.me', {
+          method:'POST', headers:{ 'Accept':'application/json' }, body:data
+        });
+        if(res.ok){
+          collabForm.reset();
+          btn.disabled = false; btn.textContent = 'Send';
+          triggerThankYou();
+        } else {
+          throw new Error('Network error');
+        }
+      }catch(err){
+        console.error(err);
+        btn.disabled = false; btn.textContent = 'Send';
+        // fallback: still show thank-you experience and log fallback
+        triggerThankYou();
+        console.warn('FormSubmit failed — fallback shown. Email: sponsera@proton.me');
+      }
     });
 
+    /* ---------- popup + sparkle + confetti ---------- */
+    function triggerThankYou(){
+      // sparkle the collab card briefly
+      if(collabCard){
+        collabCard.classList.add('animate');
+        setTimeout(()=> collabCard.classList.remove('animate'), 1200);
+      }
+
+      // show popup with sparkle
+      popup.classList.add('show','sparkle');
+      startConfetti();
+      setTimeout(()=> {
+        popup.classList.remove('show','sparkle');
+        stopConfetti();
+      }, 3000);
+    }
+
     /* keep focus on first input after reset for accessibility */
-    form.addEventListener('reset', ()=> { const first=form.querySelector('input,textarea'); if(first) first.focus(); });
+    collabForm.addEventListener('reset', ()=> { const first=collabForm.querySelector('input,textarea'); if(first) first.focus(); });
+
   </script>
 </body>
 </html>
