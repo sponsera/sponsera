@@ -22,6 +22,8 @@
       --btn-glow: 0 0 12px rgba(19,88,184,0.45);
       --btn-glow-hover: 0 0 18px rgba(19,88,184,0.7);
       --logo-glow: 0 0 14px 3px rgba(19,88,184,0.7);
+      --collab-glow-dark: 0 0 22px 5px rgba(137,207,240,0.6);
+      --collab-glow-light: 0 0 22px 5px rgba(137,207,240,0.35);
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -98,6 +100,9 @@
       position:relative;
       display:inline-block;
       cursor:pointer;
+      background: none;
+      border-radius: 8px;
+      transition: background .35s ease;
     }
     .logo{
       width:140px;
@@ -106,10 +111,15 @@
       border-radius:8px;
       transition: transform .25s ease, filter .4s ease, box-shadow .35s ease;
       filter: drop-shadow(0 12px 30px rgba(10,30,60,0.06));
+      background: transparent;
+    }
+    body.dark .logo-wrap{
+      background: transparent; /* transparent background in dark mode */
     }
     body.dark .logo{
       filter: brightness(1.15);
       box-shadow: var(--logo-glow);
+      background: transparent;
     }
     .logo-wrap:hover .logo{
       transform: translateY(-3px);
@@ -168,7 +178,7 @@
       padding:24px;
       margin:32px 0;
       box-shadow:0 14px 50px rgba(9,23,40,0.06);
-      transition: background .35s,color .35s;
+      transition: background .35s,color .35s, box-shadow .35s;
       color:inherit;
     }
     body.dark .card{
@@ -177,9 +187,12 @@
     }
     .card.baby{
       background: linear-gradient(180deg, var(--baby), #f0fbff);
+      box-shadow: var(--collab-glow-light);
+      transition: box-shadow 0.35s ease;
     }
     body.dark .card.baby{
       background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      box-shadow: var(--collab-glow-dark);
     }
 
     .section-title{
@@ -239,17 +252,26 @@
       max-width:600px;
       margin:0 auto;
       border-radius:16px;
-      background: linear-gradient(135deg, #1358b8, #89cff0, #1358b8);
-      background-size: 300% 300%;
       padding: 26px 24px 28px;
-      box-shadow:
-        0 8px 28px rgba(137,207,240,0.4),
-        0 16px 48px rgba(137,207,240,0.6);
-      transition: background-position 3s ease;
       cursor: default;
       user-select:none;
       animation: gradientShift 4s linear infinite;
+      transition: background-position 3s ease, box-shadow 0.35s ease;
     }
+    body:not(.dark) .collab-wrap {
+      background: linear-gradient(135deg, #e0f2ff, #b3dbff, #e0f2ff);
+      box-shadow:
+        0 8px 28px rgba(137,207,240,0.35),
+        0 16px 48px rgba(137,207,240,0.45);
+    }
+    body.dark .collab-wrap {
+      background: linear-gradient(135deg, #1358b8, #89cff0, #1358b8);
+      background-size: 300% 300%;
+      box-shadow:
+        var(--collab-glow-dark),
+        0 16px 48px rgba(137,207,240,0.6);
+    }
+
     @keyframes gradientShift {
       0%{background-position:0% 50%}
       50%{background-position:100% 50%}
@@ -273,25 +295,40 @@
       width:100%;
       padding:14px 16px;
       border-radius:14px;
-      border:1px solid rgba(255,255,255,0.3);
+      border:1px solid rgba(8,12,20,0.12);
       font-size:15px;
-      background: rgba(255,255,255,0.15);
-      color:#fff;
+      background: rgba(255,255,255,0.9);
+      color:#071225;
       font-weight:500;
       outline:none;
       transition: background .3s, border-color .3s;
-      box-shadow: 0 0 10px rgba(255,255,255,0.07);
       resize:none;
+      box-shadow:none;
     }
     input::placeholder, textarea::placeholder{
-      color: rgba(255,255,255,0.75);
+      color: #999;
       font-weight:400;
     }
     input:focus, textarea:focus{
+      background: #fff;
+      border-color: var(--accent);
+      box-shadow: var(--btn-glow);
+      color:#071225;
+    }
+    body.dark input, body.dark textarea{
+      background: rgba(255,255,255,0.15);
+      color:#eaf4ff;
+      border: 1px solid rgba(255,255,255,0.25);
+      box-shadow:none;
+    }
+    body.dark input::placeholder, body.dark textarea::placeholder{
+      color: rgba(255,255,255,0.75);
+    }
+    body.dark input:focus, body.dark textarea:focus{
       background: rgba(255,255,255,0.3);
       border-color: var(--accent);
       box-shadow: var(--btn-glow);
-      color:#fff;
+      color:#eaf4ff;
     }
     button.btn{
       background: #1358b8;
@@ -465,15 +502,15 @@
     </section>
 
     <!-- BENEFITS -->
-    <section class="card reveal" id="benefits">
+    <section class="card baby reveal" id="benefits">
       <h2 class="section-title" data-key="benefits-title">For Brands &amp; Creators</h2>
       <div class="section-grid">
-        <div class="feature">
-          <h3 data-key="brand-title">For Brands</h3>
+        <div class="feature" aria-labelledby="brand-title" role="region">
+          <h3 id="brand-title" data-key="brand-title">For Brands</h3>
           <p data-key="brand-text">Reach authentic creators who resonate with your mission. Get measurable results.</p>
         </div>
-        <div class="feature">
-          <h3 data-key="creator-title">For Creators</h3>
+        <div class="feature" aria-labelledby="creator-title" role="region">
+          <h3 id="creator-title" data-key="creator-title">For Creators</h3>
           <p data-key="creator-text">Skip the middleman. Land real deals. Keep your creative freedom.</p>
         </div>
       </div>
@@ -483,23 +520,23 @@
     <section class="card baby reveal" id="features">
       <h2 class="section-title" data-key="features-title">Features</h2>
       <div class="section-grid">
-        <div class="feature">
-          <h3 data-key="f1-title">🧠 Smart Matchmaking</h3>
+        <div class="feature" aria-labelledby="f1-title" role="region">
+          <h3 id="f1-title" data-key="f1-title">🧠 Smart Matchmaking</h3>
           <p data-key="f1-text">Our algorithm pairs you with ideal brand partners.</p>
         </div>
-        <div class="feature">
-          <h3 data-key="f2-title">📊 Performance Tracking</h3>
+        <div class="feature" aria-labelledby="f2-title" role="region">
+          <h3 id="f2-title" data-key="f2-title">📊 Performance Tracking</h3>
           <p data-key="f2-text">Monitor real-time performance of your collabs.</p>
         </div>
-        <div class="feature">
-          <h3 data-key="f3-title">🛡️ Secure Payments</h3>
+        <div class="feature" aria-labelledby="f3-title" role="region">
+          <h3 id="f3-title" data-key="f3-title">🛡️ Secure Payments</h3>
           <p data-key="f3-text">We protect both sides with milestone-based payments.</p>
         </div>
       </div>
     </section>
 
     <!-- LET'S COLLABORATE -->
-    <section class="card collab-wrap reveal" aria-labelledby="contact-title" id="contact">
+    <section class="card collab-wrap baby reveal" aria-labelledby="contact-title" id="contact">
       <h2 id="contact-title" class="section-title" data-key="contact-title">Let's Collaborate</h2>
       <form id="contactForm" aria-describedby="contact-desc" novalidate>
         <div id="contact-desc" style="font-size: 13px; color: #d3d3d3; margin-bottom: 18px;">
@@ -540,7 +577,6 @@
 
   <script>
     (() => {
-      // Dark/light theme toggle with saved preference
       const themeBtn = document.getElementById('themeBtn');
       const body = document.body;
 
@@ -555,12 +591,10 @@
         if(save) localStorage.setItem('theme', dark ? 'dark' : 'light');
       }
 
-      // On first load, default to light mode regardless of system preference
       const savedTheme = localStorage.getItem('theme');
       if(savedTheme) {
         setTheme(savedTheme === 'dark', false);
       } else {
-        // No saved theme - default light mode
         setTheme(false, false);
       }
 
@@ -568,7 +602,6 @@
         setTheme(!body.classList.contains('dark'));
       });
 
-      // Language selector (English / Arabic) - minimal translations below
       const translations = {
         en: {
           "hero-title": "We help brands and creators find each other, work together and succeed.",
@@ -637,20 +670,16 @@
       });
       setLanguage('en');
 
-      // Form send handler - simulate sending silently to sponsera@proton.me
       const form = document.getElementById('contactForm');
       const thankYou = document.getElementById('thankYouPopup');
       const confettiCanvas = document.getElementById('confettiCanvas');
 
-      // Simulate an email send via API here
       function sendEmail(data) {
-        // In real, integrate backend or use email sending service here.
         return new Promise((resolve) => {
           setTimeout(() => resolve(true), 1200);
         });
       }
 
-      // Simple confetti effect
       function launchConfetti() {
         const confetti = confettiCanvas;
         confetti.width = window.innerWidth;
@@ -703,7 +732,6 @@
         }
         draw();
 
-        // Stop after 5 seconds
         setTimeout(() => {
           cancelAnimationFrame(animationFrame);
           ctx.clearRect(0, 0, confetti.width, confetti.height);
@@ -720,7 +748,6 @@
         }
         btn.disabled = true;
         btn.setAttribute('aria-busy', 'true');
-        // Collect form data, silently send to sponsera@proton.me
         const formData = {
           name: form.name.value.trim(),
           email: form.email.value.trim(),
@@ -730,9 +757,7 @@
 
         try {
           await sendEmail(formData);
-          // Reset form
           form.reset();
-          // Show thank you popup
           thankYou.classList.add('show');
           thankYou.focus();
           launchConfetti();
@@ -747,7 +772,6 @@
         btn.setAttribute('aria-busy', 'false');
       });
 
-      // Reveal on scroll effect for .reveal elements
       const revealEls = document.querySelectorAll('.reveal');
       const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
