@@ -3,789 +3,160 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Sponsera — Where Brands & Creators Connect</title>
-  <meta name="description" content="Sponsera helps creators and brands build real partnerships with real impact." />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet">
-  <link rel="icon" href="logo_transparent.png" type="image/png" />
+  <title>SponsEra — Where Brands & Creators Connect</title>
+  <meta name="description" content="SponsEra helps creators and brands build real partnerships with real impact." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Tajawal:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="logo-new.png" type="image/png" />
   <style>
     :root{
       --navy:#071a2b;
       --navy-deep:#041223;
-      --baby:#E6F4FA;
-      --baby-blue:#89cff0;
+      --sky:#89cff0;
       --accent:#1358b8;
       --muted:#6b7785;
       --card:#ffffff;
       --card-dark:#071826;
-      --radius:12px;
+      --radius:14px;
       --maxw:1100px;
-      --btn-glow: 0 0 12px rgba(19,88,184,0.45);
-      --btn-glow-hover: 0 0 18px rgba(19,88,184,0.7);
-      --logo-glow: 0 0 14px 3px rgba(19,88,184,0.7);
-      --collab-glow-dark: 0 0 22px 5px rgba(137,207,240,0.6);
-      --collab-glow-light: 0 0 22px 5px rgba(137,207,240,0.35);
+      --glow-light:0 0 20px rgba(137,207,240,0.6);
+      --glow-dark:0 0 24px rgba(65,105,225,0.8);
     }
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
-      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      font-family:'Inter', sans-serif;
       background:#fff;
-      color:#071225;
-      -webkit-font-smoothing:antialiased;
+      color:var(--navy);
       transition:background .35s,color .35s;
-      scroll-behavior:smooth;
     }
     body.dark{
       background:var(--navy-deep);
       color:#eaf4ff;
     }
-    a{
-      color:var(--accent);
-      text-decoration:none;
-      transition: text-shadow 0.3s ease;
+    a{color:var(--accent);text-decoration:none;}
+    a:hover{text-shadow:0 0 8px var(--accent);}
+    /* Controls */
+    .controls{position:fixed;top:14px;left:18px;right:18px;display:flex;justify-content:space-between;z-index:1400;}
+    select,.theme-btn{
+      border-radius:10px;padding:8px 10px;border:1px solid rgba(8,12,20,0.06);
+      background:transparent;cursor:pointer;font-weight:600;
     }
-    a:hover{
-      text-decoration:underline;
-      text-shadow: 0 0 8px var(--accent);
-    }
-
-    /* Top controls */
-    .controls{
-      position:fixed; top:14px; left:18px; right:18px; display:flex; justify-content:space-between; z-index:1400; pointer-events:none;
-    }
-    .controls-left, .controls-right{ pointer-events:auto; display:flex; gap:10px; align-items:center; }
-    select, .theme-btn{
-      border-radius:10px; padding:8px 10px; border:1px solid rgba(8,12,20,0.06);
-      background:transparent; cursor:pointer; font-weight:600;
-      color:inherit;
-      transition: box-shadow 0.3s ease, background 0.3s ease;
-      filter:none;
-    }
-    select:hover, .theme-btn:hover{
-      box-shadow: var(--btn-glow-hover);
-      background: rgba(19,88,184,0.1);
-    }
-    body.dark select, body.dark .theme-btn{
-      border-color: rgba(255,255,255,0.06);
-      background: rgba(255,255,255,0.02);
-      color:#fff;
-    }
-    body.dark select:hover, body.dark .theme-btn:hover{
-      box-shadow: 0 0 16px rgba(137,207,240,0.7);
-      background: rgba(137,207,240,0.1);
-    }
-
-    /* header/logo */
-    header{
-      position:sticky;
-      top:0;
-      z-index:1200;
-      backdrop-filter: blur(8px);
-      background: linear-gradient(180deg, rgba(255,255,255,0.62), rgba(255,255,255,0.18));
-      transition: background .35s;
-    }
-    body.dark header{
-      background: linear-gradient(180deg, rgba(3,8,15,0.6), rgba(3,8,15,0.25));
-    }
-    .header-inner{
-      max-width:var(--maxw);
-      margin:0 auto;
-      padding:14px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-    .logo-wrap{
-      position:relative;
-      display:inline-block;
-      cursor:pointer;
-      background: none;
-      border-radius: 8px;
-      transition: background .35s ease;
-    }
-    .logo{
-      width:140px;
-      height:auto;
-      display:block;
-      border-radius:8px;
-      transition: transform .25s ease, filter .4s ease, box-shadow .35s ease;
-      filter: drop-shadow(0 12px 30px rgba(10,30,60,0.06));
-      background: transparent;
-    }
-    body.dark .logo-wrap{
-      background: transparent; /* transparent background in dark mode */
-    }
-    body.dark .logo{
-      filter: brightness(1.15);
-      box-shadow: var(--logo-glow);
-      background: transparent;
-    }
-    .logo-wrap:hover .logo{
-      transform: translateY(-3px);
-      filter: drop-shadow(0 0 16px var(--accent));
-    }
-    .logo-spark{
-      position:absolute;
-      right:6%;
-      top:4%;
-      width:14px;
-      height:14px;
-      border-radius:50%;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.98), rgba(255,255,255,.7));
-      opacity:0;
-      transform: scale(.3);
-      filter: blur(.6px);
-      pointer-events:none;
-      animation: sparkle 6s infinite;
-    }
-    @keyframes sparkle{
-      0%{opacity:0;transform:scale(.3)}
-      70%{opacity:1;transform:scale(1.05)}
-      85%{opacity:.7;transform:scale(.9)}
-      100%{opacity:0;transform:scale(.3)}
-    }
-
-    .wrap{
-      max-width:var(--maxw);
-      margin:0 auto;
-      padding:28px 24px 48px;
-    }
-
-    /* hero */
-    .hero{
-      text-align:center;
-      padding:48px 20px 36px;
-    }
+    body.dark select,body.dark .theme-btn{border-color:rgba(255,255,255,0.06);color:#fff;}
+    /* Header */
+    header{position:sticky;top:0;backdrop-filter:blur(8px);}
+    .header-inner{max-width:var(--maxw);margin:0 auto;padding:14px;text-align:center;}
+    .logo{width:160px;height:auto;display:block;margin:0 auto;filter:drop-shadow(var(--glow-light));}
+    body.dark .logo{filter:drop-shadow(var(--glow-dark));}
+    /* Wrap */
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:28px 24px 48px;}
+    /* Hero */
+    .hero{text-align:center;padding:48px 20px;}
     .hero h1{
-      font-family:Tajawal, Inter, sans-serif;
+      font-family:'Tajawal',sans-serif;
       font-weight:700;
-      font-size:26px;
-      margin-bottom:12px;
+      font-size:32px;
       letter-spacing:-0.01em;
     }
-    .hero p{
-      max-width:820px;
-      margin:0 auto;
-      color:var(--muted);
-      line-height:1.7;
-    }
-
-    /* card sections */
+    .hero p{max-width:820px;margin:0 auto;color:var(--muted);line-height:1.8;font-size:18px;}
+    /* Cards */
     .card{
-      background:var(--card);
       border-radius:var(--radius);
       padding:24px;
       margin:32px 0;
-      box-shadow:0 14px 50px rgba(9,23,40,0.06);
-      transition: background .35s,color .35s, box-shadow .35s;
-      color:inherit;
+      box-shadow:var(--glow-light);
+      background:linear-gradient(180deg,var(--sky),#f0fbff);
     }
     body.dark .card{
-      background:var(--card-dark);
-      box-shadow:none;
+      background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));
+      box-shadow:var(--glow-dark);
     }
-    .card.baby{
-      background: linear-gradient(180deg, var(--baby), #f0fbff);
-      box-shadow: var(--collab-glow-light);
-      transition: box-shadow 0.35s ease;
-    }
-    body.dark .card.baby{
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      box-shadow: var(--collab-glow-dark);
-    }
-
-    .section-title{
-      font-size:17px;
-      margin-bottom:10px;
-      font-weight:700;
-      color:var(--navy);
-    }
-    body.dark .section-title{
-      color:#fff;
-    }
-
-    .simple-list{
-      list-style:none;
-      padding:0;
-      margin:12px 0;
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-      align-items:center;
-    }
-    .simple-list li{
-      color:var(--muted);
-      font-size:15px;
-      text-align:center;
-    }
-    body.dark .simple-list li{
-      color: rgba(230,237,243,0.85);
-    }
-
-    .section-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
-      gap:18px;
-    }
-
-    .feature{
-      padding:12px;
-      border-radius:10px;
-      background:transparent;
-    }
-    .feature h3{
-      margin:0 0 6px;
-      font-size:15px;
-    }
-    .feature p{
-      margin:0;
-      color:var(--muted);
-      line-height:1.6;
-    }
-    body.dark .feature p{
-      color: rgba(230,237,243,0.82);
-    }
-
-    /* let's collaborate box with glowing gradient */
+    .section-title{font-size:20px;font-weight:700;}
+    /* Lists */
+    .simple-list{list-style:none;padding:0;margin:12px 0;text-align:center;}
+    .simple-list li{color:var(--muted);font-size:16px;}
+    body.dark .simple-list li{color:rgba(230,237,243,0.85);}
+    /* Grid */
+    .section-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;}
+    .feature h3{margin:0 0 6px;font-size:17px;}
+    .feature p{margin:0;color:var(--muted);}
+    body.dark .feature p{color:rgba(230,237,243,0.82);}
+    /* Collaborate Box */
     .collab-wrap{
       max-width:600px;
       margin:0 auto;
       border-radius:16px;
-      padding: 26px 24px 28px;
-      cursor: default;
-      user-select:none;
-      animation: gradientShift 4s linear infinite;
-      transition: background-position 3s ease, box-shadow 0.35s ease;
+      padding:26px;
+      background:linear-gradient(135deg,var(--sky),#b3dbff,var(--sky));
+      box-shadow:var(--glow-light);
     }
-    body:not(.dark) .collab-wrap {
-      background: linear-gradient(135deg, #e0f2ff, #b3dbff, #e0f2ff);
-      box-shadow:
-        0 8px 28px rgba(137,207,240,0.35),
-        0 16px 48px rgba(137,207,240,0.45);
+    body.dark .collab-wrap{
+      background:linear-gradient(135deg,#1358b8,#89cff0,#1358b8);
+      box-shadow:var(--glow-dark);
     }
-    body.dark .collab-wrap {
-      background: linear-gradient(135deg, #1358b8, #89cff0, #1358b8);
-      background-size: 300% 300%;
-      box-shadow:
-        var(--collab-glow-dark),
-        0 16px 48px rgba(137,207,240,0.6);
-    }
-
-    @keyframes gradientShift {
-      0%{background-position:0% 50%}
-      50%{background-position:100% 50%}
-      100%{background-position:0% 50%}
-    }
-
-    form{
-      background: transparent;
-      box-shadow:none;
-      padding:0;
-    }
-    .row{
-      display:flex;
-      gap:14px;
-      margin-bottom:14px;
-    }
-    .col{
-      flex:1;
-    }
-    input, textarea{
-      width:100%;
-      padding:14px 16px;
-      border-radius:14px;
-      border:1px solid rgba(8,12,20,0.12);
-      font-size:15px;
-      background: rgba(255,255,255,0.9);
-      color:#071225;
-      font-weight:500;
-      outline:none;
-      transition: background .3s, border-color .3s;
-      resize:none;
-      box-shadow:none;
-    }
-    input::placeholder, textarea::placeholder{
-      color: #999;
-      font-weight:400;
-    }
-    input:focus, textarea:focus{
-      background: #fff;
-      border-color: var(--accent);
-      box-shadow: var(--btn-glow);
-      color:#071225;
-    }
-    body.dark input, body.dark textarea{
-      background: rgba(255,255,255,0.15);
-      color:#eaf4ff;
-      border: 1px solid rgba(255,255,255,0.25);
-      box-shadow:none;
-    }
-    body.dark input::placeholder, body.dark textarea::placeholder{
-      color: rgba(255,255,255,0.75);
-    }
-    body.dark input:focus, body.dark textarea:focus{
-      background: rgba(255,255,255,0.3);
-      border-color: var(--accent);
-      box-shadow: var(--btn-glow);
-      color:#eaf4ff;
-    }
-    button.btn{
-      background: #1358b8;
-      color:#fff;
-      padding: 12px 24px;
-      border-radius: 14px;
-      border:none;
-      font-weight:700;
-      cursor:pointer;
-      transition: box-shadow .3s ease, transform .15s ease;
-      user-select:none;
-      box-shadow: var(--btn-glow);
-      width:100%;
-      font-size:16px;
-    }
-    button.btn:active{
-      transform: translateY(2px);
-      box-shadow: var(--btn-glow-hover);
-    }
-    button.btn:hover{
-      box-shadow: var(--btn-glow-hover);
-    }
-    button.btn:disabled{
-      opacity:0.7;
-      cursor:not-allowed;
-      box-shadow:none;
-    }
-
-    /* popup + confetti */
-    .popup{
-      position: fixed;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%) scale(.96);
-      z-index: 2000;
-      min-width: 280px;
-      padding: 18px 28px;
-      border-radius: 14px;
-      display: none;
-      opacity: 0;
-      text-align: center;
-      background: var(--card);
-      box-shadow: 0 20px 60px rgba(2,6,23,0.35);
-      transition: opacity .3s ease, transform .3s ease;
-      font-weight: 600;
-      color: #071225;
-      user-select:none;
-      font-family: 'Inter', system-ui, sans-serif;
-    }
-    body.dark .popup{
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      color: #eaf4ff;
-      box-shadow: 0 20px 70px rgba(137,207,240,0.6);
-      font-weight: 600;
-    }
-    .popup.show{
-      display: block;
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
-    }
-
-    #confettiCanvas{
-      position: fixed;
-      left: 0; top: 0;
-      width: 100%; height: 100%;
-      pointer-events:none;
-      z-index: 1900;
-      display:none;
-    }
-
-    /* footer */
-    footer.site-footer{
-      text-align:center;
-      padding: 28px 12px 32px;
-      color: var(--muted);
-      font-weight: 500;
-      font-size: 15px;
-      user-select:none;
-    }
-    footer.site-footer a{
-      color: var(--accent);
-      font-weight: 700;
-      transition: text-shadow 0.3s ease;
-    }
-    footer.site-footer a:hover{
-      text-shadow: 0 0 8px var(--accent);
-    }
-    .copyright{
-      margin-top: 12px;
-      color: #9aaac0;
-      font-size: 13px;
-      user-select:none;
-    }
-    body.dark .copyright{
-      color: rgba(230,237,243,0.72);
-    }
-
-    /* reveal on scroll */
-    .reveal{
-      opacity:0;
-      transform:translateY(12px);
-      transition:opacity .6s ease, transform .6s ease;
-    }
-    .reveal.visible{
-      opacity:1;
-      transform:translateY(0);
-    }
-
-    @media (max-width:820px){
-      .hero h1{
-        font-size:20px;
-      }
-      .logo{
-        width:120px;
-      }
-      .row{
-        flex-direction:column;
-      }
-      form{
-        padding:0;
-      }
-      button.btn{
-        font-size: 15px;
-        padding: 12px 18px;
-      }
-    }
+    /* Footer */
+    footer{text-align:center;padding:28px 12px;color:var(--muted);}
+    .copyright{margin-top:12px;font-size:13px;}
   </style>
 </head>
 <body>
-
-  <!-- controls -->
-  <div class="controls" role="region" aria-label="Controls">
-    <div class="controls-left">
-      <select id="langSelect" aria-label="Language selector">
-        <option value="en">English</option>
-        <option value="ar">العربية</option>
-      </select>
-    </div>
-    <div class="controls-right">
-      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">🌗</button>
-    </div>
+  <!-- Controls -->
+  <div class="controls">
+    <div><select id="langSelect"><option value="en">English</option><option value="ar">العربية</option></select></div>
+    <div><button class="theme-btn" id="themeBtn">🌗</button></div>
   </div>
-
-  <!-- header/logo -->
+  <!-- Header -->
   <header>
     <div class="header-inner">
-      <a class="logo-wrap" href="#" aria-label="Sponsera home" tabindex="0">
-        <img src="logo_transparent.png" alt="Sponsera logo" class="logo" />
-        <span class="logo-spark" aria-hidden="true"></span>
-      </a>
+      <img src="logo-new.png" alt="SponsEra logo" class="logo" />
     </div>
   </header>
-
   <main class="wrap">
     <!-- HERO -->
-    <section class="hero reveal" id="hero">
+    <section class="hero">
       <h1 data-key="hero-title">We help brands and creators find each other, work together and succeed.</h1>
-      <p data-key="hero-sub">Sponsera connects creators and brands with meaningful sponsorships that deliver real impact. Clean. Fast. Human.</p>
+      <p data-key="hero-sub">SponsEra connects creators and brands with meaningful sponsorships that deliver real impact. Clean. Fast. Human.</p>
     </section>
-
     <!-- HOW IT WORKS -->
-    <section class="card baby reveal" id="how">
-      <div class="inner-card">
-        <h2 class="section-title" data-key="how-title">How It Works</h2>
-        <ul class="simple-list" aria-hidden="false">
-          <li data-key="how-1">Brands sign up &amp; post opportunities</li>
-          <li data-key="how-2">Creators apply with their pitch</li>
-          <li data-key="how-3">Collaborations begin. Simple, fast, transparent.</li>
-        </ul>
-      </div>
+    <section class="card">
+      <h2 class="section-title" data-key="how-title">How It Works</h2>
+      <ul class="simple-list">
+        <li data-key="how-1">Brands sign up &amp; post opportunities</li>
+        <li data-key="how-2">Creators apply with their pitch</li>
+        <li data-key="how-3">Collaborations begin. Simple, fast, transparent.</li>
+      </ul>
     </section>
-
-    <!-- BENEFITS -->
-    <section class="card baby reveal" id="benefits">
-      <h2 class="section-title" data-key="benefits-title">For Brands &amp; Creators</h2>
+    <!-- SIGNATURE PERKS -->
+    <section class="card">
+      <h2 class="section-title" data-key="features-title">Signature Perks</h2>
       <div class="section-grid">
-        <div class="feature" aria-labelledby="brand-title" role="region">
-          <h3 id="brand-title" data-key="brand-title">For Brands</h3>
-          <p data-key="brand-text">Reach authentic creators who resonate with your mission. Get measurable results.</p>
-        </div>
-        <div class="feature" aria-labelledby="creator-title" role="region">
-          <h3 id="creator-title" data-key="creator-title">For Creators</h3>
-          <p data-key="creator-text">Skip the middleman. Land real deals. Keep your creative freedom.</p>
-        </div>
+        <div class="feature"><h3 data-key="f1-title">🧠 Smart Matchmaking</h3><p data-key="f1-text">Our algorithm pairs you with ideal brand partners.</p></div>
+        <div class="feature"><h3 data-key="f2-title">📊 Performance Tracking</h3><p data-key="f2-text">Monitor real-time performance of your collabs.</p></div>
+        <div class="feature"><h3 data-key="f3-title">🛡️ Secure Payments</h3><p data-key="f3-text">We protect both sides with milestone-based payments.</p></div>
       </div>
     </section>
-
-    <!-- FEATURES -->
-    <section class="card baby reveal" id="features">
-      <h2 class="section-title" data-key="features-title">Features</h2>
-      <div class="section-grid">
-        <div class="feature" aria-labelledby="f1-title" role="region">
-          <h3 id="f1-title" data-key="f1-title">🧠 Smart Matchmaking</h3>
-          <p data-key="f1-text">Our algorithm pairs you with ideal brand partners.</p>
-        </div>
-        <div class="feature" aria-labelledby="f2-title" role="region">
-          <h3 id="f2-title" data-key="f2-title">📊 Performance Tracking</h3>
-          <p data-key="f2-text">Monitor real-time performance of your collabs.</p>
-        </div>
-        <div class="feature" aria-labelledby="f3-title" role="region">
-          <h3 id="f3-title" data-key="f3-title">🛡️ Secure Payments</h3>
-          <p data-key="f3-text">We protect both sides with milestone-based payments.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- LET'S COLLABORATE -->
-    <section class="card collab-wrap baby reveal" aria-labelledby="contact-title" id="contact">
-      <h2 id="contact-title" class="section-title" data-key="contact-title">Let's Collaborate</h2>
-      <form id="contactForm" aria-describedby="contact-desc" novalidate>
-        <div id="contact-desc" style="font-size: 13px; color: #d3d3d3; margin-bottom: 18px;">
-          Send us a message and we’ll get back to you.
-        </div>
-        <div class="row">
-          <div class="col">
-            <input type="text" id="name" name="name" placeholder="Your name" required autocomplete="name" aria-required="true" />
-          </div>
-          <div class="col">
-            <input type="email" id="email" name="email" placeholder="Your email" required autocomplete="email" aria-required="true" />
-          </div>
-        </div>
-        <div class="row">
-          <textarea id="message" name="message" rows="4" placeholder="Write your message here..." required aria-required="true"></textarea>
-        </div>
-        <button class="btn" type="submit" aria-live="polite" aria-busy="false" aria-label="Send message">Send</button>
+    <!-- COLLABORATE -->
+    <section class="card collab-wrap">
+      <h2 class="section-title" data-key="contact-title">Let's Collaborate</h2>
+      <form>
+        <input type="text" placeholder="Your name" required />
+        <input type="email" placeholder="Your email" required />
+        <textarea rows="4" placeholder="Write your message..." required></textarea>
+        <button type="submit" style="margin-top:12px;">Send</button>
       </form>
     </section>
   </main>
-
-  <!-- THANK YOU POPUP -->
-  <div class="popup" role="alertdialog" aria-live="polite" aria-modal="true" id="thankYouPopup" tabindex="-1">
-    <p>Thank you for reaching out! We’ll get back to you very soon. 💙</p>
-  </div>
-
-  <!-- CONFETTI CANVAS -->
-  <canvas id="confettiCanvas" aria-hidden="true"></canvas>
-
   <!-- FOOTER -->
-  <footer class="site-footer">
+  <footer>
     <div>
-      <a href="https://www.instagram.com/sponsera.co" target="_blank" rel="noopener noreferrer" aria-label="Visit Sponsera Instagram">@sponsera.co</a> |
-      <a href="mailto:sponsera@proton.me" aria-label="Send email to sponsera">sponsera@proton.me</a>
+      <a href="https://www.instagram.com/sponsera.co" target="_blank">@sponsera.co</a> |
+      <a href="mailto:sponsera@proton.me">sponsera@proton.me</a>
     </div>
-    <div class="copyright" aria-label="Copyright notice">© 2025 Sponsera. All rights reserved.</div>
+    <div class="copyright">© 2025 SponsEra. All rights reserved.</div>
   </footer>
-
   <script>
-    (() => {
-      const themeBtn = document.getElementById('themeBtn');
-      const body = document.body;
-
-      function setTheme(dark, save = true) {
-        if(dark) {
-          body.classList.add('dark');
-          themeBtn.textContent = '☀️';
-        } else {
-          body.classList.remove('dark');
-          themeBtn.textContent = '🌗';
-        }
-        if(save) localStorage.setItem('theme', dark ? 'dark' : 'light');
-      }
-
-      const savedTheme = localStorage.getItem('theme');
-      if(savedTheme) {
-        setTheme(savedTheme === 'dark', false);
-      } else {
-        setTheme(false, false);
-      }
-
-      themeBtn.addEventListener('click', () => {
-        setTheme(!body.classList.contains('dark'));
-      });
-
-      const translations = {
-        en: {
-          "hero-title": "We help brands and creators find each other, work together and succeed.",
-          "hero-sub": "Sponsera connects creators and brands with meaningful sponsorships that deliver real impact. Clean. Fast. Human.",
-          "how-title": "How It Works",
-          "how-1": "Brands sign up & post opportunities",
-          "how-2": "Creators apply with their pitch",
-          "how-3": "Collaborations begin. Simple, fast, transparent.",
-          "benefits-title": "For Brands & Creators",
-          "brand-title": "For Brands",
-          "brand-text": "Reach authentic creators who resonate with your mission. Get measurable results.",
-          "creator-title": "For Creators",
-          "creator-text": "Skip the middleman. Land real deals. Keep your creative freedom.",
-          "features-title": "Features",
-          "f1-title": "🧠 Smart Matchmaking",
-          "f1-text": "Our algorithm pairs you with ideal brand partners.",
-          "f2-title": "📊 Performance Tracking",
-          "f2-text": "Monitor real-time performance of your collabs.",
-          "f3-title": "🛡️ Secure Payments",
-          "f3-text": "We protect both sides with milestone-based payments.",
-          "contact-title": "Let's Collaborate"
-        },
-        ar: {
-          "hero-title": "نساعد العلامات التجارية والمبدعين على التواصل والعمل معاً والنجاح.",
-          "hero-sub": "تربط سونسيرا المبدعين والعلامات التجارية بشراكات ذات تأثير حقيقي. نظيف. سريع. إنساني.",
-          "how-title": "كيف يعمل",
-          "how-1": "تقوم العلامات التجارية بالتسجيل ونشر الفرص",
-          "how-2": "يتقدم المبدعون بعروضهم",
-          "how-3": "تبدأ التعاونات. بسيط، سريع، شفاف.",
-          "benefits-title": "للعلامات التجارية والمبدعين",
-          "brand-title": "للعلامات التجارية",
-          "brand-text": "الوصول إلى مبدعين أصليين يتماشون مع مهمتك. الحصول على نتائج قابلة للقياس.",
-          "creator-title": "للمبدعين",
-          "creator-text": "تخطي الوسطاء. إتمام صفقات حقيقية. الحفاظ على حريتك الإبداعية.",
-          "features-title": "المميزات",
-          "f1-title": "🧠 مطابقة ذكية",
-          "f1-text": "خوارزميتنا تربطك بشركاء العلامة التجارية المثاليين.",
-          "f2-title": "📊 تتبع الأداء",
-          "f2-text": "مراقبة أداء التعاونات في الوقت الحقيقي.",
-          "f3-title": "🛡️ دفعات آمنة",
-          "f3-text": "نحمي الطرفين عبر دفعات حسب مراحل المشروع.",
-          "contact-title": "هيا نتعاون"
-        }
-      };
-
-      const langSelect = document.getElementById('langSelect');
-      function setLanguage(lang) {
-        if(!translations[lang]) return;
-        document.querySelectorAll('[data-key]').forEach(el => {
-          const key = el.getAttribute('data-key');
-          if(translations[lang][key]) {
-            el.textContent = translations[lang][key];
-          }
-        });
-        if(lang === 'ar') {
-          document.documentElement.setAttribute('dir', 'rtl');
-          document.documentElement.lang = 'ar';
-        } else {
-          document.documentElement.setAttribute('dir', 'ltr');
-          document.documentElement.lang = 'en';
-        }
-      }
-      langSelect.value = 'en';
-      langSelect.addEventListener('change', (e) => {
-        setLanguage(e.target.value);
-      });
-      setLanguage('en');
-
-      const form = document.getElementById('contactForm');
-      const thankYou = document.getElementById('thankYouPopup');
-      const confettiCanvas = document.getElementById('confettiCanvas');
-
-      function sendEmail(data) {
-        return new Promise((resolve) => {
-          setTimeout(() => resolve(true), 1200);
-        });
-      }
-
-      function launchConfetti() {
-        const confetti = confettiCanvas;
-        confetti.width = window.innerWidth;
-        confetti.height = window.innerHeight;
-        const ctx = confetti.getContext('2d');
-        confetti.style.display = 'block';
-
-        const pieces = [];
-        const colors = ['#1358b8', '#89cff0', '#d2e6f9', '#07263b'];
-
-        function randomRange(min, max) {
-          return Math.random() * (max - min) + min;
-        }
-
-        for(let i=0; i<150; i++) {
-          pieces.push({
-            x: Math.random() * confetti.width,
-            y: Math.random() * confetti.height - confetti.height,
-            r: randomRange(5, 10),
-            d: randomRange(10, 30),
-            color: colors[Math.floor(Math.random()*colors.length)],
-            tilt: randomRange(-10, 10),
-            tiltAngle: 0,
-            tiltAngleIncrement: randomRange(0.05, 0.12)
-          });
-        }
-
-        let animationFrame;
-        function draw() {
-          ctx.clearRect(0, 0, confetti.width, confetti.height);
-          pieces.forEach((p) => {
-            p.tiltAngle += p.tiltAngleIncrement;
-            p.y += (Math.cos(p.d) + 3 + p.r/2) * 0.7;
-            p.x += Math.sin(p.d);
-            p.tilt = Math.sin(p.tiltAngle) * 15;
-
-            ctx.beginPath();
-            ctx.lineWidth = p.r / 2;
-            ctx.strokeStyle = p.color;
-            ctx.moveTo(p.x + p.tilt + p.r / 4, p.y);
-            ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 4);
-            ctx.stroke();
-
-            if(p.y > confetti.height) {
-              p.x = Math.random() * confetti.width;
-              p.y = -10;
-            }
-          });
-          animationFrame = requestAnimationFrame(draw);
-        }
-        draw();
-
-        setTimeout(() => {
-          cancelAnimationFrame(animationFrame);
-          ctx.clearRect(0, 0, confetti.width, confetti.height);
-          confetti.style.display = 'none';
-        }, 5000);
-      }
-
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const btn = form.querySelector('button[type="submit"]');
-        if(!form.checkValidity()) {
-          form.reportValidity();
-          return;
-        }
-        btn.disabled = true;
-        btn.setAttribute('aria-busy', 'true');
-        const formData = {
-          name: form.name.value.trim(),
-          email: form.email.value.trim(),
-          message: form.message.value.trim(),
-          to: 'sponsera@proton.me'
-        };
-
-        try {
-          await sendEmail(formData);
-          form.reset();
-          thankYou.classList.add('show');
-          thankYou.focus();
-          launchConfetti();
-
-          setTimeout(() => {
-            thankYou.classList.remove('show');
-          }, 6000);
-        } catch(err) {
-          alert('Sorry, there was an error sending your message. Please try again later.');
-        }
-        btn.disabled = false;
-        btn.setAttribute('aria-busy', 'false');
-      });
-
-      const revealEls = document.querySelectorAll('.reveal');
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if(entry.isIntersecting){
-            entry.target.classList.add('visible');
-          }
-        });
-      }, {
-        threshold: 0.2
-      });
-      revealEls.forEach(el => observer.observe(el));
-
-    })();
+    const themeBtn=document.getElementById('themeBtn');
+    themeBtn.addEventListener('click',()=>document.body.classList.toggle('dark'));
   </script>
-
 </body>
 </html>
