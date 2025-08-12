@@ -152,8 +152,14 @@
       }
 
       // Dark mode default
-      const savedTheme = localStorage.getItem('theme');
-      if(savedTheme) {
+    const savedTheme = localStorage.getItem('theme');
+if(savedTheme) {
+  setTheme(savedTheme === 'dark', false);
+} else {
+  // default to dark mode
+  setTheme(true, false);
+}
+
         setTheme(savedTheme === 'dark', false);
       } else {
         setTheme(true, false); // default to dark
