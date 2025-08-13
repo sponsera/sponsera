@@ -586,10 +586,11 @@
 
       const savedTheme = localStorage.getItem('theme');
       if(savedTheme) {
-        setTheme(savedTheme === 'dark', false);
-      } else {
-        setTheme(false, false);
-      }
+  setTheme(savedTheme === 'dark', false);
+} else {
+  setTheme(true, false); // dark by default
+}
+
 
       themeBtn.addEventListener('click', () => {
         setTheme(!body.classList.contains('dark'));
