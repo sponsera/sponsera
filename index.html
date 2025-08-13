@@ -437,7 +437,7 @@
         if(save) localStorage.setItem('theme', dark ? 'dark' : 'light');
       }
       const savedTheme = localStorage.getItem('theme');
-     if(savedTheme) setTheme(savedTheme === 'dark', false); else setTheme(true, false);
+      if(savedTheme) setTheme(savedTheme === 'dark', false); else setTheme(true, false);
 
       themeBtn.addEventListener('click', () => setTheme(!body.classList.contains('dark')));
 
@@ -519,9 +519,33 @@
       const thankYou = document.getElementById('thankYouPopup');
       const confettiCanvas = document.getElementById('confettiCanvas');
 
+      // 🔑 Paste your Web3Forms Access Key below
+      const WEB3FORMS_ACCESS_KEY = 'f687e4b4-6030-469f-8507-d22d0e812313;
+
       function sendEmail(data) {
-        // stubbed "send" — replace with real endpoint if you have one
-        return new Promise((resolve) => setTimeout(() => resolve(true), 900));
+        // Send to Web3Forms API
+        const payload = {
+          access_key: WEB3FORMS_ACCESS_KEY,
+          from_name: 'SponsEra Website',
+          subject: 'New SponsEra contact form',
+          ...data
+        };
+        return fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        }).then(async (res) => {
+          // Web3Forms returns JSON with { success: true/false }
+          const json = await res.json().catch(() => ({}));
+          if (!res.ok || !json.success) {
+            const msg = (json && (json.body && json.body.message)) || json.message || 'Submission failed.';
+            throw new Error(msg);
+          }
+          return true;
+        });
       }
 
       function launchConfetti() {
@@ -589,7 +613,7 @@
           name: form.name.value.trim(),
           email: form.email.value.trim(),
           message: form.message.value.trim(),
-          to: 'sponsera@proton.me' /* keep same as requested */
+          to: 'sponsera@proton.me' /* kept as requested; Web3Forms will still send to the email configured in your dashboard */
         };
 
         try {
