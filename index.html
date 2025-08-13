@@ -437,7 +437,8 @@
         if(save) localStorage.setItem('theme', dark ? 'dark' : 'light');
       }
       const savedTheme = localStorage.getItem('theme');
-      if(savedTheme) setTheme(savedTheme === 'dark', false); else setTheme(false, false);
+     if(savedTheme) setTheme(savedTheme === 'dark', false); else setTheme(true, false);
+
       themeBtn.addEventListener('click', () => setTheme(!body.classList.contains('dark')));
 
       /* TRANSLATIONS */
