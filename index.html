@@ -538,16 +538,27 @@
     <!-- LET'S COLLABORATE -->
     <section class="card collab-wrap baby reveal" aria-labelledby="contact-title" id="contact">
       <h2 id="contact-title" class="section-title" data-key="contact-title">Let's Collaborate</h2>
-   <form id="contactForm" action="https://formsubmit.co/el/mozuve" method="POST" novalidate>
+ <form id="contactForm" action="https://formsubmit.co/el/mozuve" method="POST" novalidate>
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_next" value="https://sponsera.github.io/sponsera/thank-you.html">
   <input type="hidden" name="_template" value="table">
 
-        <div class="row">
-          <textarea id="message" name="message" rows="4" placeholder="Write your message here..." required aria-required="true"></textarea>
-        </div>
-        <button class="btn" type="submit" aria-live="polite" aria-busy="false" aria-label="Send message">Send</button>
-      </form>
+  <div class="row">
+    <div class="col">
+      <input type="text" id="name" name="name" placeholder="Your name" required aria-required="true">
+    </div>
+    <div class="col">
+      <input type="email" id="email" name="email" placeholder="Your email" required aria-required="true">
+    </div>
+  </div>
+
+  <div class="row">
+    <textarea id="message" name="message" rows="4" placeholder="Write your message here..." required aria-required="true"></textarea>
+  </div>
+
+  <button class="btn" type="submit" aria-live="polite" aria-busy="false" aria-label="Send message">Send</button>
+</form>
+
     </section>
   </main>
 
