@@ -749,27 +749,30 @@
         const btn = form.querySelector('button[type="submit"]');
         if(!form.checkValidity()) {
           form.reportValidity();
-          return;
-        }
-        btn.disabled = true;
-        btn.setAttribute('aria-busy', 'true');
-        const formData = {
-          name: form.name.value.trim(),
-          email: form.email.value.trim(),
-          message: form.message.value.trim(),
-          to: 'sponsera@proton.me'
-        };
+      try {
+  const data = new FormData(form);
+  const res = await fetch(form.action, {
+    method: 'POST',
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  });
 
-        try {
-      const data = new FormData(form);
-await fetch(form.action, {
-  method: 'POST',
-  body: data,
-  headers: { 'Accept': 'application/json' }
-});
+  if (res.ok) {
+    form.reset();
+    thankYou.classList.add('show');
+    thankYou.focus();
+    launchConfetti();
 
-          form.reset();
-          thankYou.classList.add('show');
+    setTimeout(() => {
+      thankYou.classList.remove('show');
+    }, 6000);
+  } else {
+    alert('Form submit failed — please try again.');
+  }
+} catch(err) {
+  alert('Sorry, there was an error sending your message. Please try again later.');
+}
+
           thankYou.focus();
           launchConfetti();
 
