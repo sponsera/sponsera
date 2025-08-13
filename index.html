@@ -538,18 +538,11 @@
     <!-- LET'S COLLABORATE -->
     <section class="card collab-wrap baby reveal" aria-labelledby="contact-title" id="contact">
       <h2 id="contact-title" class="section-title" data-key="contact-title">Let's Collaborate</h2>
-      <form id="contactForm" aria-describedby="contact-desc" novalidate>
-        <div id="contact-desc" style="font-size: 13px; color: #d3d3d3; margin-bottom: 18px;">
-          Send us a message and we’ll get back to you.
-        </div>
-        <div class="row">
-          <div class="col">
-            <input type="text" id="name" name="name" placeholder="Your name" required autocomplete="name" aria-required="true" />
-          </div>
-          <div class="col">
-            <input type="email" id="email" name="email" placeholder="Your email" required autocomplete="email" aria-required="true" />
-          </div>
-        </div>
+   <form id="contactForm" action="https://formsubmit.co/el/mozuve" method="POST" novalidate>
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_next" value="https://sponsera.github.io/sponsera/thank-you.html">
+  <input type="hidden" name="_template" value="table">
+
         <div class="row">
           <textarea id="message" name="message" rows="4" placeholder="Write your message here..." required aria-required="true"></textarea>
         </div>
@@ -756,7 +749,13 @@
         };
 
         try {
-          await sendEmail(formData);
+      const data = new FormData(form);
+await fetch(form.action, {
+  method: 'POST',
+  body: data,
+  headers: { 'Accept': 'application/json' }
+});
+
           form.reset();
           thankYou.classList.add('show');
           thankYou.focus();
