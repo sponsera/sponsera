@@ -803,3 +803,185 @@
 
 </body>
 </html>
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <!-- head content unchanged -->
+</head>
+<body>
+
+  <!-- controls, header, main content unchanged -->
+
+  <!-- LET'S COLLABORATE -->
+  <section class="card collab-wrap baby reveal" aria-labelledby="contact-title" id="contact">
+    <h2 id="contact-title" class="section-title" data-key="contact-title">Let's Collaborate</h2>
+    <form id="contactForm" action="https://formsubmit.co/el/mozuve" method="POST" novalidate>
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://sponsera.github.io/sponsera/thank-you.html">
+      <input type="hidden" name="_template" value="table">
+
+      <div class="row">
+        <div class="col">
+          <input type="text" id="name" name="name" placeholder="Your name" required aria-required="true">
+        </div>
+        <div class="col">
+          <input type="email" id="email" name="email" placeholder="Your email" required aria-required="true">
+        </div>
+      </div>
+
+      <div class="row">
+        <textarea id="message" name="message" rows="4" placeholder="Write your message here..." required aria-required="true"></textarea>
+      </div>
+
+      <button class="btn" type="submit" aria-live="polite" aria-busy="false" aria-label="Send message">Send</button>
+    </form>
+  </section>
+
+  <!-- THANK YOU POPUP -->
+  <div class="popup" role="alertdialog" aria-live="polite" aria-modal="true" id="thankYouPopup" tabindex="-1">
+    <p>Thank you for reaching out! We’ll get back to you very soon. 💙</p>
+  </div>
+
+  <!-- CONFETTI CANVAS -->
+  <canvas id="confettiCanvas" aria-hidden="true"></canvas>
+
+  <!-- FOOTER unchanged -->
+
+  <script>
+    (() => {
+      const themeBtn = document.getElementById('themeBtn');
+      const body = document.body;
+
+      function setTheme(dark, save = true) {
+        if (dark) {
+          body.classList.add('dark');
+          themeBtn.textContent = '☀️';
+        } else {
+          body.classList.remove('dark');
+          themeBtn.textContent = '🌗';
+        }
+        if (save) localStorage.setItem('theme', dark ? 'dark' : 'light');
+      }
+
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        setTheme(savedTheme === 'dark', false);
+      } else {
+        setTheme(true, false); // dark by default
+      }
+
+      themeBtn.addEventListener('click', () => {
+        setTheme(!body.classList.contains('dark'));
+      });
+
+      // translations (unchanged)
+
+      const form = document.getElementById('contactForm');
+      const thankYou = document.getElementById('thankYouPopup');
+      const confettiCanvas = document.getElementById('confettiCanvas');
+
+      function launchConfetti() {
+        const confetti = confettiCanvas;
+        confetti.width = window.innerWidth;
+        confetti.height = window.innerHeight;
+        const ctx = confetti.getContext('2d');
+        confetti.style.display = 'block';
+
+        const pieces = [];
+        const colors = ['#1358b8', '#89cff0', '#d2e6f9', '#07263b'];
+
+        function randomRange(min, max) {
+          return Math.random() * (max - min) + min;
+        }
+
+        for (let i = 0; i < 150; i++) {
+          pieces.push({
+            x: Math.random() * confetti.width,
+            y: Math.random() * confetti.height - confetti.height,
+            r: randomRange(5, 10),
+            d: randomRange(10, 30),
+            color: colors[Math.floor(Math.random() * colors.length)],
+            tilt: randomRange(-10, 10),
+            tiltAngle: 0,
+            tiltAngleIncrement: randomRange(0.05, 0.12)
+          });
+        }
+
+        let animationFrame;
+        function draw() {
+          ctx.clearRect(0, 0, confetti.width, confetti.height);
+          pieces.forEach((p) => {
+            p.tiltAngle += p.tiltAngleIncrement;
+            p.y += (Math.cos(p.d) + 3 + p.r / 2) * 0.7;
+            p.x += Math.sin(p.d);
+            p.tilt = Math.sin(p.tiltAngle) * 15;
+
+            ctx.beginPath();
+            ctx.lineWidth = p.r / 2;
+            ctx.strokeStyle = p.color;
+            ctx.moveTo(p.x + p.tilt + p.r / 4, p.y);
+            ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 4);
+            ctx.stroke();
+
+            if (p.y > confetti.height) {
+              p.x = Math.random() * confetti.width;
+              p.y = -10;
+            }
+          });
+          animationFrame = requestAnimationFrame(draw);
+        }
+        draw();
+
+        setTimeout(() => {
+          cancelAnimationFrame(animationFrame);
+          ctx.clearRect(0, 0, confetti.width, confetti.height);
+          confetti.style.display = 'none';
+        }, 5000);
+      }
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = form.querySelector('button[type="submit"]');
+
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        btn.disabled = true;
+        btn.setAttribute('aria-busy', 'true');
+
+        try {
+          const data = new FormData(form);
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+          });
+
+          if (res.ok) {
+            form.reset();
+            thankYou.classList.add('show');
+            thankYou.focus();
+            launchConfetti();
+
+            setTimeout(() => {
+              thankYou.classList.remove('show');
+            }, 6000);
+          } else {
+            alert('Form submit failed — please try again.');
+          }
+        } catch (err) {
+          alert('Sorry, there was an error sending your message. Please try again later.');
+        }
+
+        btn.disabled = false;
+        btn.setAttribute('aria-busy', 'false');
+      });
+
+      // reveal animations (unchanged)
+    })();
+  </script>
+
+</body>
+</html>
