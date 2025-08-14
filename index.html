@@ -382,6 +382,8 @@
         </div>
         <div class="row">
           <div class="col">
+            <input type="text" name="_honey" style="display:none">
+
             <input type="text" id="name" name="name" placeholder="Your name" required autocomplete="name" aria-required="true" />
           </div>
         </div>
@@ -420,211 +422,227 @@
     <div class="copyright" aria-label="Copyright notice">© 2025 SponsEra. All rights reserved.</div>
   </footer>
 
-  <script>
-    (() => {
-      const themeBtn = document.getElementById('themeBtn');
-      const body = document.body;
+ <script>
+(() => {
+  const themeBtn = document.getElementById('themeBtn');
+  const body = document.body;
 
-      /* THEME HANDLING */
-      function setTheme(dark, save = true) {
-        if(dark) {
-          body.classList.add('dark');
-          themeBtn.textContent = '☀️';
-        } else {
-          body.classList.remove('dark');
-          themeBtn.textContent = '🌗';
-        }
-        if(save) localStorage.setItem('theme', dark ? 'dark' : 'light');
-      }
-      const savedTheme = localStorage.getItem('theme');
-     if(savedTheme) setTheme(savedTheme === 'dark', false); else setTheme(true, false);
+  /* THEME HANDLING */
+  function setTheme(dark, save = true) {
+    if (dark) {
+      body.classList.add('dark');
+      themeBtn.textContent = '☀️';
+    } else {
+      body.classList.remove('dark');
+      themeBtn.textContent = '🌗';
+    }
+    if (save) localStorage.setItem('theme', dark ? 'dark' : 'light');
+  }
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) setTheme(savedTheme === 'dark', false); else setTheme(true, false);
 
-      themeBtn.addEventListener('click', () => setTheme(!body.classList.contains('dark')));
+  themeBtn.addEventListener('click', () => setTheme(!body.classList.contains('dark')));
 
-      /* TRANSLATIONS */
-      const translations = {
-        en: {
-          "hero-title": "We help brands and creators find each other, work together and succeed.",
-          "hero-sub": "SponsEra connects creators and brands with meaningful sponsorships that deliver real impact. Clean. Fast. Human.",
-          "how-title": "How It Works",
-          "how-1": "Brands sign up & post opportunities",
-          "how-2": "Creators apply with their pitch",
-          "how-3": "Collaborations begin. Simple, fast, transparent.",
-          "benefits-title": "For Brands & Creators",
-          "brand-title":"For Brands",
-          "brand-text":"Reach authentic creators who resonate with your mission. Get measurable results.",
-          "creator-title":"For Creators",
-          "creator-text":"Skip the middleman. Land real deals. Keep your creative freedom.",
-          "features-title":"Signature Perks",
-          "f1-title":"🧠 Smart Matchmaking",
-          "f1-text":"Our algorithm pairs you with ideal brand partners.",
-          "f2-title":"📊 Performance Tracking",
-          "f2-text":"Monitor real-time performance of your collabs.",
-          "f3-title":"🛡️ Secure Payments",
-          "f3-text":"We protect both sides with milestone-based payments.",
-          "contact-title":"Let's Collaborate"
-        },
-        ar: {
-          "hero-title": "نساعد العلامات التجارية والمبدعين على التواصل والعمل معاً والنجاح.",
-          "hero-sub": "تربط SponsEra المبدعين والعلامات التجارية بشراكات ذات تأثير حقيقي. نظيف. سريع. إنساني.",
-          "how-title": "كيف يعمل",
-          "how-1": "تقوم العلامات التجارية بالتسجيل ونشر الفرص",
-          "how-2": "يتقدم المبدعون بعروضهم",
-          "how-3": "تبدأ التعاونات. بسيط، سريع، شفاف.",
-          "benefits-title": "للعلامات التجارية والمبدعين",
-          "brand-title":"للعلامات التجارية",
-          "brand-text":"الوصول إلى مبدعين أصليين يتماشون مع مهمتك. الحصول على نتائج قابلة للقياس.",
-          "creator-title":"للمبدعين",
-          "creator-text":"تخطي الوسطاء. إتمام صفقات حقيقية. الحفاظ على حريتك الإبداعية.",
-          "features-title":"مزايا مميزة",
-          "f1-title":"🧠 مطابقة ذكية",
-          "f1-text":"خوارزميتنا تربطك بشركاء العلامة التجارية المثاليين.",
-          "f2-title":"📊 تتبع الأداء",
-          "f2-text":"مراقبة أداء التعاونات في الوقت الحقيقي.",
-          "f3-title":"🛡️ دفعات آمنة",
-          "f3-text":"نحمي الطرفين عبر دفعات حسب مراحل المشروع.",
-          "contact-title":"هيا نتعاون"
-        }
-      };
+  /* TRANSLATIONS */
+  const translations = {
+    en: {
+      "hero-title": "We help brands and creators find each other, work together and succeed.",
+      "hero-sub": "SponsEra connects creators and brands with meaningful sponsorships that deliver real impact. Clean. Fast. Human.",
+      "how-title": "How It Works",
+      "how-1": "Brands sign up & post opportunities",
+      "how-2": "Creators apply with their pitch",
+      "how-3": "Collaborations begin. Simple, fast, transparent.",
+      "benefits-title": "For Brands & Creators",
+      "brand-title": "For Brands",
+      "brand-text": "Reach authentic creators who resonate with your mission. Get measurable results.",
+      "creator-title": "For Creators",
+      "creator-text": "Skip the middleman. Land real deals. Keep your creative freedom.",
+      "features-title": "Signature Perks",
+      "f1-title": "🧠 Smart Matchmaking",
+      "f1-text": "Our algorithm pairs you with ideal brand partners.",
+      "f2-title": "📊 Performance Tracking",
+      "f2-text": "Monitor real-time performance of your collabs.",
+      "f3-title": "🛡️ Secure Payments",
+      "f3-text": "We protect both sides with milestone-based payments.",
+      "contact-title": "Let's Collaborate"
+    },
+    ar: {
+      "hero-title": "نساعد العلامات التجارية والمبدعين على التواصل والعمل معاً والنجاح.",
+      "hero-sub": "تربط SponsEra المبدعين والعلامات التجارية بشراكات ذات تأثير حقيقي. نظيف. سريع. إنساني.",
+      "how-title": "كيف يعمل",
+      "how-1": "تقوم العلامات التجارية بالتسجيل ونشر الفرص",
+      "how-2": "يتقدم المبدعون بعروضهم",
+      "how-3": "تبدأ التعاونات. بسيط، سريع، شفاف.",
+      "benefits-title": "للعلامات التجارية والمبدعين",
+      "brand-title": "للعلامات التجارية",
+      "brand-text": "الوصول إلى مبدعين أصليين يتماشون مع مهمتك. الحصول على نتائج قابلة للقياس.",
+      "creator-title": "للمبدعين",
+      "creator-text": "تخطي الوسطاء. إتمام صفقات حقيقية. الحفاظ على حريتك الإبداعية.",
+      "features-title": "مزايا مميزة",
+      "f1-title": "🧠 مطابقة ذكية",
+      "f1-text": "خوارزميتنا تربطك بشركاء العلامة التجارية المثاليين.",
+      "f2-title": "📊 تتبع الأداء",
+      "f2-text": "مراقبة أداء التعاونات في الوقت الحقيقي.",
+      "f3-title": "🛡️ دفعات آمنة",
+      "f3-text": "نحمي الطرفين عبر دفعات حسب مراحل المشروع.",
+      "contact-title": "هيا نتعاون"
+    }
+  };
 
-      const langSelect = document.getElementById('langSelect');
-      function setLanguage(lang) {
-        if(!translations[lang]) return;
-        document.querySelectorAll('[data-key]').forEach(el => {
-          const key = el.getAttribute('data-key');
-          if(translations[lang][key]) el.textContent = translations[lang][key];
-        });
-        if(lang === 'ar') {
-          document.documentElement.setAttribute('dir', 'rtl');
-          document.documentElement.lang = 'ar';
-          /* Arabic font preference */
-          document.querySelectorAll('h1,h2,h3,p,li,button,input,textarea').forEach(el=>{
-            el.style.fontFamily = "Noto Kufi Arabic, 'Playfair Display', Inter, sans-serif";
-          });
-        } else {
-          document.documentElement.setAttribute('dir', 'ltr');
-          document.documentElement.lang = 'en';
-          document.querySelectorAll('h1,h2,h3,p,li,button,input,textarea').forEach(el=>{
-            el.style.fontFamily = "'Playfair Display', Inter, sans-serif";
-          });
-        }
-      }
-      // initialize language selector (persist if desired)
-      langSelect.value = 'en';
-      langSelect.addEventListener('change', (e) => setLanguage(e.target.value));
-      setLanguage('en');
-
-      /* FORM HANDLING + CONFETTI + THANK YOU */
-      const form = document.getElementById('contactForm');
-      const thankYou = document.getElementById('thankYouPopup');
-      const confettiCanvas = document.getElementById('confettiCanvas');
-
-      function sendEmail(data) {
-        // stubbed "send" — replace with real endpoint if you have one
-        return new Promise((resolve) => setTimeout(() => resolve(true), 900));
-      }
-
-      function launchConfetti() {
-        const confetti = confettiCanvas;
-        confetti.width = window.innerWidth;
-        confetti.height = window.innerHeight;
-        const ctx = confetti.getContext('2d');
-        confetti.style.display = 'block';
-
-        const pieces = [];
-        const colors = body.classList.contains('dark') ? ['#274690','#1358b8','#89cff0','#0b2b4a'] : ['#FFD66B','#FFDFA7','#E8F8FF','#89cff0'];
-
-        function randomRange(min, max) { return Math.random() * (max - min) + min; }
-
-        for(let i=0;i<160;i++){
-          pieces.push({
-            x: Math.random()*confetti.width,
-            y: Math.random()*confetti.height - confetti.height,
-            r: randomRange(5,10),
-            d: randomRange(10,30),
-            color: colors[Math.floor(Math.random()*colors.length)],
-            tilt: randomRange(-10,10),
-            tiltAngle:0,
-            tiltAngleIncrement: randomRange(0.05, 0.12)
-          });
-        }
-
-        let animationFrame;
-        function draw(){
-          ctx.clearRect(0,0,confetti.width,confetti.height);
-          pieces.forEach(p=>{
-            p.tiltAngle += p.tiltAngleIncrement;
-            p.y += (Math.cos(p.d) + 3 + p.r/2) * 0.7;
-            p.x += Math.sin(p.d);
-            p.tilt = Math.sin(p.tiltAngle) * 15;
-            ctx.beginPath();
-            ctx.lineWidth = p.r/2;
-            ctx.strokeStyle = p.color;
-            ctx.moveTo(p.x + p.tilt + p.r/4, p.y);
-            ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r/4);
-            ctx.stroke();
-          });
-          animationFrame = requestAnimationFrame(draw);
-        }
-        draw();
-
-        setTimeout(()=>{
-          cancelAnimationFrame(animationFrame);
-          ctx.clearRect(0,0,confetti.width,confetti.height);
-          confetti.style.display = 'none';
-        }, 4200);
-      }
-
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const btn = form.querySelector('button[type="submit"]');
-        if(!form.checkValidity()){
-          form.reportValidity();
-          return;
-        }
-        btn.disabled = true;
-        btn.setAttribute('aria-busy','true');
-
-        const formData = {
-          name: form.name.value.trim(),
-          email: form.email.value.trim(),
-          message: form.message.value.trim(),
-          to: 'sponsera@proton.me' /* keep same as requested */
-        };
-
-        try {
-          await sendEmail(formData);
-          form.reset();
-          // show thank you
-          thankYou.classList.add('show');
-          thankYou.focus();
-          launchConfetti();
-          setTimeout(()=>{ thankYou.classList.remove('show'); }, 6000);
-        } catch(err){
-          alert('Sorry — there was an error sending your message. Please try again later.');
-        }
-
-        btn.disabled = false;
-        btn.setAttribute('aria-busy','false');
+  const langSelect = document.getElementById('langSelect');
+  function setLanguage(lang) {
+    if (!translations[lang]) return;
+    document.querySelectorAll('[data-key]').forEach(el => {
+      const key = el.getAttribute('data-key');
+      if (translations[lang][key]) el.textContent = translations[lang][key];
+    });
+    if (lang === 'ar') {
+      document.documentElement.setAttribute('dir', 'rtl');
+      document.documentElement.lang = 'ar';
+      document.querySelectorAll('h1,h2,h3,p,li,button,input,textarea').forEach(el => {
+        el.style.fontFamily = "Noto Kufi Arabic, 'Playfair Display', Inter, sans-serif";
       });
-
-      /* reveal on scroll */
-      const revealEls = document.querySelectorAll('.reveal');
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if(entry.isIntersecting) entry.target.classList.add('visible');
-        });
-      },{ threshold: 0.18 });
-      revealEls.forEach(el => observer.observe(el));
-
-      /* Accessibility small helper - keep focus within popup when visible (simple) */
-      const popup = document.getElementById('thankYouPopup');
-      popup.addEventListener('keydown', (e) => {
-        if(e.key === 'Escape') popup.classList.remove('show');
+    } else {
+      document.documentElement.setAttribute('dir', 'ltr');
+      document.documentElement.lang = 'en';
+      document.querySelectorAll('h1,h2,h3,p,li,button,input,textarea').forEach(el => {
+        el.style.fontFamily = "'Playfair Display', Inter, sans-serif";
       });
+    }
+  }
+  langSelect.value = 'en';
+  langSelect.addEventListener('change', (e) => setLanguage(e.target.value));
+  setLanguage('en');
 
-    })();
-  </script>
+  /* FORM HANDLING + CONFETTI + THANK YOU */
+  const form = document.getElementById('contactForm');
+  const thankYou = document.getElementById('thankYouPopup');
+  const confettiCanvas = document.getElementById('confettiCanvas');
+
+  function sendEmail(data) {
+    return fetch("https://formsubmit.co/el/mozuve", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: new URLSearchParams({
+        name: data.name,
+        email: data.email,
+        message: data.message,
+        _honey: data.honey || "", /* honeypot value */
+        _captcha: "false",
+        _template: "table"
+      })
+    });
+  }
+
+  function launchConfetti() {
+    const confetti = confettiCanvas;
+    confetti.width = window.innerWidth;
+    confetti.height = window.innerHeight;
+    const ctx = confetti.getContext('2d');
+    confetti.style.display = 'block';
+
+    const pieces = [];
+    const colors = body.classList.contains('dark') ? ['#274690', '#1358b8', '#89cff0', '#0b2b4a'] : ['#FFD66B', '#FFDFA7', '#E8F8FF', '#89cff0'];
+
+    function randomRange(min, max) { return Math.random() * (max - min) + min; }
+
+    for (let i = 0; i < 160; i++) {
+      pieces.push({
+        x: Math.random() * confetti.width,
+        y: Math.random() * confetti.height - confetti.height,
+        r: randomRange(5, 10),
+        d: randomRange(10, 30),
+        color: colors[Math.floor(Math.random() * colors.length)],
+        tilt: randomRange(-10, 10),
+        tiltAngle: 0,
+        tiltAngleIncrement: randomRange(0.05, 0.12)
+      });
+    }
+
+    let animationFrame;
+    function draw() {
+      ctx.clearRect(0, 0, confetti.width, confetti.height);
+      pieces.forEach(p => {
+        p.tiltAngle += p.tiltAngleIncrement;
+        p.y += (Math.cos(p.d) + 3 + p.r / 2) * 0.7;
+        p.x += Math.sin(p.d);
+        p.tilt = Math.sin(p.tiltAngle) * 15;
+        ctx.beginPath();
+        ctx.lineWidth = p.r / 2;
+        ctx.strokeStyle = p.color;
+        ctx.moveTo(p.x + p.tilt + p.r / 4, p.y);
+        ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 4);
+        ctx.stroke();
+      });
+      animationFrame = requestAnimationFrame(draw);
+    }
+    draw();
+
+    setTimeout(() => {
+      cancelAnimationFrame(animationFrame);
+      ctx.clearRect(0, 0, confetti.width, confetti.height);
+      confetti.style.display = 'none';
+    }, 4200);
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]');
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    // Honeypot check
+    if (form._honey && form._honey.value) {
+      return; // Bot detected, don't send
+    }
+
+    btn.disabled = true;
+    btn.setAttribute('aria-busy', 'true');
+
+    const formData = {
+      name: form.name.value.trim(),
+      email: form.email.value.trim(),
+      message: form.message.value.trim(),
+      honey: form._honey.value.trim()
+    };
+
+    try {
+      await sendEmail(formData);
+      form.reset();
+      thankYou.classList.add('show');
+      thankYou.focus();
+      launchConfetti();
+      setTimeout(() => { thankYou.classList.remove('show'); }, 6000);
+    } catch (err) {
+      alert('Sorry — there was an error sending your message. Please try again later.');
+    }
+
+    btn.disabled = false;
+    btn.setAttribute('aria-busy', 'false');
+  });
+
+  /* reveal on scroll */
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.18 });
+  revealEls.forEach(el => observer.observe(el));
+
+  /* Accessibility helper */
+  const popup = document.getElementById('thankYouPopup');
+  popup.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') popup.classList.remove('show');
+  });
+
+})();
+</script>
+
 
 </body>
 </html>
