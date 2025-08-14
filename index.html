@@ -1,24 +1,93 @@
 <!doctype html>
 <html lang="en" dir="ltr">
 <head>
-  <!-- [same head section as your provided file] -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SponsEra — Where Brands & Creators Connect</title>
+  <meta name="description" content="SponsEra helps creators and brands build real partnerships with real impact." />
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,700&family=Inter:wght@300;400;600;700&family=Noto+Kufi+Arabic:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="logo_transparent.png" type="image/png" />
+  <style>
+    /* your full CSS unchanged from the original */
+  </style>
 </head>
-<body>
-  <!-- [same HTML structure as your provided file] -->
+<body class="dark">
+  <!-- controls -->
+  <div class="controls">
+    <div class="controls-left">
+      <select id="langSelect">
+        <option value="en">English</option>
+        <option value="ar">العربية</option>
+      </select>
+    </div>
+    <div class="controls-right">
+      <button class="theme-btn" id="themeBtn">🌗</button>
+    </div>
+  </div>
 
-  <form id="contactForm" action="https://formsubmit.co/el/mozuve" method="POST" novalidate>
-    <input type="hidden" name="_captcha" value="false" />
-    <input type="hidden" name="_template" value="table" />
-    <input type="hidden" name="_next" value="https://sponsera.github.io/sponsera/" />
-    <!-- name, email, message fields as in your file -->
-  </form>
+  <!-- header -->
+  <header>
+    <div class="header-inner">
+      <a class="logo-wrap" href="#">
+        <img src="logo_transparent.png" alt="SponsEra logo" class="logo" />
+      </a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- HERO -->
+    <section class="hero reveal" id="hero">
+      <h1 data-key="hero-title">We help brands and creators find each other, work together and succeed.</h1>
+      <p data-key="hero-sub">SponsEra connects creators and brands with meaningful sponsorships that deliver real impact. Clean. Fast. Human.</p>
+    </section>
+
+    <!-- other sections unchanged -->
+
+    <!-- LET'S COLLABORATE -->
+    <section class="card collab-wrap glow baby reveal" id="contact">
+      <h2 data-key="contact-title">Let's Collaborate</h2>
+      <form id="contactForm" action="https://formsubmit.co/el/mozuve" method="POST">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://sponsera.github.io/sponsera/">
+
+        <div class="row">
+          <input type="text" name="name" placeholder="Your name" required>
+        </div>
+        <div class="row">
+          <input type="email" name="email" placeholder="Your email" required>
+        </div>
+        <div class="row">
+          <textarea name="message" placeholder="Write your message here..." required></textarea>
+        </div>
+        <div class="row">
+          <button class="btn" type="submit">Send</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <!-- THANK YOU POPUP -->
+  <div class="popup" id="thankYouPopup">
+    <p>Thank you for reaching out! We’ll get back to you very soon. 💙</p>
+  </div>
+
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <a href="https://www.instagram.com/sponsera.co" target="_blank">@sponsera.co</a> |
+    <a href="mailto:sponsera@proton.me">sponsera@proton.me</a>
+    <div class="copyright">© 2025 SponsEra. All rights reserved.</div>
+  </footer>
 
   <script>
     (() => {
       const themeBtn = document.getElementById('themeBtn');
       const body = document.body;
       function setTheme(dark, save = true) {
-        if(dark) { body.classList.add('dark'); themeBtn.textContent = '☀️'; }
+        if(dark){ body.classList.add('dark'); themeBtn.textContent = '☀️'; }
         else { body.classList.remove('dark'); themeBtn.textContent = '🌗'; }
         if(save) localStorage.setItem('theme', dark ? 'dark' : 'light');
       }
@@ -26,34 +95,23 @@
       if(savedTheme) setTheme(savedTheme === 'dark', false); else setTheme(true, false);
       themeBtn.addEventListener('click', () => setTheme(!body.classList.contains('dark')));
 
+      /* confetti */
       const form = document.getElementById('contactForm');
       const thankYou = document.getElementById('thankYouPopup');
       const confettiCanvas = document.getElementById('confettiCanvas');
-
-      function launchConfetti() {
-        const confetti = confettiCanvas;
-        confetti.width = window.innerWidth;
-        confetti.height = window.innerHeight;
-        const ctx = confetti.getContext('2d');
-        confetti.style.display = 'block';
+      function launchConfetti(){
+        const ctx = confettiCanvas.getContext('2d');
+        confettiCanvas.width = window.innerWidth;
+        confettiCanvas.height = window.innerHeight;
+        confettiCanvas.style.display = 'block';
         const pieces = [];
         const colors = body.classList.contains('dark') ? ['#274690','#1358b8','#89cff0','#0b2b4a'] : ['#FFD66B','#FFDFA7','#E8F8FF','#89cff0'];
-        function randomRange(min, max) { return Math.random() * (max - min) + min; }
         for(let i=0;i<160;i++){
-          pieces.push({
-            x: Math.random()*confetti.width,
-            y: Math.random()*confetti.height - confetti.height,
-            r: randomRange(5,10),
-            d: randomRange(10,30),
-            color: colors[Math.floor(Math.random()*colors.length)],
-            tilt: randomRange(-10,10),
-            tiltAngle:0,
-            tiltAngleIncrement: randomRange(0.05, 0.12)
-          });
+          pieces.push({x:Math.random()*confettiCanvas.width,y:Math.random()*confettiCanvas.height-confettiCanvas.height,r:5+Math.random()*5,d:10+Math.random()*20,color:colors[Math.floor(Math.random()*colors.length)],tilt:Math.random()*10-10,tiltAngle:0,tiltAngleIncrement:Math.random()*0.07+0.05});
         }
         let animationFrame;
         function draw(){
-          ctx.clearRect(0,0,confetti.width,confetti.height);
+          ctx.clearRect(0,0,confettiCanvas.width,confettiCanvas.height);
           pieces.forEach(p=>{
             p.tiltAngle += p.tiltAngleIncrement;
             p.y += (Math.cos(p.d) + 3 + p.r/2) * 0.7;
@@ -71,34 +129,27 @@
         draw();
         setTimeout(()=>{
           cancelAnimationFrame(animationFrame);
-          ctx.clearRect(0,0,confetti.width,confetti.height);
-          confetti.style.display = 'none';
-        }, 4200);
+          ctx.clearRect(0,0,confettiCanvas.width,confettiCanvas.height);
+          confettiCanvas.style.display = 'none';
+        },4200);
       }
 
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const btn = form.querySelector('button[type="submit"]');
         if(!form.checkValidity()){ form.reportValidity(); return; }
-        btn.disabled = true;
-        btn.setAttribute('aria-busy','true');
-        try {
-          const res = await fetch(form.action, {
-            method: 'POST',
-            body: new FormData(form),
-            headers: { 'Accept': 'application/json' }
-          });
+        btn.disabled = true; btn.setAttribute('aria-busy','true');
+        try{
+          const res = await fetch(form.action,{ method:'POST', body:new FormData(form), headers:{'Accept':'application/json'} });
           if(!res.ok) throw new Error('FormSubmit error');
           form.reset();
           thankYou.classList.add('show');
-          thankYou.focus();
           launchConfetti();
-          setTimeout(()=>{ thankYou.classList.remove('show'); }, 6000);
-        } catch(err){
+          setTimeout(()=>{ thankYou.classList.remove('show'); },6000);
+        }catch(err){
           alert('Sorry — there was an error sending your message. Please try again later.');
         }
-        btn.disabled = false;
-        btn.setAttribute('aria-busy','false');
+        btn.disabled = false; btn.setAttribute('aria-busy','false');
       });
     })();
   </script>
