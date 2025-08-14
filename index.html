@@ -376,7 +376,8 @@
     <!-- LET'S COLLABORATE (vertical form) -->
     <section class="card collab-wrap glow baby reveal" aria-labelledby="contact-title" id="contact">
       <h2 id="contact-title" class="section-title" data-key="contact-title">Let's Collaborate</h2>
-      <form id="contactForm" aria-describedby="contact-desc" novalidate>
+     <form id="contactForm" aria-describedby="contact-desc" action="https://formspree.io/f/mjkozerl" method="POST" novalidate>
+
         <div id="contact-desc" style="font-size: 13px; color: rgba(15,20,25,0.45); margin-bottom: 18px;">
           Send us a message and we’ll get back to you.
         </div>
@@ -519,22 +520,20 @@
   const thankYou = document.getElementById('thankYouPopup');
   const confettiCanvas = document.getElementById('confettiCanvas');
 
-  function sendEmail(data) {
-    return fetch("https://formsubmit.co/el/mozuve", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      body: new URLSearchParams({
-        name: data.name,
-        email: data.email,
-        message: data.message,
-        _honey: data.honey || "", /* honeypot value */
-        _captcha: "false",
-        _template: "table"
-      })
-    });
-  }
+ async function sendEmail(data) {
+  const fd = new FormData();
+  fd.append('name', data.name);
+  fd.append('email', data.email);
+  fd.append('message', data.message);
+  fd.append('_honey', data.honey || ''); // honeypot stays
+
+  return fetch("https://formspree.io/f/mjkozerl", {
+    method: "POST",
+    body: fd,
+    headers: { "Accept": "application/json" }
+  });
+}
+
 
   function launchConfetti() {
     const confetti = confettiCanvas;
